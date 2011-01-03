@@ -69,7 +69,8 @@ namespace QuickRoute.UI.Classes
         if (g != null)
         {
           if (g.Name == null) g.Name = "";
-          string fileName = (path + "\\").Replace("\\\\", "\\") + CreateSafeFileName(g.Name) + ".gradient";
+          //string fileName = (path + "\\").Replace("\\\\", "\\") + CreateSafeFileName(g.Name) + ".gradient";
+          string fileName = Path.Combine(path, CreateSafeFileName(g.Name) + ".gradient");
           fileName = CreateSequentialFileName(fileName);
           g.Save(fileName);
         }
@@ -211,15 +212,16 @@ namespace QuickRoute.UI.Classes
 
     }
 
-    public static readonly string SettingsFileName = CommonUtil.GetApplicationDataPath() + "QuickRoute.settings";
+    //public static readonly string SettingsFileName = CommonUtil.GetApplicationDataPath() + "QuickRoute.settings";
+    public static readonly string SettingsFileName = Path.Combine(CommonUtil.GetApplicationDataPath(), "QuickRoute.settings");
 
     public static void EnsureApplicationDataFolderExists()
     {
       // ensure that application data folder and subfolders exists
       string[] necessaryFolders = new[] { 
                                           CommonUtil.GetApplicationDataPath(),
-                                          CommonUtil.GetApplicationDataPath() + "Gradients\\",
-                                          CommonUtil.GetApplicationDataPath() + "Temp\\"
+                                          Path.Combine(CommonUtil.GetApplicationDataPath(), "Gradients"),
+                                          Path.Combine(CommonUtil.GetApplicationDataPath(), "Temp")
                                         };
       foreach (string folder in necessaryFolders)
       {

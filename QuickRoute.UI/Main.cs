@@ -58,8 +58,8 @@ namespace QuickRoute.UI
       AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
       Application.ThreadException += Application_ThreadException;
 
-      var log4NetLogFileName = ConfigurationManager.AppSettings.Get("log4netLogFileName") ??
-                               CommonUtil.GetApplicationDataPath() + "QuickRoute.log";
+      var log4NetLogFileName = Path.Combine(ConfigurationManager.AppSettings.Get("log4netLogFileName") ??
+                               CommonUtil.GetApplicationDataPath(), "QuickRoute.log");
       LogUtil.Configure(log4NetLogFileName);
       Util.EnsureApplicationDataFolderExists();
       Util.UpdateApplicationSettingsToCurrentVersion();
@@ -67,7 +67,7 @@ namespace QuickRoute.UI
 
       if (ApplicationSettings.UiCulture == null)
       {
-        Util.SelectUICulture(false);
+        //Util.SelectUICulture(false);
       }
       if (ApplicationSettings.UiCulture != null)
       {
