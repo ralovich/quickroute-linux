@@ -17,8 +17,15 @@ namespace QuickRoute.Common
   {
     private static bool configured;
     private static decimal lastTime = -1;
-    private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
-    private static readonly HighPerformanceTimer standardTimer = new HighPerformanceTimer();
+    //private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
+    //private static readonly HighPerformanceTimerBase standardTimer = IsRunningOnMono() ? new HighPerformanceTimerNix() : new HighPerformanceTimer();
+	private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
+	private static readonly HighPerformanceTimerNix standardTimer = new HighPerformanceTimerNix();
+
+	public static bool IsRunningOnMono ()
+    {
+      return Type.GetType ("Mono.Runtime") != null;
+    }
 
     public static void LogDebug(string message)
     {
@@ -111,14 +118,14 @@ namespace QuickRoute.Common
       return stackFrame.GetMethod();
     }
 
-    private static HighPerformanceTimer GetTimer()
+    private static HighPerformanceTimerNix GetTimer()
     {
       return standardTimer;
     }
 
-    private static HighPerformanceTimer GetTimer(object key)
+    private static HighPerformanceTimerNix GetTimer(object key)
     {
-      if (!timers.ContainsKey(key)) timers.Add(key, new HighPerformanceTimer());
+      if (!timers.ContainsKey(key)) timers.Add(key, new HighPerformanceTimerNix());
       return timers[key];
     }
 
@@ -129,7 +136,29 @@ namespace QuickRoute.Common
 
   }
 
-  public class HighPerformanceTimer
+  public abstract class HighPerformanceTimerBase
+  {
+    // Start the timer
+    public abstract decimal Start();
+
+    // Stop the timer
+    public abstract decimal Stop();
+
+    // Returns the duration of the timer (in seconds)
+    public decimal Duration { get; set; }
+
+    public abstract void Reset();
+
+    public void ResetAndStart()
+    {
+      Reset();
+      Start();
+    }
+
+    //public abstract decimal GetCurrentTime();
+  }
+
+  public class HighPerformanceTimer : HighPerformanceTimerBase
   {
     [DllImport("Kernel32.dll")]
     private static extern bool QueryPerformanceCounter(out long lpPerformanceCount);
@@ -164,7 +193,7 @@ namespace QuickRoute.Common
     }
 
     // Start the timer
-    public decimal Start()
+    public override decimal Start()
     {
       // lets do the waiting threads there work
       Thread.Sleep(0);
@@ -175,7 +204,7 @@ namespace QuickRoute.Common
     }
 
     // Stop the timer
-    public decimal Stop()
+    public override decimal Stop()
     {
       if (!isStarted) return duration;
       QueryPerformanceCounter(out stopTime);
@@ -190,7 +219,7 @@ namespace QuickRoute.Common
       {
         if (isStarted)
         {
-          long currentTime;
+          long currentTime=0;
           QueryPerformanceCounter(out currentTime);
           return duration + (decimal)(currentTime - startTime) / freq;
         }
@@ -198,24 +227,79 @@ namespace QuickRoute.Common
       }
     }
 
-    public void Reset()
+    public override void Reset()
     {
       isStarted = false;
       duration = 0;
     }
 
-    public void ResetAndStart()
-    {
-      Reset();
-      Start();
-    }
 
     public static decimal GetCurrentTime()
     {
-      long currentTime;
+      long currentTime=0;
       QueryPerformanceCounter(out currentTime);
       return (decimal)currentTime / freq;
     }
+  }
+
+  public class HighPerformanceTimerNix : HighPerformanceTimerBase
+  {
+    struct timeval
+    {
+      public int seconds;
+      public int useconds;
+    }
+
+    [DllImport ("libc")]
+    static extern int gettimeofday (out timeval tv, IntPtr unused);
+
+    private double startTime, stopTime;
+
+    private bool isStarted;
+    private decimal duration;
+    private static IntPtr unused;
+    
+
+		public HighPerformanceTimerNix()
+			: this(false)
+		{
+		}
+
+		public HighPerformanceTimerNix(bool startImmediately)
+		{
+			if(startImmediately)
+				Start();
+		}
+
+		public override decimal Start()
+		{
+			Thread.Sleep(0);
+			timeval t;
+			gettimeofday(out t, unused);
+			startTime = (double)t.seconds + ((double)t.useconds)/1000000.0;
+			System.Console.WriteLine("startTime={0}\n", startTime);
+			isStarted = true;
+			return duration;
+		}
+
+    public override decimal Stop()
+    {
+      if (!isStarted) return duration;
+      timeval t;
+      gettimeofday(out t, unused);
+      stopTime = t.seconds + ((double)t.useconds)/1000000.0;
+      System.Console.WriteLine("stopTime={0}\n", stopTime);
+      //QueryPerformanceCounter(out stopTime);
+      duration += (decimal)(stopTime - startTime);
+      return duration;
+    }
+
+    public override void Reset()
+    {
+      isStarted = false;
+      duration = 0;
+    }
+
   }
 
   public enum LogLevel

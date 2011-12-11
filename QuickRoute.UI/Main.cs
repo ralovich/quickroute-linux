@@ -69,7 +69,7 @@ namespace QuickRoute.UI
 
       if (ApplicationSettings.UiCulture == null)
       {
-        Util.SelectUICulture(false);
+        //Util.SelectUICulture(false);
       }
       if (ApplicationSettings.UiCulture != null)
       {

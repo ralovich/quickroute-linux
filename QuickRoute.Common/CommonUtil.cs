@@ -10,6 +10,7 @@ namespace QuickRoute.Common
   {
     public static string GetApplicationDataPath()
     {
+      //return (Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\QuickRoute\\").Replace("\\\\", "\\");
       return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "QuickRoute");
     }
 
@@ -25,7 +26,8 @@ namespace QuickRoute.Common
       string fileName;
       do
       {
-        fileName = path + DateTime.Now.Ticks + "_" + new Random().Next(0, 999999) + "." + extension;
+        //fileName = path + DateTime.Now.Ticks + "_" + new Random().Next(0, 999999) + "." + extension;
+        fileName = Path.Combine(path, DateTime.Now.Ticks + "_" + new Random().Next(0, 999999) + "." + extension);
       } while (File.Exists(fileName));
       return fileName;
     }
@@ -33,14 +35,16 @@ namespace QuickRoute.Common
     public static string GetTempFileName(string suggestedFileName, string extension)
     {
       var path = GetTempPath();
-      string fileName = path + CreateValidFileName(GetTempFileNameHelper(suggestedFileName, extension));
+      //string fileName = path + CreateValidFileName(GetTempFileNameHelper(suggestedFileName, extension));
+      string fileName = Path.Combine(path, CreateValidFileName(GetTempFileNameHelper(suggestedFileName, extension)));
       var count = 0;
       while (File.Exists(fileName))
       {
         count++;
         var fn = Path.GetFileNameWithoutExtension(suggestedFileName) + string.Format(" ({0})", count) +
                  Path.GetExtension(suggestedFileName);
-        fileName = path + CreateValidFileName(GetTempFileNameHelper(fn, extension));
+        //fileName = path + CreateValidFileName(GetTempFileNameHelper(fn, extension));
+        fileName = Path.Combine(path, CreateValidFileName(GetTempFileNameHelper(fn, extension)));
       }
       return fileName;
     }
@@ -54,12 +58,12 @@ namespace QuickRoute.Common
 
 
     /// <summary>
-    /// Includes a trailing \
+    /// 
     /// </summary>
     /// <returns></returns>
     public static string GetTempPath()
     {
-      return Path.Combine(GetApplicationDataPath(), "Temp");
+      return Path.Combine(GetApplicationDataPath(), @"Temp");
     }
 
     public static void ClearTempFolder()

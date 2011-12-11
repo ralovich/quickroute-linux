@@ -69,7 +69,8 @@ namespace QuickRoute.UI.Classes
         if (g != null)
         {
           if (g.Name == null) g.Name = "";
-          string fileName = (path + "\\").Replace("\\\\", "\\") + CreateSafeFileName(g.Name) + ".gradient";
+          //string fileName = (path + "\\").Replace("\\\\", "\\") + CreateSafeFileName(g.Name) + ".gradient";
+          string fileName = Path.Combine(path, CreateSafeFileName(g.Name) + ".gradient");
           fileName = CreateSequentialFileName(fileName);
           g.Save(fileName);
         }
@@ -244,7 +245,8 @@ namespace QuickRoute.UI.Classes
       string[] necessaryFolders = new[] { 
                                           CommonUtil.GetApplicationDataPath(),
                                           Path.Combine(CommonUtil.GetApplicationDataPath(), "Gradients"),
-                                          CommonUtil.GetTempPath()
+                                          //CommonUtil.GetTempPath()
+                                          Path.Combine(CommonUtil.GetApplicationDataPath(), "Temp")
                                         };
       foreach (string folder in necessaryFolders)
       {
