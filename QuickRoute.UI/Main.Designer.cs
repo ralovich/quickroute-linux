@@ -139,7 +139,7 @@ namespace QuickRoute.UI
       this.menuToolsOpenInGoogleEarth = new System.Windows.Forms.ToolStripMenuItem();
       this.menuToolsOpenMultipleFilesInGoogleEarth = new System.Windows.Forms.ToolStripMenuItem();
       this.menuToolsPublishMap = new System.Windows.Forms.ToolStripMenuItem();
-      this.menuToolsAddLapsFromWinSplits = new System.Windows.Forms.ToolStripMenuItem();
+      this.menuToolsAddLapsFromExternalDataSource = new System.Windows.Forms.ToolStripMenuItem();
       this.menuSettings = new System.Windows.Forms.ToolStripMenuItem();
       this.menuSettingsLanguage = new System.Windows.Forms.ToolStripMenuItem();
       this.menuHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -195,8 +195,8 @@ namespace QuickRoute.UI
       this.canvas.CurrentSession = null;
       resources.ApplyResources(this.canvas, "canvas");
       this.canvas.Document = null;
-      this.canvas.MaxZoom = 2;
-      this.canvas.MinZoom = 0.25;
+      this.canvas.MaxZoom = 2D;
+      this.canvas.MinZoom = 0.25D;
       this.canvas.Name = "canvas";
       this.canvas.PreventRedraw = false;
       this.canvas.RouteDrawingMode = QuickRoute.BusinessEntities.Document.RouteDrawingMode.Extended;
@@ -204,15 +204,15 @@ namespace QuickRoute.UI
       this.canvas.SecondaryColorCodingAttribute = null;
       this.canvas.SelectedSessions = null;
       this.canvas.SessionsToDraw = QuickRoute.Controls.Canvas.SessionDrawingMode.Selected;
-      this.canvas.Zoom = 1;
+      this.canvas.Zoom = 1D;
       this.canvas.DocumentChanged += new System.EventHandler<System.EventArgs>(this.canvas_DocumentChanged);
-      this.canvas.CurrentSessionChanged += new System.EventHandler<System.EventArgs>(this.canvas_CurrentSessionChanged);
-      this.canvas.DragDrop += new System.Windows.Forms.DragEventHandler(this.canvas_DragDrop);
-      this.canvas.DragEnter += new System.Windows.Forms.DragEventHandler(this.canvas_DragEnter);
       this.canvas.BeforeZoomChanged += new System.EventHandler<System.EventArgs>(this.canvas_BeforeZoomChanged);
       this.canvas.AfterZoomChanged += new System.EventHandler<System.EventArgs>(this.canvas_AfterZoomChanged);
-      this.canvas.ActionPerformed += new System.EventHandler<QuickRoute.Controls.Canvas.ActionEventArgs>(this.canvas_ActionPerformed);
       this.canvas.RouteMouseHover += new System.EventHandler<QuickRoute.Controls.Canvas.RouteMouseHoverEventArgs>(this.canvas_RouteMouseHover);
+      this.canvas.CurrentSessionChanged += new System.EventHandler<System.EventArgs>(this.canvas_CurrentSessionChanged);
+      this.canvas.ActionPerformed += new System.EventHandler<QuickRoute.Controls.Canvas.ActionEventArgs>(this.canvas_ActionPerformed);
+      this.canvas.DragDrop += new System.Windows.Forms.DragEventHandler(this.canvas_DragDrop);
+      this.canvas.DragEnter += new System.Windows.Forms.DragEventHandler(this.canvas_DragEnter);
       this.canvas.MouseLeave += new System.EventHandler(this.canvas_MouseLeave);
       // 
       // dynamicHelpLabel
@@ -273,15 +273,15 @@ namespace QuickRoute.UI
       this.laps.RowHeadersVisible = false;
       this.laps.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
       this.laps.VirtualMode = true;
-      this.laps.MouseDown += new System.Windows.Forms.MouseEventHandler(this.laps_MouseDown);
-      this.laps.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.laps_CellMouseLeave);
-      this.laps.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.laps_ColumnHeaderMouseClick);
-      this.laps.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.laps_CellValueNeeded);
       this.laps.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.laps_CellFormatting);
       this.laps.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.laps_CellMouseEnter);
+      this.laps.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.laps_CellMouseLeave);
       this.laps.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.laps_CellToolTipTextNeeded);
-      this.laps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.laps_KeyDown);
+      this.laps.CellValueNeeded += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.laps_CellValueNeeded);
+      this.laps.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.laps_ColumnHeaderMouseClick);
       this.laps.SelectionChanged += new System.EventHandler(this.laps_SelectionChanged);
+      this.laps.KeyDown += new System.Windows.Forms.KeyEventHandler(this.laps_KeyDown);
+      this.laps.MouseDown += new System.Windows.Forms.MouseEventHandler(this.laps_MouseDown);
       // 
       // lapsLabel
       // 
@@ -308,8 +308,8 @@ namespace QuickRoute.UI
       this.sessions.FormattingEnabled = true;
       this.sessions.MultiColumn = true;
       this.sessions.Name = "sessions";
-      this.sessions.SelectedIndexChanged += new System.EventHandler(this.sessions_SelectedIndexChanged);
       this.sessions.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.sessions_ItemCheck);
+      this.sessions.SelectedIndexChanged += new System.EventHandler(this.sessions_SelectedIndexChanged);
       // 
       // rightPanelBottomSplitter
       // 
@@ -389,22 +389,22 @@ namespace QuickRoute.UI
       lineGraph1.StartPL = null;
       lineGraph1.XAxisAttribute = QuickRoute.BusinessEntities.DomainAttribute.TimeOfDay;
       lineGraph1.XAxisCaption = null;
-      lineGraph1.XAxisMaxValue = 0;
-      lineGraph1.XAxisMinValue = 0;
+      lineGraph1.XAxisMaxValue = 0D;
+      lineGraph1.XAxisMinValue = 0D;
       lineGraph1.XAxisNumericConverter = null;
       lineGraph1.XAxisScaleCreator = null;
       lineGraph1.YAxisAttribute = QuickRoute.BusinessEntities.WaypointAttribute.Pace;
       lineGraph1.YAxisCaption = null;
-      lineGraph1.YAxisMaxValue = 0;
-      lineGraph1.YAxisMinValue = 0;
+      lineGraph1.YAxisMaxValue = 0D;
+      lineGraph1.YAxisMinValue = 0D;
       lineGraph1.YAxisNumericConverter = null;
       lineGraph1.YAxisScaleCreator = null;
       this.lineGraph.Graph = lineGraph1;
       this.lineGraph.HoverXValue = null;
       this.lineGraph.Name = "lineGraph";
-      this.lineGraph.MouseLeave += new System.EventHandler(this.lineGraph_MouseLeave);
-      this.lineGraph.GraphMouseDown += new System.EventHandler<QuickRoute.Controls.Canvas.RouteMouseHoverEventArgs>(this.lineGraph_GraphMouseDown);
       this.lineGraph.GraphMouseHover += new System.EventHandler<QuickRoute.Controls.Canvas.RouteMouseHoverEventArgs>(this.lineGraph_GraphMouseHover);
+      this.lineGraph.GraphMouseDown += new System.EventHandler<QuickRoute.Controls.Canvas.RouteMouseHoverEventArgs>(this.lineGraph_GraphMouseDown);
+      this.lineGraph.MouseLeave += new System.EventHandler(this.lineGraph_MouseLeave);
       // 
       // momentaneousInfoPanel
       // 
@@ -667,6 +667,7 @@ namespace QuickRoute.UI
             this.toolStripSeparator4,
             this.circleTimeRadiusLabel,
             this.circleTimeRadius});
+      this.routeAppearanceToolstrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
       this.routeAppearanceToolstrip.Name = "routeAppearanceToolstrip";
       // 
       // colorCodingAttributes
@@ -695,9 +696,9 @@ namespace QuickRoute.UI
       this.colorRangeIntervalSlider.Name = "colorRangeIntervalSlider";
       this.colorRangeIntervalSlider.ColorRangeStartValueChanged += new System.EventHandler(this.colorRangeIntervalSlider_ColorRangeStartValueChanged);
       this.colorRangeIntervalSlider.ColorRangeEndValueChanged += new System.EventHandler(this.colorRangeIntervalSlider_ColorRangeEndValueChanged);
-      this.colorRangeIntervalSlider.ColorRangeClicked += new System.Windows.Forms.MouseEventHandler(this.colorRangeIntervalSlider_ColorRangeClicked);
       this.colorRangeIntervalSlider.ColorRangeStartValueChanging += new System.EventHandler(this.colorRangeIntervalSlider_ColorRangeStartValueChanging);
       this.colorRangeIntervalSlider.ColorRangeEndValueChanging += new System.EventHandler(this.colorRangeIntervalSlider_ColorRangeEndValueChanging);
+      this.colorRangeIntervalSlider.ColorRangeClicked += new System.Windows.Forms.MouseEventHandler(this.colorRangeIntervalSlider_ColorRangeClicked);
       // 
       // colorRangeEndValue
       // 
@@ -725,8 +726,8 @@ namespace QuickRoute.UI
       // 
       resources.ApplyResources(this.gradientAlphaAdjustment, "gradientAlphaAdjustment");
       this.gradientAlphaAdjustment.Name = "gradientAlphaAdjustment";
-      this.gradientAlphaAdjustment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gradientAlphaAdjustment_MouseDown);
       this.gradientAlphaAdjustment.ValueChanged += new System.EventHandler(this.gradientAlphaAdjustment_ValueChanged);
+      this.gradientAlphaAdjustment.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gradientAlphaAdjustment_MouseDown);
       this.gradientAlphaAdjustment.MouseUp += new System.Windows.Forms.MouseEventHandler(this.gradientAlphaAdjustment_MouseUp);
       // 
       // toolStripSeparator2
@@ -745,8 +746,8 @@ namespace QuickRoute.UI
       // 
       resources.ApplyResources(this.routeLineWidth, "routeLineWidth");
       this.routeLineWidth.Name = "routeLineWidth";
-      this.routeLineWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.routeLineWidth_KeyDown);
       this.routeLineWidth.ValueChanged += new System.EventHandler(this.routeLineWidth_ValueChanged);
+      this.routeLineWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.routeLineWidth_KeyDown);
       // 
       // routeLineMaskVisible
       // 
@@ -760,8 +761,8 @@ namespace QuickRoute.UI
       // 
       resources.ApplyResources(this.routeLineMaskWidth, "routeLineMaskWidth");
       this.routeLineMaskWidth.Name = "routeLineMaskWidth";
-      this.routeLineMaskWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.routeLineMaskWidth_KeyDown);
       this.routeLineMaskWidth.ValueChanged += new System.EventHandler(this.routeLineMaskWidth_ValueChanged);
+      this.routeLineMaskWidth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.routeLineMaskWidth_KeyDown);
       // 
       // routeLineMaskColorButton
       // 
@@ -1017,7 +1018,7 @@ namespace QuickRoute.UI
             this.menuToolsOpenInGoogleEarth,
             this.menuToolsOpenMultipleFilesInGoogleEarth,
             this.menuToolsPublishMap,
-            this.menuToolsAddLapsFromWinSplits});
+            this.menuToolsAddLapsFromExternalDataSource});
       this.menuTools.Name = "menuTools";
       resources.ApplyResources(this.menuTools, "menuTools");
       // 
@@ -1039,11 +1040,11 @@ namespace QuickRoute.UI
       this.menuToolsPublishMap.Name = "menuToolsPublishMap";
       this.menuToolsPublishMap.Click += new System.EventHandler(this.menuToolsPublishMap_Click);
       // 
-      // menuToolsAddLapsFromWinSplits
+      // menuToolsAddLapsFromExternalDataSource
       // 
-      this.menuToolsAddLapsFromWinSplits.Name = "menuToolsAddLapsFromWinSplits";
-      resources.ApplyResources(this.menuToolsAddLapsFromWinSplits, "menuToolsAddLapsFromWinSplits");
-      this.menuToolsAddLapsFromWinSplits.Click += new System.EventHandler(this.menuToolsAddLapsFromWinSplits_Click);
+      this.menuToolsAddLapsFromExternalDataSource.Name = "menuToolsAddLapsFromExternalDataSource";
+      resources.ApplyResources(this.menuToolsAddLapsFromExternalDataSource, "menuToolsAddLapsFromExternalDataSource");
+      this.menuToolsAddLapsFromExternalDataSource.Click += new System.EventHandler(this.menuToolsAddLapsFromExternalDataSource_Click);
       // 
       // menuSettings
       // 
@@ -1098,10 +1099,10 @@ namespace QuickRoute.UI
       this.KeyPreview = true;
       this.MainMenuStrip = this.menuStrip;
       this.Name = "Main";
-      this.Load += new System.EventHandler(this.Main_Load);
       this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
-      this.Resize += new System.EventHandler(this.Main_Resize);
+      this.Load += new System.EventHandler(this.Main_Load);
       this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
+      this.Resize += new System.EventHandler(this.Main_Resize);
       this.toolStripContainer1.ContentPanel.ResumeLayout(false);
       this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
       this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -1210,7 +1211,7 @@ namespace QuickRoute.UI
     private System.Windows.Forms.ToolStripButton toolStripAutoAdjustColorRangeInterval;
     private System.Windows.Forms.ToolStripButton toolStripBottomPanelVisible;
     private System.Windows.Forms.ToolStripMenuItem menuTools;
-    private System.Windows.Forms.ToolStripMenuItem menuToolsAddLapsFromWinSplits;
+    private System.Windows.Forms.ToolStripMenuItem menuToolsAddLapsFromExternalDataSource;
     private System.Windows.Forms.Panel sessionPanel;
     private System.Windows.Forms.CheckedListBox sessions;
     private System.Windows.Forms.ToolStripMenuItem menuFileImportSessions;

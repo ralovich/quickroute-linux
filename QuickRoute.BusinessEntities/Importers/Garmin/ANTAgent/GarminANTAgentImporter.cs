@@ -8,7 +8,6 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 {
   public class GarminANTAgentImporter : IGPSDeviceImporter
   {
-    private string path;
     private HistoryItem itemToImport;
 
     #region IRouteImporter Members
@@ -17,22 +16,21 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     /// <summary>
     /// The ...Application Data\GARMIN\Devices\ path. Shall end with a backslash.
     /// </summary>
-    public string Path
-    {
-      get { return path; }
-      set { path = value; }
-    }
+    public string Path { get; set; }
 
     public DialogResult ShowPreImportDialogs()
     {
       var historyItems = new List<object>();
-      var baseDir = new DirectoryInfo(path);
-      foreach (DirectoryInfo di in baseDir.GetDirectories())
+      var baseDir = new DirectoryInfo(Path);
+      if (baseDir.Exists)
       {
-        var antDevice = new ANTDevice(path + di.Name + "\\");
-        foreach (HistoryItem hi in antDevice.HistoryItems)
+        foreach (DirectoryInfo di in baseDir.GetDirectories())
         {
-          historyItems.Insert(0, hi);
+          var antDevice = new ANTDevice(Path + di.Name + "\\");
+          foreach (HistoryItem hi in antDevice.HistoryItems)
+          {
+            historyItems.Insert(0, hi);
+          }
         }
       }
 
@@ -57,7 +55,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       ImportResult = new ImportResult();
       var tcxImporter = new TCXImporter
                           {
-                            FileName = itemToImport.FileName,
+                            FileName = itemToImport.FileInfo.FullName,
                             IdToImport = DateTime.Parse(itemToImport.Id).ToString("yyyy-MM-dd HH:mm:ss")
                           };
       tcxImporter.Import();
@@ -74,7 +72,10 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 
     public bool IsConnected
     {
-      get { return Directory.Exists(path); }
+      get
+      {
+        return Directory.Exists(Path);
+      }
     }
 
     public bool CachedDataExists

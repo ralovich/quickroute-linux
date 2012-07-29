@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using QuickRoute.BusinessEntities.Importers;
+using QuickRoute.BusinessEntities.Importers.FIT;
 using QuickRoute.BusinessEntities.Importers.FRWD;
 using QuickRoute.BusinessEntities.Importers.Garmin.Forerunner;
 using QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent;
@@ -16,6 +17,7 @@ using QuickRoute.BusinessEntities.Importers.GlobalSat.GH615M;
 using QuickRoute.BusinessEntities.Importers.JJConnect.RegistratorSE;
 using QuickRoute.GPSDeviceReaders.GarminUSBReader;
 using QuickRoute.Resources;
+using Wintellect.PowerCollections;
 
 namespace QuickRoute.BusinessEntities.Importers
 {
@@ -68,6 +70,9 @@ namespace QuickRoute.BusinessEntities.Importers
 
       supportedRouteFileFormats.Add(
         new RouteFileFormat(Strings.FileFilter_AllQuickRouteFiles, new QuickRouteImporter()));
+
+      supportedRouteFileFormats.Add(
+        new RouteFileFormat(Strings.FileFilter_FitFiles, new FITImporter()));
 
       supportedRouteFileFormats.Add(
         new RouteFileFormat(Strings.FileFilter_TcxFiles, new TCXImporter()));

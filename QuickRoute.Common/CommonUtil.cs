@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace QuickRoute.Common
@@ -41,7 +43,7 @@ namespace QuickRoute.Common
       while (File.Exists(fileName))
       {
         count++;
-        var fn = Path.GetFileNameWithoutExtension(suggestedFileName) + string.Format(" ({0})", count) +
+        var fn = Path.GetFileNameWithoutExtension(suggestedFileName) + String.Format(" ({0})", count) +
                  Path.GetExtension(suggestedFileName);
         //fileName = path + CreateValidFileName(GetTempFileNameHelper(fn, extension));
         fileName = Path.Combine(path, CreateValidFileName(GetTempFileNameHelper(fn, extension)));
@@ -55,7 +57,6 @@ namespace QuickRoute.Common
                ? Path.GetFileNameWithoutExtension(fileName) + "." + extension
                : Path.GetFileName(fileName);
     }
-
 
     /// <summary>
     /// 
@@ -109,5 +110,35 @@ namespace QuickRoute.Common
       return validFileName;
     }
 
+    /// <summary>
+    /// Copies the contents of input to output. Doesn't close either stream.
+    /// </summary>
+    public static void CopyStream(Stream input, Stream output)
+    {
+      var buffer = new byte[8 * 1024];
+      int len;
+      while ((len = input.Read(buffer, 0, buffer.Length)) > 0)
+      {
+        output.Write(buffer, 0, len);
+      }
+    }
+
+    public static void SerializeToFile<T>(T obj, string fileName)
+    {
+      IFormatter formatter = new BinaryFormatter();
+      using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+      {
+        formatter.Serialize(stream, obj);
+      }
+    }
+
+    public static T DeserializeFromFile<T>(string fileName)
+    {
+      IFormatter formatter = new BinaryFormatter();
+      using (var stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None))
+      {
+        return (T)formatter.Deserialize(stream);
+      }
+    }
   }
 }
