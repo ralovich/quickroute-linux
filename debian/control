@@ -3,13 +3,13 @@ Maintainer: Kristof Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.2
-Build-Depends: debhelper (>= 8), cli-common-dev (>= 0.7.1), mono-xbuild (>= 2.6.7), libgtk2.0-cil-dev (>= 2.12.10), mono-devel (>= 2.6.7), libglade2.0-cil-dev (>= 2.12.10)
+Build-Depends: debhelper (>= 8), monodevelop (>= 2.6.7)
 Homepage: https://gitorious.org/quickroute-git
 Vcs-Git: git://gitorious.org/quickroute-git/quickroute-git.git
 Vcs-Browser: https://gitorious.org/quickroute-git
 
 Package: quickroute-gps
-Architecture: i386, amd64
+Architecture: amd64
 Depends: ${shlibs:Depends}, ${cli:Depends}, ${misc:Depends}
 Description: Orienteering track analisys tool.
  Display a route from a GPS device, such as a GPS-clock, on an orienteering map

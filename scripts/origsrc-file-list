@@ -519,6 +519,7 @@
 ./QuickRoute.BusinessEntities/RouteProperties/AverageStraightLinePace.cs
 ./QuickRoute.BusinessEntities/RouteProperties/RouteMomentaneousProperty.cs
 ./QuickRoute.BusinessEntities/RouteProperties/Latitude.cs
+./QuickRoute.BusinessEntities/RouteProperties/Longitude.cs
 ./QuickRoute.BusinessEntities/RouteProperties/AverageDirectionDeviationToNextLap.cs
 ./QuickRoute.BusinessEntities/RouteProperties/CircleTimeForward.cs
 ./QuickRoute.BusinessEntities/RouteProperties/Descent.cs
