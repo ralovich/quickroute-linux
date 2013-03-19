@@ -1,24 +1,24 @@
+*** -*- mode: outline; coding: utf-8-dos -*-
+
+**TODO
+* add a menu entry/icon
+* read FIT files spit out by antpm
+* fix "New" dialog to not hide any buttons
+* fixup .deb package with proper dependencies
 
 
+**DONE
+* build from command line
+* create initial, deployable, working .deb package
+
+
+**PACKAGING
+dch --create -v 2.5-1 --package quickroute-gps
+debuild -us -uc
+
+** UPSTREAM_SVN
 add the below lines in .git/config if "git svn fetch" fails
-
 [svn-remote "svn"]
 	url = http://quickroute-gps.googlecode.com/svn/trunk
 	fetch = :refs/remotes/git-svn
 
-
-
-
-
-
-
-TODO
-* create .deb package with proper dependencies
-* fix "New" dialog to not hide any buttons
-* build from command line
-
-
-
-PACKAGING
-dch --create -v 2.5-1 --package quickroute-gps
-debuild -us -uc
