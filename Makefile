@@ -14,8 +14,27 @@ clean:
 	xbuild /t:Clean /p:Configuration=Debug QuickRoute.sln
 	xbuild /t:Clean /p:Configuration=Release QuickRoute.sln
 
+#  dh_auto_install
+#    make -j1 install DESTDIR=/home/tade/dev/clean/2.7/1/debian/quickroute-gps
+
 install:
 	@echo "install being called"
 	@echo $:
 	@echo $@
-
+	mkdir --parents ${DESTDIR}/usr/bin ${DESTDIR}/usr/lib/quickroute-gps
+	cp scripts/quickroute-gps ${DESTDIR}/usr/bin
+	cp QuickRoute.UI/bin/Release/QuickRoute.exe ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/ExifWorks.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/Interop.EARTHLib.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/Ionic.Zip.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/log4net.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/PowerCollections.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.BusinessEntities.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.Common.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.Controls.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.GarminUSBReader.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.GlobalSatGH615MReader.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.JJConnectRegistratorSEReader.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.SerialPortDeviceReader.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.Publishers.DOMAPublisher.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.Resources.dll ${DESTDIR}/usr/lib/quickroute-gps
