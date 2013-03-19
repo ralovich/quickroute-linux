@@ -10,7 +10,14 @@ add the below lines in .git/config if "git svn fetch" fails
 
 
 
+
+
 TODO
 * create .deb package with proper dependencies
 * fix "New" dialog to not hide any buttons
 * 
+
+
+
+PACKAGING
+dch --create -v 2.5-1 --package quickroute-gps
