@@ -24,6 +24,7 @@ install:
 	mkdir --parents ${DESTDIR}/usr/bin ${DESTDIR}/usr/lib/quickroute-gps
 	cp scripts/quickroute-gps ${DESTDIR}/usr/bin
 	cp QuickRoute.UI/bin/Release/QuickRoute.exe ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/QuickRoute.exe.config ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/ExifWorks.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/Interop.EARTHLib.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/Ionic.Zip.dll ${DESTDIR}/usr/lib/quickroute-gps
