@@ -11,6 +11,7 @@ TMP_LIST=`mktemp`
 #echo ${FILES} > ${TMP_LIST}
 #echo ${FILES} > dist-file-list
 
-find . -type f -name \* -print | grep -v .git > scripts/dist-file-list
+#find . -type f -name \* -print | grep -v .git > scripts/dist-file-list
 
-#tar -czvf ${OUTNAME} ${FILES}
+rm -fv ${OUTNAME}
+tar -czvf ${OUTNAME} -T scripts/origsrc-file-list
