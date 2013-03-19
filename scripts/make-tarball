@@ -1,6 +1,16 @@
 #!/bin/bash
 
 VER=2.5
-NAME=quickroute-gps_${VER}.orig.tar.gz
+OUTNAME=quickroute-gps_${VER}.orig.tar.gz
 
-tar -czvf ${NAME} *.sln *.cs
+FILES=`find . -type f -name \* -print | grep -v .git`
+TMP_LIST=`mktemp`
+
+#echo $FILES
+#echo "TMP_LIST=${TMP_LIST}"
+#echo ${FILES} > ${TMP_LIST}
+#echo ${FILES} > dist-file-list
+
+find . -type f -name \* -print | grep -v .git > scripts/dist-file-list
+
+#tar -czvf ${OUTNAME} ${FILES}
