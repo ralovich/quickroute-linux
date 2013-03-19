@@ -1,0 +1,6 @@
+#!/bin/bash
+
+VER=2.5
+NAME=quickroute-gps_${VER}.orig.tar.gz
+
+tar -czvf ${NAME} *.sln *.cs
