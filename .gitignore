@@ -1,0 +1,5 @@
+*.pidb
+*.resources
+*.mdb
+*.dll
+*.dll.config
