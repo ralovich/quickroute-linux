@@ -1,3 +1,9 @@
+quickroute-gps (2.7-1) UNRELEASED; urgency=low
+
+  * trying xbuild as mdtool failed...
+
+ -- Kristof Ralovich <tade@t500>  Tue, 19 Mar 2013 22:35:25 +0100
+
 quickroute-gps (2.6-1) UNRELEASED; urgency=low
 
   * Initial release. (Closes: #XXXXXX)

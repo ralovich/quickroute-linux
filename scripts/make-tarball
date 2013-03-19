@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VER=2.6
+VER=2.7
 OUTNAME=quickroute-gps_${VER}.orig.tar.gz
 
 FILES=`find . -type f -name \* -print | grep -v .git`
