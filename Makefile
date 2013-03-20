@@ -13,6 +13,8 @@ clean:
 #	mdtool build -t:Clean
 	xbuild /t:Clean /p:Configuration=Debug QuickRoute.sln
 	xbuild /t:Clean /p:Configuration=Release QuickRoute.sln
+	rm -rf QuickRoute.UI/bin
+	rm -rf QuickRoute.UI/obj
 
 #  dh_auto_install
 #    make -j1 install DESTDIR=/home/tade/dev/clean/2.7/1/debian/quickroute-gps
