@@ -259,12 +259,15 @@ namespace QuickRoute.UI.Forms
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.mapImageGroup.ResumeLayout(false);
+      this.mapImageGroup.PerformLayout();
       this.mapImageLayoutTable.ResumeLayout(false);
       this.mapImageLayoutTable.PerformLayout();
       this.routeGroup.ResumeLayout(false);
+      this.routeGroup.PerformLayout();
       this.tableLayoutPanel1.ResumeLayout(false);
       this.tableLayoutPanel1.PerformLayout();
       this.personGroup.ResumeLayout(false);
+      this.personGroup.PerformLayout();
       this.tableLayoutPanel2.ResumeLayout(false);
       this.tableLayoutPanel2.PerformLayout();
       this.ResumeLayout(false);
