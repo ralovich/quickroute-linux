@@ -34,7 +34,6 @@ namespace QuickRoute.UI.Forms
       this.mapImageGroup = new System.Windows.Forms.GroupBox();
       this.mapImageLayoutTable = new System.Windows.Forms.TableLayoutPanel();
       this.mapImageFileName = new System.Windows.Forms.ComboBox();
-      this.mapImageFileNameBrowse = new System.Windows.Forms.Button();
       this.mapImageFileFormatLabel = new System.Windows.Forms.Label();
       this.mapImageFileFormatComboBox = new System.Windows.Forms.ComboBox();
       this.mapImageFromFile = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@ namespace QuickRoute.UI.Forms
       this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
       this.persons = new System.Windows.Forms.ComboBox();
       this.personNameLabel = new System.Windows.Forms.Label();
+      this.mapImageFileNameBrowse = new System.Windows.Forms.Button();
       this.mapImageGroup.SuspendLayout();
       this.mapImageLayoutTable.SuspendLayout();
       this.routeGroup.SuspendLayout();
@@ -107,13 +107,6 @@ namespace QuickRoute.UI.Forms
       this.mapImageFileName.DragDrop += new System.Windows.Forms.DragEventHandler(this.mapImageFileName_DragDrop);
       this.mapImageFileName.DragEnter += new System.Windows.Forms.DragEventHandler(this.mapImageFileName_DragEnter);
       this.mapImageFileName.Leave += new System.EventHandler(this.mapImageFileName_Leave);
-      // 
-      // mapImageFileNameBrowse
-      // 
-      resources.ApplyResources(this.mapImageFileNameBrowse, "mapImageFileNameBrowse");
-      this.mapImageFileNameBrowse.Name = "mapImageFileNameBrowse";
-      this.mapImageFileNameBrowse.UseVisualStyleBackColor = true;
-      this.mapImageFileNameBrowse.Click += new System.EventHandler(this.mapImageFileNameBrowse_Click);
       // 
       // mapImageFileFormatLabel
       // 
@@ -242,6 +235,13 @@ namespace QuickRoute.UI.Forms
       resources.ApplyResources(this.personNameLabel, "personNameLabel");
       this.personNameLabel.Name = "personNameLabel";
       // 
+      // mapImageFileNameBrowse
+      // 
+      resources.ApplyResources(this.mapImageFileNameBrowse, "mapImageFileNameBrowse");
+      this.mapImageFileNameBrowse.Name = "mapImageFileNameBrowse";
+      this.mapImageFileNameBrowse.UseVisualStyleBackColor = true;
+      this.mapImageFileNameBrowse.Click += new System.EventHandler(this.mapImageFileNameBrowse_Click);
+      // 
       // CreateNewForm
       // 
       this.AcceptButton = this.ok;
@@ -285,7 +285,6 @@ namespace QuickRoute.UI.Forms
     private System.Windows.Forms.ComboBox routeFileFormatComboBox;
     private System.Windows.Forms.Label routeFileFormatLabel;
     private System.Windows.Forms.ComboBox routeGpsDevice;
-    private System.Windows.Forms.Button mapImageFileNameBrowse;
     private System.Windows.Forms.Label mapImageFileFormatLabel;
     private System.Windows.Forms.ComboBox mapImageFileFormatComboBox;
     private System.Windows.Forms.ComboBox mapImageFileName;
@@ -297,5 +296,6 @@ namespace QuickRoute.UI.Forms
     private System.Windows.Forms.Button refreshButton;
     private System.Windows.Forms.Label mapImageFromFile;
     private System.Windows.Forms.LinkLabel imageSizeLabel;
+    private System.Windows.Forms.Button mapImageFileNameBrowse;
   }
 }
