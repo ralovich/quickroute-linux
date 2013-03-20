@@ -35,6 +35,7 @@ namespace QuickRoute.UI.Forms
       this.closeButton = new System.Windows.Forms.Button();
       this.websiteLink = new System.Windows.Forms.LinkLabel();
       this.translationLabel = new System.Windows.Forms.Label();
+      this.portedByLabel = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // quickRouteLabel
@@ -78,12 +79,19 @@ namespace QuickRoute.UI.Forms
       this.translationLabel.BackColor = System.Drawing.Color.Transparent;
       this.translationLabel.Name = "translationLabel";
       // 
+      // portedByLabel
+      // 
+      resources.ApplyResources(this.portedByLabel, "portedByLabel");
+      this.portedByLabel.BackColor = System.Drawing.Color.Transparent;
+      this.portedByLabel.Name = "portedByLabel";
+      // 
       // AboutBox
       // 
       this.AcceptButton = this.closeButton;
       resources.ApplyResources(this, "$this");
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.CancelButton = this.closeButton;
+      this.Controls.Add(this.portedByLabel);
       this.Controls.Add(this.translationLabel);
       this.Controls.Add(this.websiteLink);
       this.Controls.Add(this.closeButton);
@@ -109,5 +117,6 @@ namespace QuickRoute.UI.Forms
     private System.Windows.Forms.Button closeButton;
     private System.Windows.Forms.LinkLabel websiteLink;
     private System.Windows.Forms.Label translationLabel;
+    private System.Windows.Forms.Label portedByLabel;
   }
 }
