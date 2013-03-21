@@ -19,3 +19,6 @@ mv quickroute-gps*.tar.xz $ROOT/
     debuild -us -uc && echo -e "\nBuild OK\ndeb package in '${ROOT}' \n";
 )
 
+
+
+

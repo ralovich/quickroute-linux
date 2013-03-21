@@ -2,6 +2,7 @@
 
 **TODO
 * add a menu entry/icon
+* fix loading an existing .qrt file
 * read FIT files spit out by antpm
 * fix "New" dialog to not hide any buttons
 * fixup .deb package with proper dependencies
