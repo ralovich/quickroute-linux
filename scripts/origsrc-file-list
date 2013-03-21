@@ -689,6 +689,7 @@
 ./debian/source/format
 ./debian/rules
 ./debian/changelog
+./debian/copyright
 ./debian/gpl-2.0.txt
 ./debian/control
 ./QuickRoute.Common/QuickRoute.Common.csproj

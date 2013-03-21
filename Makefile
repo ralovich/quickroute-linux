@@ -41,3 +41,5 @@ install:
 	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.SerialPortDeviceReader.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Publishers.DOMAPublisher.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Resources.dll ${DESTDIR}/usr/lib/quickroute-gps
+	mkdir --parents ${DESTDIR}/usr/share/doc/quickroute-gps
+	cp debian/copyright ${DESTDIR}/usr/share/doc/quickroute-gps

@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+#include /usr/share/cli-common/cli.make
+
 # ifeq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 #   CFLAGS += -O2
 # endif

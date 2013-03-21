@@ -3,7 +3,7 @@ Maintainer: Kristof Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.2
-Build-Depends: debhelper (>= 8), monodevelop (>= 2.6.7)
+Build-Depends: debhelper (>= 8), monodevelop (>= 2.6.7), devscripts (>= 2.12), cli-common-dev (>= 0.8)
 Homepage: https://gitorious.org/quickroute-git
 Vcs-Git: git://gitorious.org/quickroute-git/quickroute-git.git
 Vcs-Browser: https://gitorious.org/quickroute-git
