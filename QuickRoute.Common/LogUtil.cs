@@ -19,10 +19,11 @@ namespace QuickRoute.Common
     private static decimal lastTime = -1;
     //private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
     //private static readonly HighPerformanceTimerBase standardTimer = IsRunningOnMono() ? new HighPerformanceTimerNix() : new HighPerformanceTimer();
-	private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
-	private static readonly HighPerformanceTimerNix standardTimer = new HighPerformanceTimerNix();
+    //FIXME
+	  private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
+	  private static readonly HighPerformanceTimerNix standardTimer = new HighPerformanceTimerNix();
 
-	public static bool IsRunningOnMono ()
+	  public static bool IsRunningOnMono ()
     {
       return Type.GetType ("Mono.Runtime") != null;
     }
@@ -56,7 +57,7 @@ namespace QuickRoute.Common
     {
       if (!configured) throw new Exception("The LogUtil is not configured.");
 
-      var thisTime = HighPerformanceTimer.GetCurrentTime();
+      var thisTime = standardTimer.GetCurrentTime();
       var duration = (lastTime == -1 ? 0 : thisTime - lastTime);
       lastTime = thisTime;
       var caller = GetCaller();
@@ -155,7 +156,7 @@ namespace QuickRoute.Common
       Start();
     }
 
-    //public abstract decimal GetCurrentTime();
+    public abstract decimal GetCurrentTime();
   }
 
   public class HighPerformanceTimer : HighPerformanceTimerBase
@@ -233,8 +234,8 @@ namespace QuickRoute.Common
       duration = 0;
     }
 
-
-    public static decimal GetCurrentTime()
+    // in seconds
+    public override decimal GetCurrentTime()
     {
       long currentTime=0;
       QueryPerformanceCounter(out currentTime);
@@ -300,6 +301,13 @@ namespace QuickRoute.Common
       duration = 0;
     }
 
+    public override decimal GetCurrentTime()
+    {
+      timeval t;
+      gettimeofday(out t, unused);
+      return (decimal)(((double)t.seconds) + ((double)t.useconds)/1000000.0);
+      //System.Console.WriteLine("stopTime={0}\n", stopTime);
+    }
   }
 
   public enum LogLevel
