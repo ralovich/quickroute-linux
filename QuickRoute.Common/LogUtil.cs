@@ -17,11 +17,13 @@ namespace QuickRoute.Common
   {
     private static bool configured;
     private static decimal lastTime = -1;
-    //private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
-    //private static readonly HighPerformanceTimerBase standardTimer = IsRunningOnMono() ? new HighPerformanceTimerNix() : new HighPerformanceTimer();
-    //FIXME
+#if __MonoCS__
 	  private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
-	  private static readonly HighPerformanceTimerNix standardTimer = new HighPerformanceTimerNix();
+	  private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimerNix();
+#else
+    private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
+    private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimer();
+#endif
 
 	  public static bool IsRunningOnMono ()
     {
@@ -119,12 +121,12 @@ namespace QuickRoute.Common
       return stackFrame.GetMethod();
     }
 
-    private static HighPerformanceTimerNix GetTimer()
+    private static HighPerformanceTimerBase GetTimer()
     {
       return standardTimer;
     }
 
-    private static HighPerformanceTimerNix GetTimer(object key)
+    private static HighPerformanceTimerBase GetTimer(object key)
     {
       if (!timers.ContainsKey(key)) timers.Add(key, new HighPerformanceTimerNix());
       return timers[key];
@@ -146,7 +148,7 @@ namespace QuickRoute.Common
     public abstract decimal Stop();
 
     // Returns the duration of the timer (in seconds)
-    public decimal Duration { get; set; }
+    public virtual decimal Duration { get; set; }
 
     public abstract void Reset();
 
@@ -214,7 +216,7 @@ namespace QuickRoute.Common
     }
 
     // Returns the duration of the timer (in seconds)
-    public decimal Duration
+    public override decimal Duration
     {
       get
       {
@@ -258,7 +260,6 @@ namespace QuickRoute.Common
 
     private bool isStarted;
     private decimal duration;
-    private static IntPtr unused;
     
 
 		public HighPerformanceTimerNix()
@@ -276,6 +277,7 @@ namespace QuickRoute.Common
 		{
 			Thread.Sleep(0);
 			timeval t;
+      IntPtr unused;
 			gettimeofday(out t, unused);
 			startTime = (double)t.seconds + ((double)t.useconds)/1000000.0;
 			System.Console.WriteLine("startTime={0}\n", startTime);
@@ -287,6 +289,7 @@ namespace QuickRoute.Common
     {
       if (!isStarted) return duration;
       timeval t;
+      IntPtr unused;
       gettimeofday(out t, unused);
       stopTime = t.seconds + ((double)t.useconds)/1000000.0;
       System.Console.WriteLine("stopTime={0}\n", stopTime);
@@ -304,9 +307,9 @@ namespace QuickRoute.Common
     public override decimal GetCurrentTime()
     {
       timeval t;
+      IntPtr unused;
       gettimeofday(out t, unused);
       return (decimal)(((double)t.seconds) + ((double)t.useconds)/1000000.0);
-      //System.Console.WriteLine("stopTime={0}\n", stopTime);
     }
   }
 
