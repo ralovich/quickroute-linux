@@ -640,6 +640,7 @@ namespace QuickRoute.BusinessEntities
       }
       catch (Exception ex)
       {
+        System.Console.WriteLine(ex.ToString());
         throw ex;
       }
       finally
