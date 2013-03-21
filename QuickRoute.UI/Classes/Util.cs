@@ -23,6 +23,13 @@ namespace QuickRoute.UI.Classes
   {
     public static ApplicationSettings applicationSettings;
 
+  	public static void UnImplemented ()
+  	{
+  	  Console.WriteLine("===============================================\n...Unimplemented...");
+  	  Console.WriteLine(Environment.StackTrace);
+  	  Console.WriteLine("===============================================");
+  	}
+
     [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
     public static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
 
@@ -130,9 +137,12 @@ namespace QuickRoute.UI.Classes
 
     public static string PathShortener(string path, int length)
     {
-      var sb = new StringBuilder();
-      PathCompactPathEx(sb, path, length, 0);
-      return sb.ToString();
+      UnImplemented();
+      return path;
+      //FIXME
+      //var sb = new StringBuilder();
+      //PathCompactPathEx(sb, path, length, 0);
+      //return sb.ToString();
     }
 
     public static void InsertIntoRecentDocumentsList(string fileName)
