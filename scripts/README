@@ -9,6 +9,7 @@
 
 
 **DONE
+* binary packages available here: https://code.google.com/p/antpm/downloads/list
 * build from command line
 * create initial, deployable, working .deb package
 
