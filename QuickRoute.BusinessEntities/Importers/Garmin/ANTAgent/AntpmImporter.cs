@@ -25,7 +25,8 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     public AntpmImporter ()
     {
       mPath = getConfigFolder();
-      System.Console.WriteLine("AntpmImporter: " + mPath);
+      //System.Console.WriteLine("AntpmImporter: " + mPath);
+      log.Info("AntpmImporter: " + mPath);
     }
 
     private string getConfigFolder ()
@@ -63,6 +64,8 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 
 
     private HistoryItem itemToImport;
+    private static readonly log4net.ILog log = log4net.LogManager.GetLogger
+    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
     #region IRouteImporter Members
 
@@ -82,13 +85,15 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
         foreach (DirectoryInfo di in baseDir.GetDirectories())
         {
           string folder = mPath + di.Name + "\\";
-          Console.WriteLine(folder);
+          log.Debug(folder);
+          //Console.WriteLine(folder);
           //DirectoryInfo di = new DirectoryInfo(folder);
           foreach(FileInfo fi in di.GetFiles("*.fit", SearchOption.AllDirectories))
           {
             string name = fi.FullName;
             string id = fi.LastWriteTimeUtc.ToString();
-            Console.WriteLine("name: " + name + ", id=" + id);
+            //Console.WriteLine("name: " + name + ", id=" + id);
+            log.Debug("name: " + name + ", id=" + id);
             HistoryItem hi = new HistoryItem(name, id, fi);
             historyItems.Insert(0, hi);
           }
