@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using QuickRoute.BusinessEntities.Importers.FIT;
+
 
 namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 {
@@ -79,9 +81,15 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       {
         foreach (DirectoryInfo di in baseDir.GetDirectories())
         {
-          var antDevice = new ANTDevice(mPath + di.Name + "\\");
-          foreach (HistoryItem hi in antDevice.HistoryItems)
+          string folder = mPath + di.Name + "\\";
+          Console.WriteLine(folder);
+          //DirectoryInfo di = new DirectoryInfo(folder);
+          foreach(FileInfo fi in di.GetFiles("*.fit", SearchOption.AllDirectories))
           {
+            string name = fi.FullName;
+            string id = fi.LastWriteTimeUtc.ToString();
+            Console.WriteLine("name: " + name + ", id=" + id);
+            HistoryItem hi = new HistoryItem(name, id, fi);
             historyItems.Insert(0, hi);
           }
         }
@@ -106,13 +114,13 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     public void Import()
     {
       ImportResult = new ImportResult();
-//      var tcxImporter = new TCXImporter
-//                          {
-//                            FileName = itemToImport.FileInfo.FullName,
-//                            IdToImport = DateTime.Parse(itemToImport.Id).ToString("yyyy-MM-dd HH:mm:ss")
-//                          };
-//      tcxImporter.Import();
-//      ImportResult = tcxImporter.ImportResult;
+      var fitImporter = new FITImporter
+                          {
+                            FileName = itemToImport.FileInfo.FullName//,
+                            /*IdToImport = DateTime.Parse(itemToImport.Id).ToString("yyyy-MM-dd HH:mm:ss")*/
+                          };
+      fitImporter.Import();
+      ImportResult = fitImporter.ImportResult;
     }
 
     public event EventHandler<EventArgs> BeginWork;
