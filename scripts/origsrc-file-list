@@ -659,6 +659,7 @@
 ./QuickRoute.BusinessEntities/Importers/SessionSelector.cs
 ./QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/HistoryItem.cs
 ./QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/GarminANTAgentImporter.cs
+./QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/AntpmImporter.cs
 ./QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/ANTDevice.cs
 ./QuickRoute.BusinessEntities/Importers/Garmin/Forerunner/GarminForerunnerUSBImporter.cs
 ./QuickRoute.BusinessEntities/Importers/FRWD/FRWDImporter.cs
