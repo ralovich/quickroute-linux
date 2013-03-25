@@ -6,7 +6,7 @@
 * read FIT files spit out by antpm
 * fix "New" dialog to not hide any buttons
 * fixup .deb package with proper dependencies
-
+* fix: dh_clideps: Error: Could not resolve moduleref: setupapi.dll for: QuickRoute.GPSDeviceReaders.GarminUSBReader.dll!
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
