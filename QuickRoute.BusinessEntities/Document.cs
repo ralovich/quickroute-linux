@@ -842,7 +842,7 @@ namespace QuickRoute.BusinessEntities
     {
       var lng = BitConverter.GetBytes(Convert.ToInt32(longLat.Longitude * 3600000));
       var lat = BitConverter.GetBytes(Convert.ToInt32(longLat.Latitude * 3600000));
-      var x = BitConverter.GetBytes((int)int.MinValue + 1);
+      //var x = BitConverter.GetBytes((int)int.MinValue + 1);
       var result = new byte[8];
       lng.CopyTo(result, 0);
       lat.CopyTo(result, 4);
