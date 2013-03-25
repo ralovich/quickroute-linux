@@ -261,6 +261,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Importers\Garmin\ANTAgent\AntpmImporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

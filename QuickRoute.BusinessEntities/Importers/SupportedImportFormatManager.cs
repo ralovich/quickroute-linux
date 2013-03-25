@@ -55,6 +55,11 @@ namespace QuickRoute.BusinessEntities.Importers
       GPSDevice antDevice = new GPSDevice(antImporter);
       supportedGPSDevices.Add(antDevice);
 
+      // ANT+minus
+      AntpmImporter antpmImporter = new AntpmImporter();
+      GPSDevice antpmDevice = new GPSDevice(antpmImporter);
+      supportedGPSDevices.Add(antpmDevice);
+
       // Polar ProTrainer
       var polarProTrainerImporter = new PolarProTrainerImporter();
       polarProTrainerImporter.Paths = new List<string>
@@ -65,6 +70,7 @@ namespace QuickRoute.BusinessEntities.Importers
       GPSDevice polarProTrainerDevice = new GPSDevice(polarProTrainerImporter);
       supportedGPSDevices.Add(polarProTrainerDevice);
 
+      System.Console.WriteLine(supportedGPSDevices.Count);
       return supportedGPSDevices;
     }
 
