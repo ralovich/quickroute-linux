@@ -6,7 +6,9 @@ using System.Windows.Forms;
 using QuickRoute.BusinessEntities.Importers;
 using QuickRoute.BusinessEntities.Importers.FIT;
 using QuickRoute.BusinessEntities.Importers.FRWD;
+#if !__MonoCS__
 using QuickRoute.BusinessEntities.Importers.Garmin.Forerunner;
+#endif
 using QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent;
 using QuickRoute.BusinessEntities.Importers.Navilock;
 using QuickRoute.BusinessEntities.Importers.Polar.ProTrainer;
@@ -15,7 +17,9 @@ using QuickRoute.BusinessEntities.Importers.QuickRoute;
 using QuickRoute.BusinessEntities.Importers.TCX;
 using QuickRoute.BusinessEntities.Importers.GlobalSat.GH615M;
 using QuickRoute.BusinessEntities.Importers.JJConnect.RegistratorSE;
+#if !__MonoCS__
 using QuickRoute.GPSDeviceReaders.GarminUSBReader;
+#endif
 using QuickRoute.Resources;
 using Wintellect.PowerCollections;
 
@@ -34,8 +38,10 @@ namespace QuickRoute.BusinessEntities.Importers
     {
       var supportedGPSDevices = new List<GPSDevice>();
 
+#if !__MonoCS__
       // Garmin Forerunner
       supportedGPSDevices.Add(new GPSDevice(new GarminForerunnerUSBImporter()));
+#endif
 
       // GlobalSat GH-615M
       supportedGPSDevices.Add(new GPSDevice(new GlobalSatGH615MImporter()));

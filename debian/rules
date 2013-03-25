@@ -9,7 +9,7 @@
 export DH_VERBOSE=1
 
 %:
-	dh $@
+	dh $@ --with=cli
 
 #build:
 #	mdtool build --buildfile: QuickRoute.sln

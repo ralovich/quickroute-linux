@@ -18,7 +18,9 @@ using QuickRoute.BusinessEntities.Numeric;
 using QuickRoute.BusinessEntities.RouteProperties;
 using QuickRoute.Common;
 using QuickRoute.Controls;
+#if !__MonoCS__
 using QuickRoute.GPSDeviceReaders.GarminUSBReader;
+#endif
 using QuickRoute.UI.Classes;
 using QuickRoute.UI.Forms;
 using System.IO;
@@ -145,13 +147,16 @@ namespace QuickRoute.UI
 
     private void SetupGarminUSBReader()
     {
+#if !__MonoCS__
       GarminUSBReader.Instance.CacheDirectory = Path.Combine(CommonUtil.GetApplicationDataPath(), "GarminUSBReaderCache");
+#endif
       ReadGarminUSBData();
     }
 
     private bool garminUSBLastConnectionState;
     private void ReadGarminUSBData()
     {
+#if !__MonoCS__
       var autoread = ConfigurationManager.AppSettings["autoreadGarminUSBData"];
       if(autoread != null)
       {
@@ -167,6 +172,7 @@ namespace QuickRoute.UI
           garminUSBLastConnectionState = isConnected;
         }
       }
+#endif
     }
 
     ~Main()

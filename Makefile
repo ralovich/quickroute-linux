@@ -35,7 +35,7 @@ install:
 	cp QuickRoute.UI/bin/Release/QuickRoute.BusinessEntities.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Common.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Controls.dll ${DESTDIR}/usr/lib/quickroute-gps
-	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.GarminUSBReader.dll ${DESTDIR}/usr/lib/quickroute-gps
+	#cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.GarminUSBReader.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.GlobalSatGH615MReader.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.JJConnectRegistratorSEReader.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.SerialPortDeviceReader.dll ${DESTDIR}/usr/lib/quickroute-gps
