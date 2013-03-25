@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# create tag for .deb package version
+# git tag -a -m "debian/2.7-3" "debian/2.7-3" HEAD
+
+# generate log file from git history
+# git-dch --git-author --debian-branch=mono1 -v -N 2.7-3 --since=debian/2.7-2
+
 ROOT=`mktemp -d --tmp=.`
 eval ROOT=$ROOT
 
