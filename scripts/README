@@ -5,12 +5,13 @@
 * fix loading an existing .qrt file
 * read FIT files spit out by antpm
 * fix "New" dialog to not hide any buttons
-* fixup .deb package with proper dependencies
+* git-dch -- Generate the Debian changelog from git commit messages
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
 * build from command line
 * create initial, deployable, working .deb package
+* fixup .deb package with proper dependencies
 
 
 **PACKAGING
