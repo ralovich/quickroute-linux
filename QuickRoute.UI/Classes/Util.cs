@@ -22,12 +22,13 @@ namespace QuickRoute.UI.Classes
   public static class Util
   {
     public static ApplicationSettings applicationSettings;
+    private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
   	public static void UnImplemented ()
   	{
-  	  Console.WriteLine("===============================================\n...Unimplemented...");
-  	  Console.WriteLine(Environment.StackTrace);
-  	  Console.WriteLine("===============================================");
+  	  log.Warn("===============================================\n...Unimplemented...");
+  	  log.Warn(Environment.StackTrace);
+  	  log.Warn("===============================================");
   	}
 
     [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
@@ -137,12 +138,15 @@ namespace QuickRoute.UI.Classes
 
     public static string PathShortener(string path, int length)
     {
+#if __MonoCS__
+      //FIXME
       UnImplemented();
       return path;
-      //FIXME
-      //var sb = new StringBuilder();
-      //PathCompactPathEx(sb, path, length, 0);
-      //return sb.ToString();
+#else
+      var sb = new StringBuilder();
+      PathCompactPathEx(sb, path, length, 0);
+      return sb.ToString();
+#endif
     }
 
     public static void InsertIntoRecentDocumentsList(string fileName)
