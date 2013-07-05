@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-//using Microsoft.SqlServer.MessageBox;
 using QuickRoute.BusinessEntities;
 using QuickRoute.Common;
 using QuickRoute.Resources;
