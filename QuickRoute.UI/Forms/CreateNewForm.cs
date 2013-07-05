@@ -14,6 +14,9 @@ using QuickRoute.UI.Classes;
 
 namespace QuickRoute.UI.Forms
 {
+  /// <summary>
+  /// Dialog for "creating a new" route.
+  /// </summary>
   public partial class CreateNewForm : Form
   {
     private readonly List<FileFormat> supportedMapImageFileFormats;
