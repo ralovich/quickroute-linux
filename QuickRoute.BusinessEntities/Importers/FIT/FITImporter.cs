@@ -19,6 +19,8 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
 
     public string FileName { get; set; }
 
+    public UInt32 TimeStamp { get; set; }
+
     #region IRouteImporter Members
 
     public event EventHandler<EventArgs> BeginWork;
@@ -28,6 +30,11 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
     public event EventHandler<WorkProgressEventArgs> WorkProgress;
 
     #endregion
+
+    public FITImporter()
+    {
+      TimeStamp = 0;
+    }
 
     public DialogResult ShowPreImportDialogs()
     {
@@ -47,6 +54,8 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
           {
             var header = new Header(reader);
             var data = new Data(reader, header.DataSize);
+
+            TimeStamp = data.lastTimestamp;
 
             // route
             var routeSegment = new RouteSegment();
@@ -90,6 +99,8 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
       private const UInt16 invalidUInt16 = 0xFFFF;
       private const byte invalidByte = 0xFF;
 
+      public UInt32 lastTimestamp = 0;
+
       public List<FITWaypoint> Waypoints { get; private set; }
       public List<FITLap> Laps { get; private set; }
 
@@ -119,7 +130,6 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
             if (fileType != 4) throw new Exception("Not a FIT activity file.");
 
             var messageTypeTranslator = new Dictionary<byte, DefinitionMessage>();
-            UInt32 lastTimestamp = 0;
 
             while (dataReader.BaseStream.Position < dataReader.BaseStream.Length)
             {
