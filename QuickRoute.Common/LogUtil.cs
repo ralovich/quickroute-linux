@@ -55,6 +55,21 @@ namespace QuickRoute.Common
       WriteToLog(message, LogLevel.Fatal);
     }
 
+    public static void LogTrace()
+    {
+      StackTrace st = new StackTrace(true);
+      string stackIndent = "";
+      for(int i =0; i< st.FrameCount; i++ )
+      {
+        StackFrame sf = st.GetFrame(i);
+        WriteToLog(stackIndent + sf.ToString(), LogLevel.Debug);
+        WriteToLog(stackIndent + "Method: " + sf.GetMethod().ToString(), LogLevel.Debug );
+        WriteToLog(stackIndent + "File: " + sf.GetFileName(), LogLevel.Debug);
+        WriteToLog(stackIndent + "Line Number: " + sf.GetFileLineNumber(), LogLevel.Debug);
+        stackIndent += " ";
+      }
+    }
+  
     private static void WriteToLog(string message, LogLevel level)
     {
       if (!configured) throw new Exception("The LogUtil is not configured.");
@@ -87,6 +102,8 @@ namespace QuickRoute.Common
           log.Fatal(m);
           break;
       }
+      // Debugging aid, shows up in monodevelop console.
+      //System.Console.WriteLine(m);
     }
 
     public static void Configure()
