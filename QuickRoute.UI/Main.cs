@@ -200,11 +200,6 @@ namespace QuickRoute.UI
 
     #region User interface commands
 
-    private void NewDocument()
-    {
-      NewDocument(null);
-    }
-
     private void NewDocument(string routeFileName)
     {
       if (documentChanged)
@@ -2687,7 +2682,7 @@ namespace QuickRoute.UI
 
     private void menuFileNew_Click(object sender, EventArgs e)
     {
-      NewDocument();
+      NewDocument(null);
     }
 
     private void menuFileOpen_Click(object sender, EventArgs e)
@@ -2813,7 +2808,7 @@ namespace QuickRoute.UI
 
     private void toolStripNew_Click(object sender, EventArgs e)
     {
-      NewDocument();
+      NewDocument(null);
     }
 
     private void toolStripOpen_Click(object sender, EventArgs e)
