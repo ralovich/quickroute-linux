@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using QuickRoute.BusinessEntities.Importers.FIT;
+using QuickRoute.Common;
 
 
 namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
@@ -24,22 +25,18 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
   {
     public AntpmImporter ()
     {
+      //LogUtil.LogTrace();
+
+      mFileList = new List<FileInfo>();
       mPath = getConfigFolder();
-      //System.Console.WriteLine("AntpmImporter: " + mPath);
-      log.Info("AntpmImporter: " + mPath);
+      LogUtil.LogInfo("AntpmImporter: " + mPath);
+
+      discover();
     }
 
     private string getConfigFolder ()
     {
-      //return "/home/tade/.config/antpm";
-
-      string s1 = "/home/tade";
-      string s2 = "/.config/antpm";
-      string s3 = Path.Combine(s1,s2);
-
       string e0 = Environment.GetEnvironmentVariable ("ANTPM_DIR");
-      if (!String.IsNullOrEmpty (e0))
-        return Path.Combine (e0, "");
 
       // http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
       // $XDG_CONFIG_HOME defines the base directory relative to which user specific configuration files should be stored.
@@ -48,10 +45,13 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       string e1 = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
       string e2 = Environment.GetEnvironmentVariable("HOME");
       string e3 = Environment.GetEnvironmentVariable("USERPROFILE");
-      Console.WriteLine("e1=" + e1);
-      Console.WriteLine("e2=" + e2);
-      Console.WriteLine("e3=" + e3);
-      Console.WriteLine("e0=" + e0);
+      LogUtil.LogDebug("e1=" + e1);
+      LogUtil.LogDebug("e2=" + e2);
+      LogUtil.LogDebug("e3=" + e3);
+      LogUtil.LogDebug("e0=" + e0);
+
+      if (!String.IsNullOrEmpty (e0))
+        return Path.Combine (e0, "");
       if(!String.IsNullOrEmpty(e1))
         return Path.Combine(e1, "antpm/");
       else if(!String.IsNullOrEmpty(e2))
@@ -62,42 +62,81 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
         return Path.Combine("~", ".config/antpm/");
     }
 
+    private void discover()
+    {
+      if(!IsConnected)
+      {
+        LogUtil.LogWarn("\""+mPath+"\" doesn't exist\n");
+        return;
+      }
+      LogUtil.LogDebug("Listing \"" + mPath + "\"...");
+      var baseDir = new DirectoryInfo(mPath);
+      int nDirs = baseDir.GetDirectories().Length;
+      foreach (DirectoryInfo di in baseDir.GetDirectories())
+      {
+        string folder = mPath + di.Name + "\\";
+        LogUtil.LogDebug(folder);
+        foreach(FileInfo fi in di.GetFiles("*.fit", SearchOption.AllDirectories))
+        {
+          string name = fi.FullName;
+     
+          // skip directory file     
+          if(name.EndsWith("0000.fit"))
+            continue;
+
+          // try getting fit activity timestamp -> date
+          // skip files without activity/date
+          var fiti = new FITImporter{ FileName = name };
+          fiti.Import();
+          if(!fiti.ImportResult.Succeeded || fiti.TimeStamp==0)
+          {
+            //LogUtil.LogDebug("name=" + fi.Name + " NO_DATE");
+            continue;
+          }
+          
+          mFileList.Add(fi);
+        }
+      }
+      LogUtil.LogDebug("Found " + nDirs + " dirs, " + mFileList.Count + " files");
+
+      // foreach(FileInfo fi in mFileList)
+      // {
+      //   string name = fi.FullName;
+      //   string id = fi.LastWriteTimeUtc.ToString();
+      //   var fiti = new FITImporter{ FileName = name };
+      //   fiti.Import();
+      //   DateTime dt = FITUtil.ToDateTime(fiti.TimeStamp);
+      //   LogUtil.LogDebug("name=" + fi.Name + ", id=" + id + ", dt=" + dt.ToString());
+      // }
+    }
+
 
     private HistoryItem itemToImport;
-    private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-    (System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
-    #region IRouteImporter Members
-
-    public ImportResult ImportResult { get; set; }
-
+    /// <summary>
+    /// The list of FIT files with activities and timestamps.
+    /// </summary>
+    private List<FileInfo> mFileList;
     /// <summary>
     /// The ...\\.config\\antpm\\ path. Shall end with a backslash.
     /// </summary>
     public string mPath { get; set; }
 
+    #region IRouteImporter Members
+
+    public ImportResult ImportResult { get; set; }
+
     public DialogResult ShowPreImportDialogs()
     {
       var historyItems = new List<object>();
-      var baseDir = new DirectoryInfo(mPath);
-      if (baseDir.Exists)
+      foreach(FileInfo fi in mFileList)
       {
-        foreach (DirectoryInfo di in baseDir.GetDirectories())
-        {
-          string folder = mPath + di.Name + "\\";
-          log.Debug(folder);
-          //Console.WriteLine(folder);
-          //DirectoryInfo di = new DirectoryInfo(folder);
-          foreach(FileInfo fi in di.GetFiles("*.fit", SearchOption.AllDirectories))
-          {
-            string name = fi.FullName;
-            string id = fi.LastWriteTimeUtc.ToString();
-            //Console.WriteLine("name: " + name + ", id=" + id);
-            log.Debug("name: " + name + ", id=" + id);
-            HistoryItem hi = new HistoryItem(name, id, fi);
-            historyItems.Insert(0, hi);
-          }
-        }
+        string name = fi.FullName;
+        string id = fi.LastWriteTimeUtc.ToString();
+        //Console.WriteLine("name: " + name + ", id=" + id);
+        LogUtil.LogDebug("name: " + name + ", id=" + id);
+        HistoryItem hi = new HistoryItem(name, id, fi);
+        //historyItems.Insert(0, hi);
+        historyItems.Add(hi);
       }
 
       using (var dlg = new SessionSelector())
@@ -108,7 +147,10 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
         DialogResult result = dlg.ShowDialog();
         if (result == DialogResult.OK)
         {
-          itemToImport = (HistoryItem)dlg.SelectedSession;
+          if(historyItems.Count<1)
+            itemToImport = null;
+          else
+            itemToImport = (HistoryItem)dlg.SelectedSession;
         }
         dlg.Dispose();
 
@@ -118,6 +160,16 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 
     public void Import()
     {
+      if(itemToImport == null)
+      {
+        ImportResult = new ImportResult();
+        ImportResult.Succeeded = false;
+        ImportResult.Error = ImportError.Unknown;
+        ImportResult.ErrorMessage = "No valid FIT activities in folder";
+        return;
+      }
+        
+      LogUtil.LogDebug("Importing \"" + itemToImport.ToString() + "\"\n");
       ImportResult = new ImportResult();
       var fitImporter = new FITImporter
                           {
@@ -155,7 +207,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     {
       get
       {
-        return "ANT+minus";
+        return "ANT+minus (" + mPath + ")";
       }
     }
 
