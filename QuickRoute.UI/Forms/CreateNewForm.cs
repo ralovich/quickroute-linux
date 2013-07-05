@@ -21,7 +21,6 @@ namespace QuickRoute.UI.Forms
   {
     private readonly List<FileFormat> supportedMapImageFileFormats;
     private readonly List<RouteFileFormat> supportedRouteFileFormats;
-    private readonly List<GPSDevice> supportedGPSDevices;
     private Image transformedImage;
     private byte[] originalMapBytes;
     private string imageFileName;
@@ -52,8 +51,6 @@ namespace QuickRoute.UI.Forms
 
       supportedRouteFileFormats = SupportedImportFormatManager.GetSupportedRouteFileFormats();
       routeFileFormatComboBox.DataSource = supportedRouteFileFormats;
-
-      supportedGPSDevices = SupportedImportFormatManager.GetSupportedGPSDevices();
 
       bool gpsDevicesFound = SearchForGPSDevices();
 
