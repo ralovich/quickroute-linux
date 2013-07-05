@@ -70,7 +70,7 @@ namespace QuickRoute.BusinessEntities.Importers
       GPSDevice polarProTrainerDevice = new GPSDevice(polarProTrainerImporter);
       supportedGPSDevices.Add(polarProTrainerDevice);
 
-      System.Console.WriteLine(supportedGPSDevices.Count);
+      //System.Console.WriteLine(supportedGPSDevices.Count);
       return supportedGPSDevices;
     }
 
