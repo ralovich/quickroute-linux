@@ -17,6 +17,7 @@
 
 
 **PACKAGING
+change version in QuickRoute.UI/Properties/AssemblyInfo.cs
 dch --create -v 2.5-1 --package quickroute-gps
 debuild -us -uc
 
@@ -25,4 +26,7 @@ add the below lines in .git/config if "git svn fetch" fails
 [svn-remote "svn"]
 	url = http://quickroute-gps.googlecode.com/svn/trunk
 	fetch = :refs/remotes/git-svn
+
+** home
+https://gitorious.org/quickroute-git
 
