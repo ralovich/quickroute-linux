@@ -1,12 +1,15 @@
 *** -*- mode: outline; coding: utf-8-dos -*-
 
+** KNOWN BUGS IN LINUX VERSION
+* clicking "New" twice crashes
+* right panel hides image and route (in left panel)
+* full screen mode crashes
+
 **TODO
-* add a menu entry/icon
+* add a debian system menu entry/icon
 * fix loading an existing .qrt file
-* read FIT files spit out by antpm
 * fix "New" dialog to not hide any buttons
 * git-dch -- Generate the Debian changelog from git commit messages
-* bug: clicking new, open, new crashes
 
 
 **DONE
@@ -14,6 +17,7 @@
 * build from command line
 * create initial, deployable, working .deb package
 * fixup .deb package with proper dependencies
+* read FIT files spit out by antpm
 
 
 **PACKAGING
