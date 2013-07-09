@@ -39,3 +39,33 @@ add the below lines in .git/config if "git svn fetch" fails
 ** home
 https://gitorious.org/quickroute-git
 
+* exception while loading older .qrt file from windows
+Could not find type 'System.Collections.Generic.ObjectEqualityComparer`1[[QuickRoute.BusinessEntities.WaypointAttribute, QuickRoute.BusinessEntities, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null]]'.
+----------------------------------------------------------------------------------------------------
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadType (System.IO.BinaryReader reader, TypeTag code, Boolean throwOnError) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadTypeMetadata (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectInstance (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObject (BinaryElement element, System.IO.BinaryReader reader, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadNextObject (System.IO.BinaryReader reader) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectGraph (BinaryElement elem, System.IO.BinaryReader reader, Boolean readHeaders, System.Object& result, System.Runtime.Remoting.Messaging.Header[]& headers) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.NoCheckDeserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize (System.IO.Stream serializationStream) [0x00000] in <filename unknown>:0 
+  at QuickRoute.BusinessEntities.Document.OpenFromQrt (System.IO.Stream stream, System.String fileNameForDocument) [0x00000] in <filename unknown>:0 
+
+* exception while loading .qrt file saved by the same version under linux
+Exception has been thrown by the target of an invocation.
+----------------------------------------------------------------------------------------------------
+  at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.ObjectRecord.LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.ObjectManager.DoFixups () [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadNextObject (System.IO.BinaryReader reader) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectGraph (BinaryElement elem, System.IO.BinaryReader reader, Boolean readHeaders, System.Object& result, System.Runtime.Remoting.Messaging.Header[]& headers) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.NoCheckDeserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize (System.IO.Stream serializationStream) [0x00000] in <filename unknown>:0 
+  at QuickRoute.BusinessEntities.Document.OpenFromQrt (System.IO.Stream stream, System.String fileNameForDocument) [0x00000] in <filename unknown>:0 
+
+  at QuickRoute.BusinessEntities.Map..ctor (System.Runtime.Serialization.SerializationInfo info, StreamingContext context) [0x00000] in <filename unknown>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoCMethod:InternalInvoke (System.Reflection.MonoCMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+
