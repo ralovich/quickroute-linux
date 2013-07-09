@@ -52,6 +52,7 @@
 ./Graphics/toolbar icons.psd
 ./Graphics/Setup banner bitmap.bmp
 ./Graphics/QuickRoute_32x32.ico
+./Graphics/QuickRoute_32x32.xpm
 ./Graphics/RotateClockwise.png
 ./Graphics/Lap.png
 ./Graphics/GoogleEarthIcon.png
