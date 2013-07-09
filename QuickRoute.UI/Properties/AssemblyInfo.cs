@@ -1,3 +1,4 @@
+// -*- coding: utf-8-dos -*-
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
