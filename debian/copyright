@@ -1,1 +1,29 @@
-gpl-2.0.txt
+-*- coding: utf-8-unix -*-
+This package is based on QuickRoute (http://www.matstroeng.se/quickroute/en/)
+that was written by Mats Troeng <matstroeng@gmail.com>, sources are available
+under http://quickroute-gps.googlecode.com/svn/trunk. Port to Linux/Mono by
+Kristof Ralovich <tade60@freemail.hu>, history of the port is hosted at
+https://gitorious.org/quickroute-git.
+
+Software copyright information:
+© 2008 Mats Troeng and Jörgen Ohlin released under GPLv3
+© 2011-2013 RALOVICH, Kristóf <tade60@freemail.hu> released under GPLv2
+
+
+   This program is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; version 3 dated June, 2007.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program;  if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
+   MA 02110-1301, USA.
+
+
+On Debian GNU/Linux systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL-3'.
