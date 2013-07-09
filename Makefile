@@ -45,3 +45,6 @@ install:
 	cp debian/copyright ${DESTDIR}/usr/share/doc/quickroute-gps
 	mkdir --parents ${DESTDIR}/usr/share/pixmaps
 	cp Graphics/QuickRoute_32x32.xpm ${DESTDIR}/usr/share/pixmaps
+	ln -s ${DESTDIR}/usr/share/pixmaps/QuickRoute_32x32.xpm ${DESTDIR}/usr/share/pixmaps/quickroute-gps.xpm
+	mkdir --parents ${DESTDIR}/usr/share/applications
+	cp debian/quickroute-gps.desktop ${DESTDIR}/usr/share/applications

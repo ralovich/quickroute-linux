@@ -11,6 +11,6 @@ Vcs-Browser: https://gitorious.org/quickroute-git
 Package: quickroute-gps
 Architecture: amd64
 Depends: ${cli:Depends}, ${misc:Depends}
-Description: Orienteering track analisys tool.
+Description: Orienteering GPS track analisys tool.
  Display a route from a GPS device, such as a GPS-clock, on an orienteering map
  saved as an image file.
