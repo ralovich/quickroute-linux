@@ -19,7 +19,9 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
 
     public string FileName { get; set; }
 
-    public UInt32 TimeStamp { get; set; }
+    public DateTime CreationTime { get; set; } /// FIT file creation time
+    public DateTime FirstTime    { get; set; } /// time of first event/activity in FIT file
+    public DateTime LastTime     { get; set; } /// time of last event/activity in FIT file
 
     #region IRouteImporter Members
 
@@ -30,11 +32,6 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
     public event EventHandler<WorkProgressEventArgs> WorkProgress;
 
     #endregion
-
-    public FITImporter()
-    {
-      TimeStamp = 0;
-    }
 
     public DialogResult ShowPreImportDialogs()
     {
@@ -55,7 +52,9 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
             var header = new Header(reader);
             var data = new Data(reader, header.DataSize);
 
-            TimeStamp = data.lastTimestamp;
+            CreationTime = FITUtil.ToDateTime(data.creatTimestamp);
+            FirstTime    = FITUtil.ToDateTime(data.firstTimestamp);
+            LastTime     = FITUtil.ToDateTime(data.lastTimestamp);
 
             // route
             var routeSegment = new RouteSegment();
@@ -98,8 +97,10 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
       private const Int32 invalidInt32 = 0x7FFFFFFF;
       private const UInt16 invalidUInt16 = 0xFFFF;
       private const byte invalidByte = 0xFF;
-
-      public UInt32 lastTimestamp = 0;
+      
+      public UInt32 creatTimestamp = 0;
+      public UInt32 firstTimestamp = 0;
+      public UInt32 lastTimestamp  = 0;
 
       public List<FITWaypoint> Waypoints { get; private set; }
       public List<FITLap> Laps { get; private set; }
@@ -108,6 +109,7 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
       {
         Waypoints = new List<FITWaypoint>();
         Laps = new List<FITLap>();
+        var TStamps = new List<UInt32>();
         var bytes = reader.ReadBytes((int)dataSize);
         using (var stream = new MemoryStream(bytes))
         {
@@ -128,8 +130,12 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
             var d = new DataMessage(dataReader, def);
             var fileType = d.GetByte(0);
             if (fileType != 4) throw new Exception("Not a FIT activity file.");
+            var creationTimestamp = d.GetUInt32(4);
+            if (creationTimestamp == null) creationTimestamp = FITUtil.AddCompressedTimestamp(creatTimestamp, recordHeader.TimeOffset);
+            creatTimestamp = creationTimestamp.Value;
 
             var messageTypeTranslator = new Dictionary<byte, DefinitionMessage>();
+            lastTimestamp = 0;
 
             while (dataReader.BaseStream.Position < dataReader.BaseStream.Length)
             {
@@ -141,15 +147,15 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
               }
               else
               {
-                var currentDef = messageTypeTranslator[recordHeader.LocalMessageType];
+                DefinitionMessage currentDef = messageTypeTranslator[recordHeader.LocalMessageType];
                 d = new DataMessage(dataReader, currentDef);
 
                 var timestamp = d.GetUInt32(253);
                 if (timestamp == null) timestamp = FITUtil.AddCompressedTimestamp(lastTimestamp, recordHeader.TimeOffset);
-                var time = FITUtil.ToDateTime(timestamp.Value);
+                DateTime time = FITUtil.ToDateTime(timestamp.Value);
 
                 var gmn = currentDef.GlobalMessageNumber;
-                if (gmn == (byte) MesgNum.record)
+                if (gmn == (byte) MesgNum.record) // 20
                 {
                   var lat = d.GetInt32(0);
                   var lng = d.GetInt32(1);
@@ -167,20 +173,46 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
                                     });
                   }
                 }
-                else if (gmn == (byte)MesgNum.lap)
+                else if (gmn == (byte)MesgNum.lap) // 19
                 {
                   Laps.Add(new FITLap() { Time = time });
+                }
+                else if (gmn == (byte)MesgNum.waypoint) // 29
+                {
+                  var lat = d.GetInt32(1);
+                  var lng = d.GetInt32(2);
+                  // 3 not used
+                  var alt = d.GetUInt16(4);
+                  if (lng != null && lng != invalidInt32 && lat != null && lat != invalidInt32)
+                  {
+                    Waypoints.Add(new FITWaypoint()
+                                    {
+                                      Time = time,
+                                      Latitude = positionFactor * lat.Value,
+                                      Longitude = positionFactor * lng.Value,
+                                      Altitude = alt == null || alt == invalidUInt16 ? (double?)null : (double)alt.Value / 5 - 500,
+                                      HeartRate = null
+                                    });
+                  }
                 }
                 else if (gmn == 22)
                 {
                     
                 }
                 lastTimestamp = timestamp.Value;
+                TStamps.Add(timestamp.Value);
               }
             }
           }
         }
+        TStamps.RemoveAll(ZeroPredicate);
+        TStamps.Sort();
+        if(TStamps.Count<1)
+          return;
+        firstTimestamp = TStamps[0];
+        lastTimestamp = TStamps[TStamps.Count-1];
       }
+      private static bool ZeroPredicate(uint u) { return u == 0; }
     }
 
     private class RecordHeader
@@ -391,6 +423,7 @@ namespace QuickRoute.BusinessEntities.Importers.FIT
       device_info = 23,
       workout = 26,
       workout_step = 27,
+      waypoint = 29,
       weight_scale = 30,
       course = 31,
       course_point = 32,
