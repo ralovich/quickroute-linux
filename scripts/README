@@ -1,15 +1,14 @@
 *** -*- mode: outline; coding: utf-8-dos -*-
 
 ** KNOWN BUGS IN LINUX VERSION
+* crash while loading an existing .qrt file
 * clicking "New" twice crashes
 * right panel hides image and route (in left panel)
 * full screen mode crashes
 
 **TODO
-* add a debian system menu entry/icon
-* fix loading an existing .qrt file
+* fix all known issues
 * fix "New" dialog to not hide any buttons
-* git-dch -- Generate the Debian changelog from git commit messages
 
 
 **DONE
@@ -18,12 +17,14 @@
 * create initial, deployable, working .deb package
 * fixup .deb package with proper dependencies
 * read FIT files spit out by antpm
+* git-dch -- Generate the Debian changelog from git commit messages
+* add a debian system menu entry/icon
 
 
 **PACKAGING
-change version in QuickRoute.UI/Properties/AssemblyInfo.cs
-dch --create -v 2.5-1 --package quickroute-gps
-debuild -us -uc
+* change version in QuickRoute.UI/Properties/AssemblyInfo.cs
+* run ./sripts/make-tarball
+* run ./scripts/deb
 
 ** UPSTREAM_SVN
 add the below lines in .git/config if "git svn fetch" fails

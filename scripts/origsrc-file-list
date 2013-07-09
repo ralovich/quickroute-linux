@@ -694,6 +694,7 @@
 ./debian/copyright
 ./debian/gpl-2.0.txt
 ./debian/control
+./debian/menu
 ./QuickRoute.Common/QuickRoute.Common.csproj
 ./QuickRoute.Common/CommonUtil.cs
 ./QuickRoute.Common/IMapPublisher.cs
