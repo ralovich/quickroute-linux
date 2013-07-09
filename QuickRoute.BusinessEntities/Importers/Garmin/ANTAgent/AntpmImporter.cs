@@ -28,10 +28,10 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       //LogUtil.LogTrace();
 
       mFileList = new List<FileInfo>();
+      mFitList  = new List<FITImporter>();
       mPath = getConfigFolder();
       LogUtil.LogInfo("AntpmImporter: " + mPath);
 
-      discover();
     }
 
     private string getConfigFolder ()
@@ -88,34 +88,37 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
           // skip files without activity/date
           var fiti = new FITImporter{ FileName = name };
           fiti.Import();
-          if(!fiti.ImportResult.Succeeded || fiti.TimeStamp==0)
+          if(!fiti.ImportResult.Succeeded
+             || fiti.CreationTime==InvalidCreationTime)
           {
             //LogUtil.LogDebug("name=" + fi.Name + " NO_DATE");
             continue;
           }
           
           mFileList.Add(fi);
+          mFitList.Add(fiti);
         }
       }
       LogUtil.LogDebug("Found " + nDirs + " dirs, " + mFileList.Count + " files");
 
-      // foreach(FileInfo fi in mFileList)
-      // {
-      //   string name = fi.FullName;
-      //   string id = fi.LastWriteTimeUtc.ToString();
-      //   var fiti = new FITImporter{ FileName = name };
-      //   fiti.Import();
-      //   DateTime dt = FITUtil.ToDateTime(fiti.TimeStamp);
-      //   LogUtil.LogDebug("name=" + fi.Name + ", id=" + id + ", dt=" + dt.ToString());
-      // }
+//      for(int i = 0; i < mFileList.Count; i++)
+//      {
+//        FileInfo fi = mFileList[i];
+//        FITImporter fiti = mFitList[i];
+//        LogUtil.LogDebug("n=" + fi.Name +
+//                         ", lw=" + fi.LastWriteTime.ToString() +
+//                         ", ct=" + fiti.CreationTime.ToString() +
+//                         ", f="  + fiti.FirstTime.ToString() +
+//                         ", l="  + fiti.LastTime.ToString());
+//      }
     }
-
 
     private HistoryItem itemToImport;
     /// <summary>
     /// The list of FIT files with activities and timestamps.
     /// </summary>
     private List<FileInfo> mFileList;
+    private List<FITImporter> mFitList;
     /// <summary>
     /// The ...\\.config\\antpm\\ path. Shall end with a backslash.
     /// </summary>
@@ -127,15 +130,20 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 
     public DialogResult ShowPreImportDialogs()
     {
+      discover();
+
       var historyItems = new List<object>();
-      foreach(FileInfo fi in mFileList)
+      for(int i = 0; i < mFileList.Count; i++)
       {
-        string name = fi.FullName;
-        string id = fi.LastWriteTimeUtc.ToString();
-        //Console.WriteLine("name: " + name + ", id=" + id);
-        LogUtil.LogDebug("name: " + name + ", id=" + id);
-        HistoryItem hi = new HistoryItem(name, id, fi);
-        //historyItems.Insert(0, hi);
+        FileInfo fi = mFileList[i];
+        FITImporter fiti = mFitList[i];
+        string displayName = fi.Name;
+        // Previously we used the last-written time of the .FIT
+        // file, but this might be off for various reasons, thus
+        // the most accuracy comes from inside the .FIT itself.
+        //string id = fi.LastWriteTime.ToString();
+        string id = fiti.CreationTime.ToLocalTime().ToString();
+        HistoryItem hi = new HistoryItem(displayName, id, fi);
         historyItems.Add(hi);
       }
 
@@ -171,11 +179,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
         
       LogUtil.LogDebug("Importing \"" + itemToImport.ToString() + "\"\n");
       ImportResult = new ImportResult();
-      var fitImporter = new FITImporter
-                          {
-                            FileName = itemToImport.FileInfo.FullName//,
-                            /*IdToImport = DateTime.Parse(itemToImport.Id).ToString("yyyy-MM-dd HH:mm:ss")*/
-                          };
+      var fitImporter = new FITImporter { FileName = itemToImport.FileInfo.FullName };
       fitImporter.Import();
       ImportResult = fitImporter.ImportResult;
     }
@@ -183,6 +187,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     public event EventHandler<EventArgs> BeginWork;
     public event EventHandler<EventArgs> EndWork;
     public event EventHandler<WorkProgressEventArgs> WorkProgress;
+    private DateTime InvalidCreationTime = new DateTime(1989, 12, 31, 00, 00, 00, DateTimeKind.Utc);
 
     #endregion
 
