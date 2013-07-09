@@ -23,6 +23,9 @@
 
 **PACKAGING
 * change version in QuickRoute.UI/Properties/AssemblyInfo.cs
+* change version in ./sripts/make-changelog
+* run ./sripts/make-changelog
+* change version in ./sripts/make-tarball
 * run ./sripts/make-tarball
 * run ./scripts/deb
 
