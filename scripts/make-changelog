@@ -2,9 +2,9 @@
 
 #VER=`cat src/VERSION | head -n 1`
 VER=2.7
-DEB_VER_MINOR=5
+DEB_VER_MINOR=6
 
 git-dch --git-author --debian-branch=mono1 \
-    --since=debian/2.7-4 \
+    --since=debian/2.7-5 \
     -v \
-    --new-version=2.7-5
+    --new-version=2.7-6

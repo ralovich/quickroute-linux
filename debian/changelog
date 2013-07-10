@@ -1,3 +1,16 @@
+quickroute-gps (2.7-6) UNRELEASED; urgency=low
+
+  [ RALOVICH, Kristóf ]
+  * debian/changelog: update for new version
+  * docs: add to known crashes
+  * QuickRoute.Common/LogUtil: add a callback for mono problems
+  * QuickRoute.BusinessEntities/Map: bugfix: allow deserserialization of .qrt
+  * bugfix: allow exporting/importing .jpeg encoded routes (cherry picked from commit 3f742dd3db39c09f8258ff99f1022dd3fe240639)
+  * docs: bring it up to date from mono2
+  * docs: more versioning info
+
+ -- RALOVICH, Kristóf <tade60@freemail.hu>  Wed, 10 Jul 2013 21:42:01 +0200
+
 quickroute-gps (2.7-5) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
