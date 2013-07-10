@@ -3,14 +3,15 @@
 ** KNOWN BUGS IN LINUX VERSION
 * crash while loading an existing .qrt file, that was saved under windows
 * clicking "New" twice crashes
-* right panel hides image and route (in left panel)
+* right panel hides image and route (in left panel), see Main.ToggleRightPanel()
 * full screen mode crashes
 * can't open route in google earth
 
 **TODO
 * fix all known issues
 * fix "New" dialog to not hide any buttons
-
+* fix version info in exported jpeg
+* fix writing EXIF info, currently just silently not written
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
@@ -46,32 +47,50 @@ https://gitorious.org/quickroute-git
 * exception while loading older .qrt file from windows
 Could not find type 'System.Collections.Generic.ObjectEqualityComparer`1[[QuickRoute.BusinessEntities.WaypointAttribute, QuickRoute.BusinessEntities, Version=2.3.0.0, Culture=neutral, PublicKeyToken=null]]'.
 ----------------------------------------------------------------------------------------------------
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadType (System.IO.BinaryReader reader, TypeTag code, Boolean throwOnError) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadTypeMetadata (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectInstance (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObject (BinaryElement element, System.IO.BinaryReader reader, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadNextObject (System.IO.BinaryReader reader) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectGraph (BinaryElement elem, System.IO.BinaryReader reader, Boolean readHeaders, System.Object& result, System.Runtime.Remoting.Messaging.Header[]& headers) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.NoCheckDeserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize (System.IO.Stream serializationStream) [0x00000] in <filename unknown>:0 
-  at QuickRoute.BusinessEntities.Document.OpenFromQrt (System.IO.Stream stream, System.String fileNameForDocument) [0x00000] in <filename unknown>:0 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadType (System.IO.BinaryReader reader, TypeTag code, Boolean throwOnError) [0x000ad] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:918 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadTypeMetadata (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo) [0x0007b] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:635 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectInstance (System.IO.BinaryReader reader, Boolean isRuntimeObject, Boolean hasTypeInfo, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x0000a] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:269 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObject (BinaryElement element, System.IO.BinaryReader reader, System.Int64& objectId, System.Object& value, System.Runtime.Serialization.SerializationInfo& info) [0x0008a] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:191 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadNextObject (System.IO.BinaryReader reader) [0x00027] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:154 
+  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectGraph (BinaryElement elem, System.IO.BinaryReader reader, Boolean readHeaders, System.Object& result, System.Runtime.Remoting.Messaging.Header[]& headers) [0x00041] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/ObjectReader.cs:110 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.NoCheckDeserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) [0x0007a] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/BinaryFormatter.cs:165 
+  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize (System.IO.Stream serializationStream) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Serialization.Formatters.Binary/BinaryFormatter.cs:122 
+  at QuickRoute.BusinessEntities.Document.OpenFromQrt (System.IO.Stream stream, System.String fileNameForDocument) [0x00006] in /home/tade/dev/quickroute-git/QuickRoute.BusinessEntities/Document.cs:640 
 
-* exception while loading .qrt file saved by the same version under linux
-Exception has been thrown by the target of an invocation.
+* exception while clicking "New" twice
+An unexpected error occured.
 ----------------------------------------------------------------------------------------------------
-  at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
-  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.ObjectRecord.LoadData (System.Runtime.Serialization.ObjectManager manager, ISurrogateSelector selector, StreamingContext context) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.ObjectManager.DoFixups () [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadNextObject (System.IO.BinaryReader reader) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.ObjectReader.ReadObjectGraph (BinaryElement elem, System.IO.BinaryReader reader, Boolean readHeaders, System.Object& result, System.Runtime.Remoting.Messaging.Header[]& headers) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.NoCheckDeserialize (System.IO.Stream serializationStream, System.Runtime.Remoting.Messaging.HeaderHandler handler) [0x00000] in <filename unknown>:0 
-  at System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize (System.IO.Stream serializationStream) [0x00000] in <filename unknown>:0 
-  at QuickRoute.BusinessEntities.Document.OpenFromQrt (System.IO.Stream stream, System.String fileNameForDocument) [0x00000] in <filename unknown>:0 
 
-  at QuickRoute.BusinessEntities.Map..ctor (System.Runtime.Serialization.SerializationInfo info, StreamingContext context) [0x00000] in <filename unknown>:0 
-  at (wrapper managed-to-native) System.Reflection.MonoCMethod:InternalInvoke (System.Reflection.MonoCMethod,object,object[],System.Exception&)
-  at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000e6] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Reflection/MonoMethod.cs:234 
+  at System.Reflection.MonoProperty.SetValue (System.Object obj, System.Object value, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] index, System.Globalization.CultureInfo culture) [0x00064] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Reflection/MonoProperty.cs:353 
+  at System.Reflection.PropertyInfo.SetValue (System.Object obj, System.Object value, System.Object[] index) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Reflection/PropertyInfo.cs:93 
+  at System.ComponentModel.ComponentResourceManager.ApplyResources (System.Object value, System.String objectName, System.Globalization.CultureInfo culture) [0x00125] in /build/buildd/mono-2.10.8.1/mcs/class/System/System.ComponentModel/ComponentResourceManager.cs:91 
+  at System.ComponentModel.ComponentResourceManager.ApplyResources (System.Object value, System.String objectName) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/System/System.ComponentModel/ComponentResourceManager.cs:54 
+  at QuickRoute.UI.Forms.CreateNewForm.InitializeComponent () [0x00237] in /home/tade/dev/quickroute-git/QuickRoute.UI/Forms/CreateNewForm.Designer.cs:89 
+  at QuickRoute.UI.Forms.CreateNewForm..ctor (System.String initialRouteFileName) [0x0003a] in /home/tade/dev/quickroute-git/QuickRoute.UI/Forms/CreateNewForm.cs:44 
+  at (wrapper remoting-invoke-with-check) QuickRoute.UI.Forms.CreateNewForm:.ctor (string)
+  at QuickRoute.UI.Main.NewDocument (System.String routeFileName) [0x00018] in /home/tade/dev/quickroute-git/QuickRoute.UI/Main.cs:211 
+  at QuickRoute.UI.Main.menuFileNew_Click (System.Object sender, System.EventArgs e) [0x00000] in /home/tade/dev/quickroute-git/QuickRoute.UI/Main.cs:2685 
+  at System.Windows.Forms.ToolStripItem.OnClick (System.EventArgs e) [0x0001c] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripItem.cs:1002 
+  at System.Windows.Forms.ToolStripMenuItem.OnClick (System.EventArgs e) [0x000a5] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripMenuItem.cs:267 
+  at System.Windows.Forms.ToolStripMenuItem.HandleClick (Int32 mouse_clicks, System.EventArgs e) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripMenuItem.cs:539 
+  at System.Windows.Forms.ToolStripItem.FireEvent (System.EventArgs e, ToolStripItemEventType met) [0x00042] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripItem.cs:1779 
+  at (wrapper remoting-invoke-with-check) System.Windows.Forms.ToolStripItem:FireEvent (System.EventArgs,System.Windows.Forms.ToolStripItemEventType)
+  at System.Windows.Forms.ToolStrip.OnMouseUp (System.Windows.Forms.MouseEventArgs mea) [0x00047] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStrip.cs:965 
+  at System.Windows.Forms.ToolStripDropDown.OnMouseUp (System.Windows.Forms.MouseEventArgs mea) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripDropDown.cs:636 
+  at System.Windows.Forms.Control.WmLButtonUp (System.Windows.Forms.Message& m) [0x0007e] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/Control.cs:5278 
+  at System.Windows.Forms.Control.WndProc (System.Windows.Forms.Message& m) [0x0017b] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/Control.cs:5019 
+  at System.Windows.Forms.ScrollableControl.WndProc (System.Windows.Forms.Message& m) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ScrollableControl.cs:813 
+  at System.Windows.Forms.ToolStrip.WndProc (System.Windows.Forms.Message& m) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStrip.cs:1221 
+  at System.Windows.Forms.ToolStripDropDown.WndProc (System.Windows.Forms.Message& m) [0x0001a] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/ToolStripDropDown.cs:728 
+  at System.Windows.Forms.Control+ControlWindowTarget.OnMessage (System.Windows.Forms.Message& m) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/Control.cs:228 
+  at System.Windows.Forms.Control+ControlNativeWindow.WndProc (System.Windows.Forms.Message& m) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/Control.cs:209 
+  at System.Windows.Forms.NativeWindow.WndProc (IntPtr hWnd, Msg msg, IntPtr wParam, IntPtr lParam) [0x00085] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/NativeWindow.cs:242 
+
+  at System.Windows.Forms.TableLayoutPanel.set_LayoutSettings (System.Windows.Forms.TableLayoutSettings value) [0x00047] in /build/buildd/mono-2.10.8.1/mcs/class/Managed.Windows.Forms/System.Windows.Forms/TableLayoutPanel.cs:142 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x000d0] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Reflection/MonoMethod.cs:226 
 
 
 
