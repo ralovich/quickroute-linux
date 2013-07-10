@@ -104,7 +104,10 @@ namespace QuickRoute.BusinessEntities
         case MapStorageType.Inline:
           //rawData = (byte[])(info.GetValueNo("rawData", typeof(byte[])));
           var getValueNoThrowMethod = info.GetType().GetMethod("GetValueNoThrow", BindingFlags.Instance | BindingFlags.NonPublic);
-          rawData = (byte[])getValueNoThrowMethod.Invoke(info, new object[] { "rawData", typeof(byte[]) });
+          if(getValueNoThrowMethod == null)
+            rawData = (byte[])(info.GetValue("rawData", typeof(byte[])));
+          else
+            rawData = (byte[])getValueNoThrowMethod.Invoke(info, new object[] { "rawData", typeof(byte[]) });
 
 
           if (rawData != null)
