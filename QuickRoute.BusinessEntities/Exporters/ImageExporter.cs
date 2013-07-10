@@ -237,6 +237,9 @@ namespace QuickRoute.BusinessEntities.Exporters
         center += corner / 4;
       }
 
+      try
+      {
+
       var ver = new byte[] { 2, 2, 0, 0 };
       var longitudeRef = new byte[] { Convert.ToByte(center.Longitude < 0 ? 'W' : 'E'), 0 };
       var longitude = ExifUtil.GetExifGpsCoordinate(center.Longitude);
@@ -253,6 +256,13 @@ namespace QuickRoute.BusinessEntities.Exporters
       }
 
       exif.SetPropertyString((int)ExifWorks.ExifWorks.TagNames.SoftwareUsed, Strings.QuickRoute + " " + Document.GetVersionString());
+
+      }
+      catch(NotImplementedException e)
+      {
+        // TODO: under mono System.Drawing.Image.SetPropertyItem() does not work
+        QuickRoute.Common.LogUtil.MonoFixMe(e.Message);
+      }
     }
 
     private void SetQuickRouteExtensionData()

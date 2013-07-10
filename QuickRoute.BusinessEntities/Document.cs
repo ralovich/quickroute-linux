@@ -764,7 +764,15 @@ namespace QuickRoute.BusinessEntities
       }
       foreach(var pi in mapAndBorderImage.PropertyItems)
       {
-        mapImage.SetPropertyItem(pi);
+        try
+        {
+          mapImage.SetPropertyItem(pi);
+        }
+        catch(NotImplementedException e)
+        {
+          // TODO: under mono System.Drawing.Image.SetPropertyItem() does not work
+          QuickRoute.Common.LogUtil.MonoFixMe(e.Message);
+        }
       }
 
       var exif = new ExifWorks.ExifWorks(ref mapAndBorderImage);

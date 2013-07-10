@@ -1,10 +1,11 @@
 *** -*- mode: outline; coding: utf-8-dos -*-
 
 ** KNOWN BUGS IN LINUX VERSION
-* crash while loading an existing .qrt file
+* crash while loading an existing .qrt file, that was saved under windows
 * clicking "New" twice crashes
 * right panel hides image and route (in left panel)
 * full screen mode crashes
+* can't open route in google earth
 
 **TODO
 * fix all known issues
@@ -19,6 +20,9 @@
 * read FIT files spit out by antpm
 * git-dch -- Generate the Debian changelog from git commit messages
 * add a debian system menu entry/icon
+* exception while loading .qrt file saved by the same version under linux
+* crash while loading an existing .qrt file, that was saved under mono
+* can't export into jpeg / png / kmz, see http://www.codeproject.com/Articles/4956/The-ExifWorks-class
 
 
 **PACKAGING
@@ -68,4 +72,21 @@ Exception has been thrown by the target of an invocation.
   at QuickRoute.BusinessEntities.Map..ctor (System.Runtime.Serialization.SerializationInfo info, StreamingContext context) [0x00000] in <filename unknown>:0 
   at (wrapper managed-to-native) System.Reflection.MonoCMethod:InternalInvoke (System.Reflection.MonoCMethod,object,object[],System.Exception&)
   at System.Reflection.MonoCMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in <filename unknown>:0 
+
+
+
+* exception while opening Google Earth
+Google Earth does not seem to be installed on this computer. Download it from earth.google.com.
+----------------------------------------------------------------------------------------------------
+
+
+  at (wrapper managed-to-native) System.__ComObject:CoCreateInstance (System.Guid,intptr,uint,System.Guid,intptr&)
+  at System.__ComObject.Initialize (System.Type t) [0x0005f] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System/__ComObject.cs:102 
+  at (wrapper remoting-invoke-with-check) System.__ComObject:Initialize (System.Type)
+  at Mono.Interop.ComInteropProxy.CreateProxy (System.Type t) [0x00007] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/Mono.Interop/ComInteropProxy.cs:111 
+  at System.Runtime.Remoting.RemotingServices.CreateClientProxyForComInterop (System.Type type) [0x00000] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Remoting/RemotingServices.cs:574 
+  at System.Runtime.Remoting.Activation.ActivationServices.CreateProxyForType (System.Type type) [0x00047] in /build/buildd/mono-2.10.8.1/mcs/class/corlib/System.Runtime.Remoting.Activation/ActivationServices.cs:217 
+  at (wrapper managed-to-native) object:__icall_wrapper_mono_object_new_specific (intptr)
+  at QuickRoute.UI.Classes.GoogleEarthUtil.OpenInGoogleEarth (System.IO.Stream stream) [0x0004c] in /home/tade/dev/quickroute-git/QuickRoute.UI/Classes/GoogleEarthUtil.cs:26 
+  at QuickRoute.UI.Main.OpenInGoogleEarth (QuickRoute.BusinessEntities.Document document, Nullable`1 colorCodingAttribute, Nullable`1 secondaryColorCodingAttribute, QuickRoute.BusinessEntities.Exporters.ColorRangeProperties colorRangeProperties) [0x0009a] in /home/tade/dev/quickroute-git/QuickRoute.UI/Main.cs:858 
 
