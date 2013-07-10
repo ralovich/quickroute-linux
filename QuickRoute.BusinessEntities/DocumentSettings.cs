@@ -39,7 +39,9 @@ namespace QuickRoute.BusinessEntities
 
     public static Dictionary<WaypointAttribute, ColorRangeIntervalSliderSettings> CreateDefaultColorRangeIntervalSliderSettings()
     {
-      Dictionary<WaypointAttribute, ColorRangeIntervalSliderSettings> defaultColorRangeIntervalSliderSettings = new Dictionary<WaypointAttribute, ColorRangeIntervalSliderSettings>();
+      var waypointAttributeSame = new WaypointAttributeSame();
+      Dictionary<WaypointAttribute, ColorRangeIntervalSliderSettings> defaultColorRangeIntervalSliderSettings
+        = new Dictionary<WaypointAttribute, ColorRangeIntervalSliderSettings>(waypointAttributeSame);
       defaultColorRangeIntervalSliderSettings.Add(
         WaypointAttribute.Pace,
         new ColorRangeIntervalSliderSettings(0.0 * 60, 10.0 * 60)
@@ -70,7 +72,9 @@ namespace QuickRoute.BusinessEntities
 
     public static Dictionary<WaypointAttribute, LapHistogramSettings> CreateDefaultLapHistogramSettings()
     {
-      Dictionary<WaypointAttribute, LapHistogramSettings> defaultLapHistogramSettings = new Dictionary<WaypointAttribute, LapHistogramSettings>();
+      var waypointAttributeSame = new WaypointAttributeSame();
+      Dictionary<WaypointAttribute, LapHistogramSettings> defaultLapHistogramSettings
+        = new Dictionary<WaypointAttribute, LapHistogramSettings>(waypointAttributeSame);
       defaultLapHistogramSettings.Add(
         WaypointAttribute.Pace,
         new LapHistogramSettings(10)
@@ -154,4 +158,16 @@ namespace QuickRoute.BusinessEntities
 
   }
 
+
+  class WaypointAttributeSame : EqualityComparer<WaypointAttribute>
+  {
+    public override bool Equals(WaypointAttribute a, WaypointAttribute b)
+    {
+      return true;
+    }
+    public override int GetHashCode(WaypointAttribute wa)
+    {
+      return wa.GetHashCode();
+    }
+  };
 }
