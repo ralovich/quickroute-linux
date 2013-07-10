@@ -25,6 +25,16 @@ namespace QuickRoute.Common
     private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimer();
 #endif
 
+    public static void MonoFixMe()
+    {
+      MonoFixMe(null);
+    }
+
+    public static void MonoFixMe(string message)
+    {
+      LogDebug("MONO FIXME\n" + message==null?"":message);
+    }
+
 	  public static bool IsRunningOnMono ()
     {
       return Type.GetType ("Mono.Runtime") != null;
