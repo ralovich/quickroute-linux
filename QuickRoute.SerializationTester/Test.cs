@@ -4,6 +4,10 @@ using System;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+
+
 
 // The XmlRootAttribute allows you to set an alternate name 
 // (PurchaseOrder) for the XML element and its namespace. By 
@@ -189,4 +193,40 @@ public class Test
     }
 }
 
+
+namespace SerializeFail {
+    class SerializeFail {
+        public static void Main2(string[] args) {
+            if (args.Length == 0 || args[0].Equals("client")) {
+                TestClass test = new TestClass();
+                test.testDict.Add(MyEnum.TEST, "ing");  
+
+                FileStream fs = File.Create("data.bin");
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                formatter.Serialize(fs, test);
+
+                fs.Close();
+            }
+
+            else if (args[0].Equals("server")) {
+                FileStream fs = File.OpenRead("data.bin");
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                TestClass test = (TestClass)formatter.Deserialize(fs);
+                Console.WriteLine("Data: " + test.testDict[MyEnum.TEST]);
+                fs.Close();
+            }
+        }
+    }
+
+    [Serializable]
+    public class TestClass {
+        public Dictionary<MyEnum, string> testDict = new Dictionary<MyEnum,string>(); 
+    }
+
+    public enum MyEnum {
+        TEST
+    }
+}
 

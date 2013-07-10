@@ -9,6 +9,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>QuickRoute.SerializationTester</RootNamespace>
     <AssemblyName>QuickRoute.SerializationTester</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,11 +38,18 @@
       <Private>False</Private>
       <Package>log4net</Package>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="Microsoft.VisualBasic" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="ExifTester.cs" />
+    <Compile Include="ExifWorks.cs" />
+    <Compile Include="PdnGraphics.cs" />
+    <Compile Include="PropertyItem2.cs" />
+    <Compile Include="SerializationFallbackBinder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

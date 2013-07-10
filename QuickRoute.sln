@@ -161,7 +161,7 @@ Global
 		{B7D88639-3248-4309-A687-94DC11EC2946} = {DECE96F3-CCEB-4FDD-A65A-5CB444EF8151}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = QuickRoute.SerializationTester\QuickRoute.SerializationTester.csproj
+		StartupItem = QuickRoute.UI\QuickRoute.UI.csproj
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
 		$1.DirectoryNamespaceAssociation = None

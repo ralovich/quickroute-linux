@@ -143,6 +143,26 @@ namespace QuickRoute.SerializationTester
       Console.WriteLine ("==================protobuf-net======================");
 
       // http://code.google.com/p/protobuf-net/source/browse/#svn%2Ftrunk%2FExamples
+      Console.WriteLine ("==================ExifWorks======================");
+      var a = new ExifTester();
+
+      Console.WriteLine ("==================SerializeFail======================");
+      // http://www.mail-archive.com/mono-bugs@lists.ximian.com/msg65268.html
+      // https://bugzilla.novell.com/show_bug.cgi?id=527199
+      SerializeFail.SerializeFail.Main2(new string[]{"client"});
+      SerializeFail.SerializeFail.Main2(new string[]{"server"});
+      // http://docs.xamarin.com/guides/ios/advanced_topics/limitations
+      // Value types as Dictionary Keys
+      // Using a value type as a Dictionary<TKey, TValue> key is problematic, as the default Dictionary
+      // constructor attempts to use EqualityComparer<TKey>.Default. EqualityComparer<TKey>.Default, in turn,
+      // attempts to use Reflection to instantiate a new type which implements the IEqualityComparer<TKey> interface.
+      // This works for reference types (as the reflection+create a new type step is skipped), but for value
+      // types it crashes and burns rather quickly once you attempt to use it on the device.
+      // Workaround: Manually implement the  IEqualityComparer<TKey>
+      // (http://www.go-mono.com/docs/index.aspx?link=T%3aSystem.Collections.Generic.IEqualityComparer%601)
+      // interface in a new type and provide an instance of that type to the
+      // Dictionary<TKey, TValue>(IEqualityComparer<TKey>) constructor
+      // (http://www.go-mono.com/docs/monodoc.ashx?link=C%3aSystem.Collections.Generic.Dictionary%602(System.Collections.Generic.IEqualityComparer%7b%600%7d)).
     }
   }
 }
