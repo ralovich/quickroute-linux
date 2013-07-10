@@ -163,6 +163,10 @@ namespace QuickRoute.SerializationTester
       // interface in a new type and provide an instance of that type to the
       // Dictionary<TKey, TValue>(IEqualityComparer<TKey>) constructor
       // (http://www.go-mono.com/docs/monodoc.ashx?link=C%3aSystem.Collections.Generic.Dictionary%602(System.Collections.Generic.IEqualityComparer%7b%600%7d)).
+
+      Console.WriteLine ("==================Exiv2======================");
+      ExifTester.Exiv2Main();
+
     }
   }
 }
