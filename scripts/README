@@ -1,9 +1,10 @@
 *** -*- mode: outline; coding: utf-8-dos -*-
 
 ** KNOWN BUGS IN LINUX VERSION
+* can't export into jpeg / png / kmz, see http://www.codeproject.com/Articles/4956/The-ExifWorks-class
 * crash while loading an existing .qrt file
 * clicking "New" twice crashes
-* right panel hides image and route (in left panel)
+* right panel hides image and route (in left panel), see Main.ToggleRightPanel()
 * full screen mode crashes
 
 **TODO
