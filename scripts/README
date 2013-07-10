@@ -3,7 +3,7 @@
 ** KNOWN BUGS IN LINUX VERSION
 * crash while loading an existing .qrt file, that was saved under windows
 * clicking "New" twice crashes
-* right panel hides image and route (in left panel), see Main.ToggleRightPanel()
+* right panel hides image and route (in left panel), e.g. RoutePropertyName_RouteToStraightLine field is shown in full
 * full screen mode crashes
 * can't open route in google earth
 
@@ -28,6 +28,8 @@
 
 **PACKAGING
 * change version in QuickRoute.UI/Properties/AssemblyInfo.cs
+* change version in QuickRoute.Resources/Properties/AssemblyInfo.cs
+* change version in QuickRoute.BusinessEntities/Properties/AssemblyInfo.cs
 * change version in ./sripts/make-changelog
 * run ./sripts/make-changelog
 * commit and tag
