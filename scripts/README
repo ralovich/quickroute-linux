@@ -10,7 +10,8 @@
 **TODO
 * fix all known issues
 * fix "New" dialog to not hide any buttons
-
+* fix version info in exported jpeg
+* fix writing EXIF info, currently just silently not written
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
