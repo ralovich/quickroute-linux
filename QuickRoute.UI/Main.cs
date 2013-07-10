@@ -628,6 +628,7 @@ namespace QuickRoute.UI
                                       };
                 imageExporter.Export();
                 fs.Close();
+                imageExporter.PostCloseExport(sfd.FileName);
               }
               ApplicationSettings.ExportImagePercentualImageSize = selector.PercentualImageSize;
               if (selector is JpegPropertySelector)

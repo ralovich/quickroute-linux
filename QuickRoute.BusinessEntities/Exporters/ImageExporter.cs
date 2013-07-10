@@ -71,6 +71,13 @@ namespace QuickRoute.BusinessEntities.Exporters
       SetQuickRouteExtensionData();
     }
 
+    public void PostCloseExport(string fname)
+    {
+#if __MonoCS__
+      //QuickRoute.SerializationTester.ExifTester.Exiv2WriteFile(fname, new byte[] { 2, 2, 0, 0 });
+#endif
+    }
+
     private void CreateImage()
     {
       // todo: support for multiple sessions
