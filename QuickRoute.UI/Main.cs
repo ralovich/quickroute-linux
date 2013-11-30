@@ -863,6 +863,7 @@ namespace QuickRoute.UI
           catch (Exception ex)
           {
             EndWork();
+            Console.WriteLine(ex.ToString());
             Util.ShowExceptionMessageBox(Strings.Error_GoogleEarthNotInstalledMessage, ex,
                                          Strings.Error_GoogleEarthNotInstalledTitle);
           }
@@ -941,7 +942,7 @@ namespace QuickRoute.UI
         if (fileName.StartsWith("http"))
         {
           var client = new WebClient();
-          var downloadedFileName = CommonUtil.GetTempFileName() + Path.GetExtension(fileName);
+          var downloadedFileName = Path.Combine(CommonUtil.GetTempFileName(), Path.GetExtension(fileName));
           try
           {
             client.DownloadFile(fileName, downloadedFileName);
@@ -997,7 +998,7 @@ namespace QuickRoute.UI
       {
         KmlProperties = kmlProperties
       };
-      kmlExporter.ExportKmz(CommonUtil.GetTempFileName() + @"\");
+      kmlExporter.ExportKmz(CommonUtil.GetTempFileName());
     }
 
     private void CreateKmz(IEnumerable<string> documentFileNames, Stream stream, KmlProperties kmlProperties)
@@ -1017,7 +1018,7 @@ namespace QuickRoute.UI
       {
         KmlProperties = kmlProperties
       };
-      kmlExporter.ExportKmz(CommonUtil.GetTempFileName() + @"\");
+      kmlExporter.ExportKmz(CommonUtil.GetTempFileName());
     }
 
     private void Undo()
