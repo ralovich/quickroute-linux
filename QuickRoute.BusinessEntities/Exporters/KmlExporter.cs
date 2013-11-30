@@ -122,7 +122,8 @@ namespace QuickRoute.BusinessEntities.Exporters
       // 1. create temp directories and the kmz file
       temporaryBasePath = tempBasePath;
       Directory.CreateDirectory(temporaryBasePath);
-      Directory.CreateDirectory(temporaryBasePath + @"files\");
+      Directory.CreateDirectory(Path.Combine(temporaryBasePath, @"files"));
+      Directory.CreateDirectory(Path.Combine(temporaryBasePath, @"fileso"));
       kmzFile = new ZipFile();
       kmzFile.AddDirectoryByName("files");
 
@@ -134,7 +135,8 @@ namespace QuickRoute.BusinessEntities.Exporters
       {
         if (KmlProperties.MapType != KmlExportMapType.None)
         {
-          var fileName = temporaryBasePath + @"files\o" + groundOverlayCount + "." + document.ImageExporter.Properties.EncodingInfo.Encoder.MimeType.Replace("image/", ""); // NOTE: this assumes that the mime type matches the file extension
+          string ext = document.ImageExporter.Properties.EncodingInfo.Encoder.MimeType.Replace("image/", "");
+          var fileName = Path.Combine(temporaryBasePath, Path.Combine(@"fileso", groundOverlayCount + "." + ext)); // NOTE: this assumes that the mime type matches the file extension
           using (var imageStream = new FileStream(fileName, FileMode.Create))
           {
             document.ImageExporter.OutputStream = imageStream;
@@ -157,7 +159,7 @@ namespace QuickRoute.BusinessEntities.Exporters
 
       // 3. generate kml document
       LogUtil.LogDebug("Generating kml document");
-      var tempKmlFileName = temporaryBasePath + "doc.kml";
+      var tempKmlFileName = Path.Combine(temporaryBasePath, "doc.kml");
       using (var kmlStream = new FileStream(tempKmlFileName, FileMode.Create))
       {
         var writerSettings = new XmlWriterSettings { Encoding = Encoding.UTF8, Indent = true, IndentChars = "  " };
@@ -449,7 +451,7 @@ namespace QuickRoute.BusinessEntities.Exporters
         writer.WriteStartElement("IconStyle");
 
         writer.WriteStartElement("Icon");
-        var fileName = temporaryBasePath + @"files\" + markerStyles[markerStyle] + ".png";
+        var fileName = Path.Combine(temporaryBasePath, Path.Combine (@"files", markerStyles[markerStyle] + ".png"));
         var href = "files/" + markerStyles[markerStyle] + ".png";
         var bitmap = new Bitmap(Convert.ToInt32(style.Size), Convert.ToInt32(style.Size));
         using (var g = Graphics.FromImage(bitmap))
