@@ -304,7 +304,7 @@ namespace QuickRoute.Common
 		{
 			Thread.Sleep(0);
 			timeval t;
-      IntPtr unused;
+      IntPtr unused = IntPtr.Zero;
 			gettimeofday(out t, unused);
 			startTime = (double)t.seconds + ((double)t.useconds)/1000000.0;
 			System.Console.WriteLine("startTime={0}\n", startTime);
@@ -316,7 +316,7 @@ namespace QuickRoute.Common
     {
       if (!isStarted) return duration;
       timeval t;
-      IntPtr unused;
+      IntPtr unused = IntPtr.Zero;
       gettimeofday(out t, unused);
       stopTime = t.seconds + ((double)t.useconds)/1000000.0;
       System.Console.WriteLine("stopTime={0}\n", stopTime);
@@ -334,7 +334,7 @@ namespace QuickRoute.Common
     public override decimal GetCurrentTime()
     {
       timeval t;
-      IntPtr unused;
+      IntPtr unused = IntPtr.Zero;
       gettimeofday(out t, unused);
       return (decimal)(((double)t.seconds) + ((double)t.useconds)/1000000.0);
     }
