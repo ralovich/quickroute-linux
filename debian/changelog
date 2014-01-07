@@ -76,7 +76,7 @@ quickroute-gps (2.4-1) experimental; urgency=low
 
 quickroute-gps (2.4-0) experimental; urgency=low
 
-  * Initial release. (Closes: #XXXXXX)
+  * Initial release.
 
  -- Kristof Ralovich <tade60@freemail.hu>  Tue, 19 Mar 2013 21:59:25 +0100
 
