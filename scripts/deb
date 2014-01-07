@@ -15,12 +15,12 @@ echo
 ./scripts/make-tarball
 echo -e "\nTarball OK\n"
 
-mv quickroute-gps*.tar.xz $ROOT/
+mv quickroute-gps*.tar.gz $ROOT/
 
 ( cd $ROOT;
     mkdir build;
     cd build
-    tar --xz -xf ../quickroute-gps*.tar.xz
+    tar -xzf ../quickroute-gps*.tar.gz
     echo -e "\nStarting to build...\n"
     debuild -us -uc && echo -e "\nBuild OK\ndeb package in '${ROOT}' \n";
 )

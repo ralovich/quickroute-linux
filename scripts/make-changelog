@@ -1,10 +1,18 @@
 #!/bin/sh
 
-#VER=`cat src/VERSION | head -n 1`
-VER=2.7
-DEB_VER_MINOR=6
 
-git-dch --git-author --debian-branch=mono1 \
-    --since=debian/2.7-5 \
-    -v \
-    --new-version=2.7-6
+#NUMBERS=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*'`
+#echo $NUMBERS
+
+A=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' | head -1`
+echo $A
+B=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' | head -2 | tail -1`
+echo $B
+C=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' |  tail -1`
+echo $C
+
+
+VER=$A.$B
+DEB_VER_MINOR=$C
+
+git-dch --git-author --debian-branch=mono1 -vaN $VER-$DEB_VER_MINOR --distribution=experimental --debian-tag=experimental/%\(version\)s

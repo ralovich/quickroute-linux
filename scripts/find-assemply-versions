@@ -1,0 +1,5 @@
+#!/bin/sh
+
+grep -rn AssemblyInformationalVersion . | grep -v Binary
+grep -rn AssemblyVersion . | grep -v Binary
+grep -rn AssemblyFileVersion . | grep -v Binary

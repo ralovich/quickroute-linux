@@ -1,6 +1,16 @@
 #!/bin/bash
 
-VER=2.7
+
+A=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' | head -1`
+echo $A
+B=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' | head -2 | tail -1`
+echo $B
+C=`grep AssemblyInformationalVersion QuickRoute.UI/Properties/AssemblyInfo.cs | grep -o '[0-9]*' |  tail -1`
+echo $C
+
+VER=$A.$B
+
+#VER=2.4
 GIT_VER=`git log | head -1 | awk '{print $2 }'`
 OUTNAME=quickroute-gps_${VER}.orig.tar
 
@@ -15,5 +25,7 @@ TMP_LIST=`mktemp`
 #find . -type f -name \* -print | grep -v .git > scripts/dist-file-list
 
 rm -fv ${OUTNAME}.gz ${OUTNAME}.xz
-#tar -czvf ${OUTNAME}.gz -T scripts/origsrc-file-list
-tar --xz -cf ${OUTNAME}.xz -T scripts/origsrc-file-list
+tar -czvf ${OUTNAME}.gz -T scripts/origsrc-file-list
+#tar --xz -cf ${OUTNAME}.xz -T scripts/origsrc-file-list
+
+echo ${OUTNAME}
