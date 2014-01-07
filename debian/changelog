@@ -1,3 +1,14 @@
+quickroute-gps (2.4-7) experimental; urgency=low
+
+  * allow opening a route and map in Google Earth
+  * previous releases did happen
+  * rewrite version numbers in changelog
+  * fix lintian warning
+  * version 2.4-7
+  * scripts: get version info from AssemblyInfo.cs
+
+ -- RALOVICH, Kristof <tade60@freemail.hu>  Tue, 07 Jan 2014 12:04:47 +0100
+
 quickroute-gps (2.4-6) experimental; urgency=low
 
   [ RALOVICH, Kristóf ]
