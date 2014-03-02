@@ -18,15 +18,16 @@ License along with this library. If not, see <http://www.gnu.org/licenses/>.
 
 using System.IO;
 using System;
-using Microsoft.VisualBasic;
+//using Microsoft.VisualBasic;
 using System.Drawing;
 
-namespace QuickRoute.SerializationTester
+namespace ExifWorks
     {
     public class ExifWorks : System.IDisposable
         {
         private System.Drawing.Bitmap _Image;
         private System.Text.Encoding _Encoding = System.Text.Encoding.Default;
+        private const string vbNullChar = "\0";
 
         public ExifWorks(string FileName)
         {
@@ -1337,7 +1338,7 @@ namespace QuickRoute.SerializationTester
         /// </history> 
         public void SetPropertyString(Int32 PID, string Value)
             {
-            byte[] Data = this._Encoding.GetBytes(Value + Microsoft.VisualBasic.Constants.vbNullChar);
+            byte[] Data = this._Encoding.GetBytes(Value + /*Microsoft.VisualBasic.Constants.*/vbNullChar);
             SetProperty(PID, Data, ExifDataTypes.AsciiString);
             }
 
@@ -1432,17 +1433,20 @@ namespace QuickRoute.SerializationTester
         /// </history> 
         public void SetProperty(Int32 PID, byte[] Data, ExifDataTypes Type)
         {
-            System.Drawing.Imaging.PropertyItem P = this._Image.PropertyItems[0];
+            System.Drawing.Imaging.PropertyItem P = PropertyItem2.GetPropertyItem();
+            //System.Drawing.Imaging.PropertyItem P = this._Image.PropertyItems[0];
             P.Id = PID;
             P.Value = Data;
             P.Type = (short)(Type);
             P.Len = Data.Length;
-            try
-            {
+            //try
+            //{
                 //Mono TODO: NotImplemented
                 this._Image.SetPropertyItem(P);
-            }
-            catch { }
+            //}
+            //catch(Exception e) {
+            //    System.Console.WriteLine(e.ToString());
+            //}
         }
 
         /// <summary> 
@@ -1492,7 +1496,7 @@ namespace QuickRoute.SerializationTester
         private string GetString(byte[] B)
             {
             string R = this._Encoding.GetString(B);
-            if (R.EndsWith(Constants.vbNullChar))
+            if (R.EndsWith(/*Constants.*/vbNullChar))
                 R = R.Substring(0, R.Length - 1);
             return R;
             }

@@ -113,7 +113,7 @@ namespace QuickRoute.Common
           break;
       }
       // Debugging aid, shows up in monodevelop console.
-      //System.Console.WriteLine(m);
+      System.Console.WriteLine(m);
     }
 
     public static void Configure()

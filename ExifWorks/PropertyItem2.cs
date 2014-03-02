@@ -18,8 +18,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-//namespace PaintDotNet.SystemLayer
-namespace QuickRoute.SerializationTester
+namespace ExifWorks
 {
     /// <summary>
     /// Re-implements System.Drawing.PropertyItem so that the data is serializable.
@@ -130,38 +129,38 @@ namespace QuickRoute.SerializationTester
             return propertyValue;
         }
         
-        public static PropertyItem2 FromBlob(string blob)
-        {
-            PropertyItem2 pi2;
-
-            if (blob.Length > 0 && blob[0] == '<')
-            {
-                string idStr = GetProperty(blob, idPropertyName);
-                string lenStr = GetProperty(blob, lenPropertyName);
-                string typeStr = GetProperty(blob, typePropertyName);
-                string valueStr = GetProperty(blob, valuePropertyName);
-
-                int id = int.Parse(idStr, CultureInfo.InvariantCulture);
-                int len = int.Parse(lenStr, CultureInfo.InvariantCulture);
-                short type = short.Parse(typeStr, CultureInfo.InvariantCulture);
-                byte[] value = Convert.FromBase64String(valueStr);
-
-                pi2 = new PropertyItem2(id, len, type, value);
-            }
-            else
-            {
-                // Old way of serializing: .NET serialized!
-                byte[] bytes = Convert.FromBase64String(blob);
-                MemoryStream ms = new MemoryStream(bytes);
-                BinaryFormatter bf = new BinaryFormatter();
-                SerializationFallbackBinder sfb = new SerializationFallbackBinder();
-                sfb.AddAssembly(Assembly.GetExecutingAssembly());
-                bf.Binder = sfb;
-                pi2 = (PropertyItem2)bf.Deserialize(ms);
-            }
-
-            return pi2;
-        }
+//        public static PropertyItem2 FromBlob(string blob)
+//        {
+//            PropertyItem2 pi2;
+//
+//            if (blob.Length > 0 && blob[0] == '<')
+//            {
+//                string idStr = GetProperty(blob, idPropertyName);
+//                string lenStr = GetProperty(blob, lenPropertyName);
+//                string typeStr = GetProperty(blob, typePropertyName);
+//                string valueStr = GetProperty(blob, valuePropertyName);
+//
+//                int id = int.Parse(idStr, CultureInfo.InvariantCulture);
+//                int len = int.Parse(lenStr, CultureInfo.InvariantCulture);
+//                short type = short.Parse(typeStr, CultureInfo.InvariantCulture);
+//                byte[] value = Convert.FromBase64String(valueStr);
+//
+//                pi2 = new PropertyItem2(id, len, type, value);
+//            }
+//            else
+//            {
+//                // Old way of serializing: .NET serialized!
+//                byte[] bytes = Convert.FromBase64String(blob);
+//                MemoryStream ms = new MemoryStream(bytes);
+//                BinaryFormatter bf = new BinaryFormatter();
+//                SerializationFallbackBinder sfb = new SerializationFallbackBinder();
+//                sfb.AddAssembly(Assembly.GetExecutingAssembly());
+//                bf.Binder = sfb;
+//                pi2 = (PropertyItem2)bf.Deserialize(ms);
+//            }
+//
+//            return pi2;
+//        }
 
         // System.Drawing.Imaging.PropertyItem does not have a public constructor
         // So, as per the documentation, we have to "steal" one.
@@ -170,7 +169,7 @@ namespace QuickRoute.SerializationTester
         private static Image propertyItemImage;
 
         [MethodImpl(MethodImplOptions.Synchronized)]
-        private static PropertyItem GetPropertyItem()
+        public static PropertyItem GetPropertyItem()
         {
             if (propertyItemImage == null)
             {
