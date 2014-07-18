@@ -8,10 +8,11 @@
 * can't open route in google earth
 
 **TODO
-* fix all known issues
 * fix "New" dialog to not hide any buttons
 * fix version info in exported jpeg
 * fix writing EXIF info, currently just silently not written
+* get System.Drawing.Image.SetProperty() implemented in mono: https://github.com/mono/mono/pull/1167#issuecomment-49278851
+* get implement saving exif info in libgdiplus, get https://github.com/mono/libgdiplus/pull/23#issuecomment-49333901 merged
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
