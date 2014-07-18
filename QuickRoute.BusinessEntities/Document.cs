@@ -14,6 +14,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using QuickRoute.Common;
 
+
 namespace QuickRoute.BusinessEntities
 {
   /// <summary>
@@ -786,28 +787,28 @@ namespace QuickRoute.BusinessEntities
                     GraphicsUnit.Pixel);
       }
 
-      {
-        var exif1 = new ExifWorks.ExifWorks(ref mapAndBorderImage);
-        var gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
-        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
-        Console.WriteLine("propcnt=" + mapAndBorderImage.PropertyItems.Length.ToString());
-
-        Bitmap mapImage1 = (Bitmap)mapAndBorderImage.Clone();
-        exif1 = new ExifWorks.ExifWorks(ref mapImage1);
-        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
-        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
-        Console.WriteLine("propcnt=" + mapImage1.PropertyItems.Length.ToString());
-
-        exif1 = new ExifWorks.ExifWorks(ref mapImage);
-        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
-        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
-        Console.WriteLine("propcnt=" + mapImage.PropertyItems.Length.ToString());
-
-        exif1 = new ExifWorks.ExifWorks(ref mapImage2);
-        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
-        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
-        Console.WriteLine("propcnt=" + mapImage2.PropertyItems.Length.ToString());
-      }
+//      {
+//        var exif1 = new ExifWorks.ExifWorks(mapAndBorderImage);
+//        var gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
+//        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
+//        Console.WriteLine("propcnt=" + mapAndBorderImage.PropertyItems.Length.ToString());
+//
+//        Bitmap mapImage1 = (Bitmap)mapAndBorderImage.Clone();
+//        exif1 = new ExifWorks.ExifWorks(mapImage1);
+//        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
+//        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
+//        Console.WriteLine("propcnt=" + mapImage1.PropertyItems.Length.ToString());
+//
+//        exif1 = new ExifWorks.ExifWorks(mapImage);
+//        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
+//        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
+//        Console.WriteLine("propcnt=" + mapImage.PropertyItems.Length.ToString());
+//
+//        exif1 = new ExifWorks.ExifWorks(mapImage2);
+//        gpsVer = exif1.GetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, null);
+//        if(gpsVer != null) Console.WriteLine(gpsVer.ToString());
+//        Console.WriteLine("propcnt=" + mapImage2.PropertyItems.Length.ToString());
+//      }
 
 
       var exif = new ExifWorks.ExifWorks(ref mapAndBorderImage);

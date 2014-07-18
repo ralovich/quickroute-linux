@@ -6,6 +6,7 @@ using System.IO;
 using QuickRoute.BusinessEntities.Numeric;
 using QuickRoute.Resources;
 
+
 namespace QuickRoute.BusinessEntities.Exporters
 {
   public class ImageExporter
@@ -269,6 +270,15 @@ namespace QuickRoute.BusinessEntities.Exporters
       {
         // TODO: under mono System.Drawing.Image.SetPropertyItem() does not work
         QuickRoute.Common.LogUtil.MonoFixMe(e.Message);
+      }
+      catch(Exception e)
+      {
+        QuickRoute.Common.LogUtil.MonoFixMe(e.Message);
+      }
+      Console.WriteLine("nprops={0}", image.PropertyItems.Length);
+      foreach(var pi in image.PropertyItems)
+      {
+        Console.WriteLine("i={0} pi={1} v={2}", pi.Id.ToString(), pi.Type.ToString(), pi.Value.ToString());
       }
     }
 

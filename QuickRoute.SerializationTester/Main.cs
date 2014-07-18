@@ -145,6 +145,16 @@ namespace QuickRoute.SerializationTester
       // http://code.google.com/p/protobuf-net/source/browse/#svn%2Ftrunk%2FExamples
       Console.WriteLine ("==================ExifWorks======================");
       var a = new ExifTester();
+      Console.WriteLine(a.ToString());
+      // not implemented SetPropertyItem
+      // https://bugzilla.novell.com/show_bug.cgi?id=406307
+      // https://github.com/mono/libgdiplus/blob/master/src/image.c
+      // http://lists.ximian.com/pipermail/mono-devel-list/2010-November/036385.html
+      // https://github.com/mono/mono/blob/master/mcs/class/System.Drawing/System.Drawing/Image.cs
+      // https://github.com/mono/mono/commit/83c90e233274930c2669965f2f75fb4f77e773b0
+      // https://github.com/mono/mono/commit/0b7c75e55cd6d2cc2f1dad2dcdc8ba23470cfd7a
+      // https://github.com/mono/mono/blame/master/mcs/class/System.Drawing/System.Drawing/Image.cs
+      // libmono-system-drawing4.0-cil
 
       Console.WriteLine ("==================SerializeFail======================");
       // http://www.mail-archive.com/mono-bugs@lists.ximian.com/msg65268.html

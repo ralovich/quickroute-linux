@@ -1,8 +1,9 @@
 using System;
-using Microsoft.VisualBasic;
+//using Microsoft.VisualBasic;
 using System.Drawing;
 using Exiv2;
 using GLib;
+using ExifWorks;
 
 namespace QuickRoute.SerializationTester
 {
@@ -11,7 +12,7 @@ namespace QuickRoute.SerializationTester
     public ExifTester ()
     {
       string fname = "/home/tade/work/maps/2010_08_22_FrenchCreekNorth/2010_08_22_FrenchCreekNorth.jpg";
-      var ew = new ExifWorks(fname);
+      var ew = new ExifWorks.ExifWorks(fname);
       Console.WriteLine("ew=" + ew.ToString());
       Console.WriteLine("width=" + ew.Width);
 
@@ -33,36 +34,65 @@ namespace QuickRoute.SerializationTester
       SetExifData(ew.GetBitmap());
     }
 
+    public static byte[] GetExifGpsCoordinate(double coordinate)
+    {
+      var d = (uint)coordinate;
+      var m = (uint)(60 * coordinate - 60 * d);
+      var s = (uint)(1000000 * (3600 * coordinate - (3600 * d + 60 * m)));
+
+      var result = new byte[24];
+      BitConverter.GetBytes(d).CopyTo(result, 0);
+      BitConverter.GetBytes((uint)1).CopyTo(result, 4);
+      BitConverter.GetBytes(m).CopyTo(result, 8);
+      BitConverter.GetBytes((uint)1).CopyTo(result, 12);
+      BitConverter.GetBytes(s).CopyTo(result, 16);
+      BitConverter.GetBytes((uint)1000000).CopyTo(result, 20);
+      return result;
+    }
+
     static public void SetExifData(Bitmap image)
     {
       Console.WriteLine("================================\n================================\n");
       try
       {
-      var exif = new ExifWorks(ref image);
-
-      //var g = new System.Drawing.Graphics();
-      //var g2 = new PdnGraphics();
-
-      Console.WriteLine("ew=" + exif.ToString());
-      Console.WriteLine("width=" + exif.Width);
-
-      var ver = new byte[] { 2, 2, 0, 0 };
-      var longitudeRef = new byte[] { Convert.ToByte('W'), 0 };
-      //var longitude = ExifUtil.GetExifGpsCoordinate(center.Longitude);
-      var latitudeRef = new byte[] { Convert.ToByte( 'S'), 0 };
-      //var latitude = ExifUtil.GetExifGpsCoordinate(center.Latitude);
-      exif.SetProperty((int)ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifDataTypes.UnsignedLong);
-      exif.SetProperty((int)ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifDataTypes.AsciiString);
-      //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
-      exif.SetProperty((int)ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifDataTypes.AsciiString);
-      //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
-      //if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
-      //{
-      //  exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
-      //}
+        var exif = new ExifWorks.ExifWorks(ref image);
+  
+        //var g = new System.Drawing.Graphics();
+        //var g2 = new PdnGraphics();
+  
+        Console.WriteLine("ew=" + exif.ToString());
+        Console.WriteLine("width=" + exif.Width);
+  
+        var ver = new byte[] { 2, 2, 0, 0 };
+        var longitudeRef = new byte[] { Convert.ToByte('W'), 0 };
+        var longitude = GetExifGpsCoordinate(43.0);
+        var latitudeRef = new byte[] { Convert.ToByte( 'S'), 0 };
+        var latitude = GetExifGpsCoordinate(-12.6);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifWorks.ExifDataTypes.UnsignedLong);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+        //if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
+        //{
+        //  exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
+        //}
+        Console.WriteLine(exif.ToString());
       }
       catch(System.IndexOutOfRangeException e)
-      {}
+      {
+        Console.WriteLine(e.ToString());
+      }
+
+
+      Console.WriteLine("================================\nSetPropertyItem OK\n================================\n");
+
+      
+      foreach(var pi in image.PropertyItems)
+      {
+        Console.WriteLine("i={0} pi={1} v={2}", pi.Id.ToString(), pi.Type.ToString(), pi.Value.ToString());
+      }
+
       Console.WriteLine("================================\n================================\n");
     }
 
@@ -71,6 +101,10 @@ namespace QuickRoute.SerializationTester
       GLib.GType.Init ();
       try {
         string fname = "/home/tade/work/maps/2010_08_22_FrenchCreekNorth/2010_08_22_FrenchCreekNorth.jpg";
+        //fname = "/home/tade/Pictures/Webcam/2011-08-01-022022_4_fixed_exif.jpg";
+        //fname = "/home/tade/Pictures/Webcam/2011-08-01-022022_6.jpg";
+        //fname = "/home/tade/Pictures/Webcam/2011-08-01-022022_7.png";
+
         Exiv2.Image image = Exiv2.ImageFactory.Open (fname);
         if (!image.Good)
           return;
@@ -146,7 +180,7 @@ namespace QuickRoute.SerializationTester
         exifData.Erase (new ExifKey("Exif.Image.XResolution"));
 #endif
 
-        image.WriteMetadata ();
+        //image.WriteMetadata ();
 
       } catch (GLib.GException e) {
         Console.WriteLine ("Exiv2.Exception caught {0}", e);
