@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# add the below lines in .git/config if "git svn fetch" fails
+# [svn-remote "svn"]
+# 	url = http://quickroute-gps.googlecode.com/svn/trunk
+# 	fetch = :refs/remotes/git-svn
+
+# http://quickroute-gps.googlecode.com/svn/trunk/
+
+
+
 git checkout master
 git svn fetch
 
