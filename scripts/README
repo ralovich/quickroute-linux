@@ -13,6 +13,8 @@
 * fix writing EXIF info, currently just silently not written
 * get System.Drawing.Image.SetProperty() implemented in mono: https://github.com/mono/mono/pull/1167#issuecomment-49278851
 * get implement saving exif info in libgdiplus, get https://github.com/mono/libgdiplus/pull/23#issuecomment-49333901 merged
+* log4net:ERROR [FileAppender] Unable to acquire lock on file /usr/lib/quickroute-gps/qrlog.txt. Access to the path "/usr/lib/quickroute-gps/qrlog.txt" is denied.
+
 
 **DONE
 * binary packages available here: https://code.google.com/p/antpm/downloads/list
