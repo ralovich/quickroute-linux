@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.IO;
 using QuickRoute.BusinessEntities.Numeric;
 using QuickRoute.Resources;
+using ExifLibrary;
 
 namespace QuickRoute.BusinessEntities.Exporters
 {
@@ -39,6 +40,7 @@ namespace QuickRoute.BusinessEntities.Exporters
     public Rectangle MapBounds { get; private set; }
 
     public Bitmap Image { get; private set; }
+    private ImageFile im;
 
     private const int exportImageHeaderHeight = 64;
     private const int exportImageBorderWidth = 1;
@@ -265,15 +267,55 @@ namespace QuickRoute.BusinessEntities.Exporters
       }
     }
 
+    /// <summary>
+    /// Fills in \c this.OutputStream, by saving \c this.image to the stream first
+    /// and then the route data as an extension to jpeg.
+    /// </summary>
     private void SetQuickRouteExtensionData()
     {
+      QuickRoute.Common.LogUtil.LogDebug ("SetQuickRouteExtensionData");
       if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
       {
         using (var tmpStream = new MemoryStream())
         {
           Image.Save(tmpStream, Properties.EncodingInfo.Encoder, Properties.EncodingInfo.EncoderParams);
+
+          // center coordinate
+          var center = new LongLat();
+          foreach (var corner in Document.GetMapCornersLongLat())
+          {
+            center += corner / 4;
+          }
+          ImageFile im = ImageFile.FromStream (tmpStream);
+          var ver = new byte[] { 2, 2, 0, 0 };
+          var longitudeRef = new byte[] { Convert.ToByte(center.Longitude < 0 ? 'W' : 'E'), 0 };
+          //var longitude = ExifUtil.GetExifGpsCoordinate(center.Longitude);
+          var latitudeRef = new byte[] { Convert.ToByte(center.Latitude < 0 ? 'S' : 'N'), 0 };
+          //var latitude = ExifUtil.GetExifGpsCoordinate(center.Latitude);
+          im.Properties.Add (ExifTag.GPSVersionID, BitConverter.ToUInt32 (ver, 0));
+          //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifWorks.ExifDataTypes.UnsignedLong);
+          im.Properties.Add (ExifTag.GPSLongitudeRef, System.Text.Encoding.UTF8.GetString (longitudeRef));
+          //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+          im.Properties.Add (ExifTag.GPSLongitude, center.Longitude);
+          //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+          im.Properties.Add (ExifTag.GPSLatitudeRef, System.Text.Encoding.UTF8.GetString (latitudeRef));
+          //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+          im.Properties.Add (ExifTag.GPSLatitude, center.Latitude);
+          //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+          if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
+          {
+            //var qual = new byte[] { (byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality) };
+            im.Properties.Add(ExifTag.JPEGProc, (byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality));
+            //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
+          }
+          im.Properties.Add(ExifTag.Software, Strings.QuickRoute + " " + Document.GetVersionString());
+          //exif.SetPropertyString((int)ExifWorks.ExifWorks.TagNames.SoftwareUsed, Strings.QuickRoute + " " + Document.GetVersionString());
+          var tmpStream2 = new MemoryStream ();
+          im.Save (tmpStream2);
+
+          //MonoExifStream.addExif (Image, tmpStream, tmpStream2);
           var ed = QuickRouteJpegExtensionData.FromImageExporter(this);
-          ed.EmbedDataInImage(tmpStream, OutputStream);
+          ed.EmbedDataInImage(tmpStream2, OutputStream);
         }
       }
       else
