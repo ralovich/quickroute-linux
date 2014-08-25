@@ -1,3 +1,10 @@
+quickroute-gps (2.4-8) experimental; urgency=low
+
+  * Saving EXIF info works for jpg. This allows the exported images
+	to show up in the overview map of DOMA.
+
+ -- RALOVICH, Kristof <tade60@freemail.hu>  Tue, 26 Aug 2014 00:17:35 +0200
+
 quickroute-gps (2.4-7) experimental; urgency=low
 
   * allow opening a route and map in Google Earth
