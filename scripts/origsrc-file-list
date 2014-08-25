@@ -816,4 +816,5 @@
 ./ExternalReferences/Microsoft.ExceptionMessageBox.dll
 ./ExternalReferences/Interop.EARTHLib.dll
 ./ExternalReferences/ExifWorks.dll
+./ExternalReferences/ExifLibrary.dll
 ./Makefile

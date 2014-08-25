@@ -22,7 +22,7 @@ mv quickroute-gps*.tar.gz $ROOT/
     cd build
     tar -xzf ../quickroute-gps*.tar.gz
     echo -e "\nStarting to build...\n"
-    debuild -us -uc && echo -e "\nBuild OK\ndeb package in '${ROOT}' \n";
+    debuild -eDISPLAY -us -uc && echo -e "\nBuild OK\ndeb package in '${ROOT}' \n";
 )
 
 
