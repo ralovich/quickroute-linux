@@ -45,10 +45,10 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       string e1 = Environment.GetEnvironmentVariable("XDG_CONFIG_HOME");
       string e2 = Environment.GetEnvironmentVariable("HOME");
       string e3 = Environment.GetEnvironmentVariable("USERPROFILE");
-      LogUtil.LogDebug("e1=" + e1);
-      LogUtil.LogDebug("e2=" + e2);
-      LogUtil.LogDebug("e3=" + e3);
-      LogUtil.LogDebug("e0=" + e0);
+      //LogUtil.LogDebug("e1=" + e1);
+      //LogUtil.LogDebug("e2=" + e2);
+      //LogUtil.LogDebug("e3=" + e3);
+      //LogUtil.LogDebug("e0=" + e0);
 
       if (!String.IsNullOrEmpty (e0))
         return Path.Combine (e0, "");
