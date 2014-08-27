@@ -239,26 +239,25 @@ namespace QuickRoute.BusinessEntities.Exporters
         center += corner / 4;
       }
 
-      try
-      {
-
       var ver = new byte[] { 2, 2, 0, 0 };
       var longitudeRef = new byte[] { Convert.ToByte(center.Longitude < 0 ? 'W' : 'E'), 0 };
       var longitude = ExifUtil.GetExifGpsCoordinate(center.Longitude);
       var latitudeRef = new byte[] { Convert.ToByte(center.Latitude < 0 ? 'S' : 'N'), 0 };
       var latitude = ExifUtil.GetExifGpsCoordinate(center.Latitude);
-      exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifWorks.ExifDataTypes.UnsignedLong);
-      exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
-      exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
-      exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
-      exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
-      if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
+
+      try
       {
-        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
-      }
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifWorks.ExifDataTypes.UnsignedLong);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
+        exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
+        if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
+        {
+          exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
+        }
 
-      exif.SetPropertyString((int)ExifWorks.ExifWorks.TagNames.SoftwareUsed, Strings.QuickRoute + " " + Document.GetVersionString());
-
+        exif.SetPropertyString((int)ExifWorks.ExifWorks.TagNames.SoftwareUsed, Strings.QuickRoute + " " + Document.GetVersionString());
       }
       catch(NotImplementedException e)
       {
@@ -273,13 +272,12 @@ namespace QuickRoute.BusinessEntities.Exporters
     /// </summary>
     private void SetQuickRouteExtensionData()
     {
-      QuickRoute.Common.LogUtil.LogDebug ("SetQuickRouteExtensionData");
       if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
       {
         using (var tmpStream = new MemoryStream())
         {
           Image.Save(tmpStream, Properties.EncodingInfo.Encoder, Properties.EncodingInfo.EncoderParams);
-
+#if __MonoCS__
           // center coordinate
           var center = new LongLat();
           foreach (var corner in Document.GetMapCornersLongLat())
@@ -314,6 +312,7 @@ namespace QuickRoute.BusinessEntities.Exporters
           im.Save (tmpStream2);
 
           //MonoExifStream.addExif (Image, tmpStream, tmpStream2);
+#endif
           var ed = QuickRouteJpegExtensionData.FromImageExporter(this);
           ed.EmbedDataInImage(tmpStream2, OutputStream);
         }
