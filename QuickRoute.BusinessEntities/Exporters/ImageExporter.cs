@@ -132,7 +132,11 @@ namespace QuickRoute.BusinessEntities.Exporters
       // application name, version and url
       g.TextRenderingHint = TextRenderingHint.AntiAlias;
       g.SmoothingMode = SmoothingMode.AntiAlias;
+#if !__MonoCS__
       g.DrawString(Strings.QuickRoute, captionFont, captionBrush, new PointF(exportImageBorderWidth + 74F, exportImageBorderWidth + 5F));
+#else
+      g.DrawString(Strings.QuickRoute+" Linux", captionFont, captionBrush, new PointF(exportImageBorderWidth + 74F, exportImageBorderWidth + 5F));
+#endif
       g.DrawString(
         string.Format(Strings.Version, Document.GetVersionString()),
         versionFont, versionBrush,
@@ -306,7 +310,7 @@ namespace QuickRoute.BusinessEntities.Exporters
             im.Properties.Add(ExifTag.JPEGProc, (byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality));
             //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] {(byte)(100 * ((JpegEncodingInfo)Properties.EncodingInfo).Quality)}, ExifWorks.ExifWorks.ExifDataTypes.UnsignedByte);
           }
-          im.Properties.Add(ExifTag.Software, Strings.QuickRoute + " " + Document.GetVersionString());
+          im.Properties.Add(ExifTag.Software, Strings.QuickRoute + " Linux " + Document.GetVersionString());
           //exif.SetPropertyString((int)ExifWorks.ExifWorks.TagNames.SoftwareUsed, Strings.QuickRoute + " " + Document.GetVersionString());
           var tmpStream2 = new MemoryStream ();
           im.Save (tmpStream2);
