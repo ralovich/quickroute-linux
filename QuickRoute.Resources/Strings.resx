@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -589,7 +589,7 @@
     <value>Average direction deviation (total)</value>
   </data>
   <data name="RoutePropertyName_AverageHeartRate" xml:space="preserve">
-    <value>Average heart rate (lap)</value>
+    <value>Avg. heart rate</value>
   </data>
   <data name="RoutePropertyName_AverageHeartRateFromStart" xml:space="preserve">
     <value>Average heart rate (total)</value>
@@ -601,7 +601,7 @@
     <value>Average inclination (total)</value>
   </data>
   <data name="RoutePropertyName_AverageRoutePace" xml:space="preserve">
-    <value>Average route pace (lap)</value>
+    <value>Avg. route pace</value>
   </data>
   <data name="RoutePropertyName_AverageRoutePaceFromStart" xml:space="preserve">
     <value>Average route pace (total)</value>
@@ -613,7 +613,7 @@
     <value>Average route speed (total)</value>
   </data>
   <data name="RoutePropertyName_AverageStraightLinePace" xml:space="preserve">
-    <value>Average straight line pace (lap)</value>
+    <value>Avg. straight line pace</value>
   </data>
   <data name="RoutePropertyName_AverageStraightLinePaceFromStart" xml:space="preserve">
     <value>Average straight line pace (total)</value>
@@ -649,7 +649,7 @@
     <value>Inclination</value>
   </data>
   <data name="RoutePropertyName_LapNumber" xml:space="preserve">
-    <value>Lap number</value>
+    <value>Lap num.</value>
   </data>
   <data name="RoutePropertyName_Location" xml:space="preserve">
     <value>Location</value>
@@ -670,13 +670,13 @@
     <value>Pace</value>
   </data>
   <data name="RoutePropertyName_RouteDistance" xml:space="preserve">
-    <value>Route distance (lap)</value>
+    <value>Route dist. (lap)</value>
   </data>
   <data name="RoutePropertyName_RouteDistanceFromStart" xml:space="preserve">
     <value>Route distance (total)</value>
   </data>
   <data name="RoutePropertyName_RouteToStraightLine" xml:space="preserve">
-    <value>Difference between the route and the straight line distance (lap)</value>
+    <value>Diff. between the route and the straight line dist.</value>
   </data>
   <data name="RoutePropertyName_RouteToStraightLineFromStart" xml:space="preserve">
     <value>Difference between the route and the straight line distance (total)</value>
@@ -685,7 +685,7 @@
     <value>Speed</value>
   </data>
   <data name="RoutePropertyName_StraightLineDistance" xml:space="preserve">
-    <value>Straight line distance (lap)</value>
+    <value>Straight line dist.</value>
   </data>
   <data name="RoutePropertyName_StraightLineDistanceFromStart" xml:space="preserve">
     <value>Straight line distance (total)</value>
