@@ -270,6 +270,17 @@ namespace QuickRoute.BusinessEntities.Exporters
       }
     }
 
+    private double NormalizeAngle(double angle)
+    {
+      while (angle > 360.0) {
+        angle -= 360.0;
+      }
+      while (angle < 0.0) {
+        angle += 360.0;
+      }
+      return angle;
+    }
+
     /// <summary>
     /// Fills in \c this.OutputStream, by saving \c this.image to the stream first
     /// and then the route data as an extension to jpeg.
@@ -298,11 +309,11 @@ namespace QuickRoute.BusinessEntities.Exporters
           //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsVer, ver, ExifWorks.ExifWorks.ExifDataTypes.UnsignedLong);
           im.Properties.Add (ExifTag.GPSLongitudeRef, System.Text.Encoding.UTF8.GetString (longitudeRef));
           //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitudeRef, longitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
-          im.Properties.Add (ExifTag.GPSLongitude, center.Longitude);
+          im.Properties.Add (ExifTag.GPSLongitude, NormalizeAngle(center.Longitude));
           //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLongitude, longitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
           im.Properties.Add (ExifTag.GPSLatitudeRef, System.Text.Encoding.UTF8.GetString (latitudeRef));
           //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitudeRef, latitudeRef, ExifWorks.ExifWorks.ExifDataTypes.AsciiString);
-          im.Properties.Add (ExifTag.GPSLatitude, center.Latitude);
+          im.Properties.Add (ExifTag.GPSLatitude, NormalizeAngle(center.Latitude));
           //exif.SetProperty((int)ExifWorks.ExifWorks.TagNames.GpsLatitude, latitude, ExifWorks.ExifWorks.ExifDataTypes.UnsignedRational);
           if (Properties.EncodingInfo.Encoder.MimeType == "image/jpeg")
           {
