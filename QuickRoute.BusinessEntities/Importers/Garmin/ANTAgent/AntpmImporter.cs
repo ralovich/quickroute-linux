@@ -27,8 +27,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
     {
       //LogUtil.LogTrace();
 
-      mFileList = new List<FileInfo>();
-      mFitList  = new List<FITImporter>();
+      mFitFileList = new List<FitFile> ();
       mPath = getConfigFolder();
       LogUtil.LogInfo("AntpmImporter: " + mPath);
 
@@ -69,6 +68,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
         LogUtil.LogWarn("\""+mPath+"\" doesn't exist\n");
         return;
       }
+      mFitFileList.Clear();
       LogUtil.LogDebug("Listing \"" + mPath + "\"...");
       var baseDir = new DirectoryInfo(mPath);
       int nDirs = baseDir.GetDirectories().Length;
@@ -95,11 +95,13 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
             continue;
           }
           
-          mFileList.Add(fi);
-          mFitList.Add(fiti);
+          FitFile ff = new FitFile ();
+          ff.fi = fi;
+          ff.fit = fiti;
+          mFitFileList.Add (ff);
         }
       }
-      LogUtil.LogDebug("Found " + nDirs + " dirs, " + mFileList.Count + " files");
+      LogUtil.LogDebug("Found " + nDirs + " dirs, " + mFitFileList.Count + " files");
 
 //      for(int i = 0; i < mFileList.Count; i++)
 //      {
@@ -111,14 +113,20 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 //                         ", f="  + fiti.FirstTime.ToString() +
 //                         ", l="  + fiti.LastTime.ToString());
 //      }
+
+      mFitFileList.Sort((x, y) => x.fit.CreationTime.CompareTo(y.fit.CreationTime));
     }
+
+    private class FitFile {
+      public FileInfo    fi;
+      public FITImporter fit;
+    };
 
     private HistoryItem itemToImport;
     /// <summary>
     /// The list of FIT files with activities and timestamps.
     /// </summary>
-    private List<FileInfo> mFileList;
-    private List<FITImporter> mFitList;
+    private List<FitFile> mFitFileList;
     /// <summary>
     /// The ...\\.config\\antpm\\ path. Shall end with a backslash.
     /// </summary>
@@ -133,10 +141,10 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
       discover();
 
       var historyItems = new List<object>();
-      for(int i = 0; i < mFileList.Count; i++)
+      for(int i = 0; i < mFitFileList.Count; i++)
       {
-        FileInfo fi = mFileList[i];
-        FITImporter fiti = mFitList[i];
+        FileInfo fi = mFitFileList[i].fi;
+        FITImporter fiti = mFitFileList[i].fit;
         string displayName = fi.Name;
         // Previously we used the last-written time of the .FIT
         // file, but this might be off for various reasons, thus
@@ -218,7 +226,7 @@ namespace QuickRoute.BusinessEntities.Importers.Garmin.ANTAgent
 
     public void Refresh()
     {
-      // do nothing
+      discover ();
     }
 
     #endregion
