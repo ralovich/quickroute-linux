@@ -232,6 +232,7 @@ namespace QuickRoute.BusinessEntities.Exporters
 
     private void SetExifData()
     {
+#if !__MonoCS__
       // GPS version
       var image = Image;
       var exif = new ExifWorks.ExifWorks(ref image);
@@ -268,6 +269,7 @@ namespace QuickRoute.BusinessEntities.Exporters
         // TODO: under mono System.Drawing.Image.SetPropertyItem() does not work
         QuickRoute.Common.LogUtil.MonoFixMe(e.Message);
       }
+#endif
     }
 
     private double NormalizeAngle(double angle)

@@ -775,10 +775,16 @@ namespace QuickRoute.BusinessEntities
         }
       }
 
+#if !__MonoCS__
       var exif = new ExifWorks.ExifWorks(ref mapAndBorderImage);
       var qualityByteArray = exif.GetProperty((int)ExifWorks.ExifWorks.TagNames.JPEGQuality, new byte[] { 80 });
 
-      var encodingInfo = new JpegEncodingInfo((double)qualityByteArray[0] / 100);
+      double quality = (double)qualityByteArray[0] / 100;
+#else
+      double quality = 0.8;
+#endif
+
+      var encodingInfo = new JpegEncodingInfo(quality);
       using (var ms = new MemoryStream())
       {
         mapImage.Save(ms, encodingInfo.Encoder, encodingInfo.EncoderParams);
