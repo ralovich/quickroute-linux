@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -59,28 +59,16 @@
     <Compile Include="Algorithms.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Bag.cs" />
-    <Compile Include="BigList.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="Comparers.cs" />
-    <Compile Include="Deque.cs" />
-    <Compile Include="DictionaryBase.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="ListBase.cs" />
-    <Compile Include="MultiDictionary.cs" />
-    <Compile Include="MultiDictionaryBase.cs" />
     <Compile Include="OrderedBag.cs" />
-    <Compile Include="OrderedDictionary.cs" />
-    <Compile Include="OrderedMultiDictionary.cs" />
-    <Compile Include="OrderedSet.cs" />
     <Compile Include="Pair.cs" />
     <Compile Include="ReadOnlyCollectionBase.cs" />
-    <Compile Include="ReadOnlyDictionaryBase.cs" />
     <Compile Include="ReadOnlyListBase.cs" />
-    <Compile Include="ReadOnlyMultiDictionaryBase.cs" />
     <Compile Include="RedBlack.cs" />
-    <Compile Include="Set.cs" />
     <Compile Include="Strings.cs" />
-    <Compile Include="Triple.cs" />
     <Compile Include="Util.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>

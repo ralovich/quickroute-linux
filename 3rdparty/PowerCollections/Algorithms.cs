@@ -2016,54 +2016,7 @@ namespace Wintellect.PowerCollections
             }
         }
 
-        /// <summary>
-        /// Finds the index of the first item in a list equal to one of several given items.
-        /// </summary>
-        /// <remarks>The default sense of equality for T is used, as defined by T's
-        /// implementation of IComparable&lt;T&gt;.Equals or object.Equals.</remarks>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">The items to search for.</param>
-        /// <returns>The index of the first item equal to any of the items in the collection <paramref name="itemsToLookFor"/>. 
-        /// -1 if no such item exists in the list.</returns>
-        public static int FirstIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor)
-        {
-            return FirstIndexOfMany(list, itemsToLookFor, EqualityComparer<T>.Default);
-        }
 
-        /// <summary>
-        /// Finds the index of the first item in a list equal to one of several given items. A passed
-        /// IEqualityComparer is used to determine equality.
-        /// </summary>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">The items to search for.</param>
-        /// <param name="equalityComparer">The IEqualityComparer&lt;T&gt; used to compare items for equality. 
-        /// Only the Equals and GetHashCode methods will be called.</param>
-        /// <returns>The index of the first item equal to any of the items in the collection <paramref name="itemsToLookFor"/>. 
-        /// -1 if no such item exists in the list.</returns>
-        public static int FirstIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
-        {
-            if (list == null)
-                throw new ArgumentNullException("list");
-            if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
-            if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
-
-            // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
-
-            // Scan the list for the items.
-            int index = 0;
-            foreach (T x in list) {
-                if (setToLookFor.Contains(x)) {
-                    return index;
-                }
-                ++index;
-            }
-
-            // didn't find any item that matches.
-            return -1;
-        }
 
         /// <summary>
         /// Finds the index of the first item in a list "equal" to one of several given items. The passed 
@@ -2102,51 +2055,7 @@ namespace Wintellect.PowerCollections
             return -1;
         }
 
-        /// <summary>
-        /// Finds the index of the last item in a list equal to one of several given items.
-        /// </summary>
-        /// <remarks>The default sense of equality for T is used, as defined by T's
-        /// implementation of IComparable&lt;T&gt;.Equals or object.Equals.</remarks>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">The items to search for.</param>
-        /// <returns>The index of the last item equal to any of the items in the collection <paramref name="itemsToLookFor"/>. 
-        /// -1 if no such item exists in the list.</returns>
-        public static int LastIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor)
-        {
-            return LastIndexOfMany(list, itemsToLookFor, EqualityComparer<T>.Default);
-        }
 
-        /// <summary>
-        /// Finds the index of the last item in a list equal to one of several given items. A passed
-        /// IEqualityComparer is used to determine equality.
-        /// </summary>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">The items to search for.</param>
-        /// <param name="equalityComparer">The IEqualityComparer&lt;T&gt; used to compare items for equality.</param>
-        /// <returns>The index of the last item equal to any of the items in the collection <paramref name="itemsToLookFor"/>. 
-        /// -1 if no such item exists in the list.</returns>
-        public static int LastIndexOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
-        {
-            if (list == null)
-                throw new ArgumentNullException("list");
-            if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
-            if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
-
-            // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
-
-            // Scan the list
-            for (int index = list.Count - 1; index >= 0; --index) {
-                if (setToLookFor.Contains(list[index])) {
-                    return index;
-                }
-            }
-
-            // didn't find any item that matches.
-            return -1;
-        }
 
         /// <summary>
         /// Finds the index of the last item in a list "equal" to one of several given items. The passed 
@@ -2182,50 +2091,7 @@ namespace Wintellect.PowerCollections
             return -1;
         }
 
-        /// <summary>
-        /// Enumerates the indices of all the items in a list equal to one of several given items. 
-        /// </summary>
-        /// <remarks>The default sense of equality for T is used, as defined by T's
-        /// implementation of IComparable&lt;T&gt;.Equals or object.Equals.</remarks>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">A collection of items to search for.</param>
-        /// <returns>An IEnumerable&lt;T&gt; that enumerates the indices of items equal to
-        /// any of the items in the collection <paramref name="itemsToLookFor"/>. </returns>
-        public static IEnumerable<int> IndicesOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor)
-        {
-            return IndicesOfMany(list, itemsToLookFor, EqualityComparer<T>.Default);
-        }
 
-        /// <summary>
-        /// Enumerates the indices of all the items in a list equal to one of several given items. A passed
-        /// IEqualityComparer is used to determine equality.
-        /// </summary>
-        /// <param name="list">The list to search.</param>
-        /// <param name="itemsToLookFor">A collection of items to search for.</param>
-        /// <param name="equalityComparer">The IEqualityComparer&lt;T&gt; used to compare items for equality. </param>
-        /// <returns>An IEnumerable&lt;T&gt; that enumerates the indices of items equal to
-        /// any of the items in the collection <paramref name="itemsToLookFor"/>. </returns>
-        public static IEnumerable<int> IndicesOfMany<T>(IList<T> list, IEnumerable<T> itemsToLookFor, IEqualityComparer<T> equalityComparer)
-        {
-            if (list == null)
-                throw new ArgumentNullException("list");
-            if (itemsToLookFor == null)
-                throw new ArgumentNullException("itemsToLookFor");
-            if (equalityComparer == null)
-                throw new ArgumentNullException("equalityComparer");
-
-            // Create a set of the items we are looking for, for efficient lookup.
-            Set<T> setToLookFor = new Set<T>(itemsToLookFor, equalityComparer);
-
-            // Scan the list
-            int index = 0;
-            foreach (T x in list) {
-                if (setToLookFor.Contains(x)) {
-                    yield return index;
-                }
-                ++index;
-            }
-        }
 
         /// <summary>
         /// Enumerates the indices of all the items in a list equal to one of several given items. The passed 
@@ -2452,57 +2318,7 @@ namespace Wintellect.PowerCollections
 
         
         
-        /// <summary>
-        /// Determines if two collections are disjoint, considered as sets. Two sets are disjoint if they
-        /// have no common items.
-        /// </summary>
-        /// <remarks>
-        /// <para>The default sense of equality for T is used, as defined by T's
-        /// implementation of IComparable&lt;T&gt;.Equals or object.Equals.</para>
-        /// <para>If both collections are Set, Bag, OrderedSet, or OrderedBag
-        /// collections, it is more efficient to use the IsDisjoint method on that class.</para>
-        /// </remarks>
-        /// <param name="collection1">The first collection.</param>
-        /// <param name="collection2">The second collection.</param>
-        /// <returns>True if <paramref name="collection1"/> are <paramref name="collection2"/> are disjoint, considered as sets.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection1"/> or <paramref name="collection2"/> is null.</exception>
-        public static bool DisjointSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2)
-        {
-            return DisjointSets(collection1, collection2, EqualityComparer<T>.Default);
-        }
 
-        /// <summary>
-        /// Determines if two collections are disjoint, considered as sets. Two sets are disjoint if they
-        /// have no common items.
-        /// </summary>
-        /// <remarks>
-        /// <para>If both collections are Set, Bag, OrderedSet, or OrderedBag
-        /// collections, it is more efficient to use the IsDisjoint method on that class.</para>
-        /// </remarks>
-        /// <param name="collection1">The first collection.</param>
-        /// <param name="collection2">The second collection.</param>
-        /// <param name="equalityComparer">The IEqualityComparerComparer&lt;T&gt; used to compare items for equality. 
-        /// Only the Equals and GetHashCode member functions of this interface are called.</param>
-        /// <returns>True if <paramref name="collection1"/> are <paramref name="collection2"/> are disjoint, considered as sets.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="collection1"/> or <paramref name="collection2"/> is null.</exception>
-        public static bool DisjointSets<T>(IEnumerable<T> collection1, IEnumerable<T> collection2, IEqualityComparer<T> equalityComparer)
-        {
-            if (collection1 == null)
-                throw new ArgumentNullException("collection1");
-            if (collection2 == null)
-                throw new ArgumentNullException("collection2");
-            if (equalityComparer == null)
-                throw new ArgumentException("equalityComparer");
-
-            Set<T> set1 = new Set<T>(collection1, equalityComparer);
-
-            foreach (T item2 in collection2) {
-                if (set1.Contains(item2))
-                    return false;
-            }
-
-            return true;
-        }
 
         /// <summary>
         /// Determines if two collections are equal, considered as sets. Two sets are equal if they
