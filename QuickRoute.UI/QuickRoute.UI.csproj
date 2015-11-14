@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{953F40A2-9741-4BE8-B42E-59C603700281}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -18,7 +18,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -88,8 +88,8 @@
       <HintPath>..\ExternalReferences\PowerCollections.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
-    <Reference Include="log4net">
-      <HintPath>..\ExternalReferences\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=a5715cc6d5c3540b">
+      <Package>log4net</Package>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -820,8 +820,10 @@
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\QuickRouteServer\</RelPath>
       <UpdateFromURL>http://www.matstroeng.se/quickroute/server/index.php%3fwsdl</UpdateFromURL>
-      <ServiceLocationURL />
-      <CachedDynamicPropName />
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>QuickRoute_QuickRouteServer_QuickRouteServer</CachedSettingsPropName>
     </WebReferenceUrl>

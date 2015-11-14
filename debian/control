@@ -3,7 +3,7 @@ Maintainer: Kristof Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.2
-Build-Depends: debhelper (>= 8), mono-xbuild (>= 2.6.7), devscripts (>= 2.11), cli-common-dev (>= 0.8), mono-gmcs (>= 2.8)
+Build-Depends: debhelper (>= 8), mono-xbuild (>= 2.6.7), devscripts (>= 2.11), cli-common-dev (>= 0.8), mono-gmcs (>= 2.8), liblog4net1.2-cil (>= 1.2.10)
 Homepage: https://gitorious.org/quickroute-git
 Vcs-Git: git://gitorious.org/quickroute-git/quickroute-git.git
 Vcs-Browser: https://gitorious.org/quickroute-git
