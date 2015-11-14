@@ -1,12 +1,25 @@
-quickroute-gps (2.4-8) experimental; urgency=low
+quickroute-gps (2.4-9) unstable; urgency=medium
 
+  * Team upload.
+
+  [ RALOVICH, Kristóf ]
+  * Replace binary ExifWorks with parts of ExifLibrary.
+  * Replace binary Ionic.Zip with parts of SharpZipLib.
+  * Replace binary Powercollections with used sources.
+
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Sat, 14 Nov 2015 21:18:01 +0100
+
+quickroute-gps (2.4-8) UNRELEASED; urgency=low
+
+  [ RALOVICH, Kristóf ]
   * Saving EXIF info works for jpg. This allows the exported images
-	to show up in the overview map of DOMA.
+    to show up in the overview map of DOMA.
 
- -- RALOVICH, Kristof <tade60@freemail.hu>  Tue, 26 Aug 2014 00:17:35 +0200
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 26 Aug 2014 00:17:35 +0200
 
-quickroute-gps (2.4-7) experimental; urgency=low
+quickroute-gps (2.4-7) UNRELEASED; urgency=low
 
+  [ RALOVICH, Kristóf ]
   * allow opening a route and map in Google Earth
   * previous releases did happen
   * rewrite version numbers in changelog
@@ -14,31 +27,32 @@ quickroute-gps (2.4-7) experimental; urgency=low
   * version 2.4-7
   * scripts: get version info from AssemblyInfo.cs
 
- -- RALOVICH, Kristof <tade60@freemail.hu>  Tue, 07 Jan 2014 12:04:47 +0100
+ -- RALOVICH, Kristof <ralovich@in.tum.de>  Tue, 07 Jan 2014 12:04:47 +0100
 
-quickroute-gps (2.4-6) experimental; urgency=low
+quickroute-gps (2.4-6) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
   * debian/changelog: update for new version
   * docs: add to known crashes
   * QuickRoute.Common/LogUtil: add a callback for mono problems
   * QuickRoute.BusinessEntities/Map: bugfix: allow deserserialization of .qrt
-  * bugfix: allow exporting/importing .jpeg encoded routes (cherry picked from commit 3f742dd3db39c09f8258ff99f1022dd3fe240639)
+  * bugfix: allow exporting/importing .jpeg encoded routes (cherry picked from
+    commit 3f742dd3db39c09f8258ff99f1022dd3fe240639)
   * docs: bring it up to date from mono2
   * docs: more versioning info
 
- -- RALOVICH, Kristóf <tade60@freemail.hu>  Wed, 10 Jul 2013 21:42:01 +0200
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Wed, 10 Jul 2013 21:42:01 +0200
 
-quickroute-gps (2.4-5) experimental; urgency=low
+quickroute-gps (2.4-5) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
   * debian: install desktop entry too
   * QuickRoute.UI/Properties/AssemblyInfo.cs: set AssemblyInformationalVersion too
   * new version
 
- -- RALOVICH, Kristóf <tade60@freemail.hu>  Tue, 09 Jul 2013 23:17:34 +0200
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 09 Jul 2013 23:17:34 +0200
 
-quickroute-gps (2.4-4) experimental; urgency=low
+quickroute-gps (2.4-4) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
   * deb: packaging howto
@@ -68,9 +82,9 @@ quickroute-gps (2.4-4) experimental; urgency=low
   * QuickRoute.UI/app.config: indent xml, no functional changes
   * debian: more work on menu entry
 
- -- RALOVICH, Kristóf <tade60@freemail.hu>  Tue, 09 Jul 2013 22:07:51 +0200
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 09 Jul 2013 22:07:51 +0200
 
-quickroute-gps (2.4-3) experimental; urgency=low
+quickroute-gps (2.4-3) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
   * silence a build warning
@@ -78,25 +92,25 @@ quickroute-gps (2.4-3) experimental; urgency=low
   * silence run-time message
   * list .FIT files downloaded by ANT+minus
 
- -- RALOVICH, Kristóf <tade60@freemail.hu>  Mon, 25 Mar 2013 18:30:00 +0100
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Mon, 25 Mar 2013 18:30:00 +0100
 
-quickroute-gps (2.4-2) experimental; urgency=low
+quickroute-gps (2.4-2) UNRELEASED; urgency=low
 
   * proper dependencies
 
- -- Kristof Ralovich <tade60@freemail.hu>  Tue, 25 Mar 2013 22:35:25 +0100
+ -- Kristóf Ralovich <ralovich@in.tum.de>  Tue, 25 Mar 2013 22:35:25 +0100
 
-quickroute-gps (2.4-1) experimental; urgency=low
+quickroute-gps (2.4-1) UNRELEASED; urgency=low
 
   * trying xbuild as mdtool failed...
 
- -- Kristof Ralovich <tade60@freemail.hu>  Tue, 19 Mar 2013 22:35:25 +0100
+ -- Kristóf Ralovich <ralovich@in.tum.de>  Tue, 19 Mar 2013 22:35:25 +0100
 
-quickroute-gps (2.4-0) experimental; urgency=low
+quickroute-gps (2.4-0) UNRELEASED; urgency=low
 
   * Initial release.
 
- -- Kristof Ralovich <tade60@freemail.hu>  Tue, 19 Mar 2013 21:59:25 +0100
+ -- Kristóf Ralovich <ralovich@in.tum.de>  Tue, 19 Mar 2013 21:59:25 +0100
 
 
 # Local Variables:

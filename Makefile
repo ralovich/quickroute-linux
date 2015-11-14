@@ -27,10 +27,8 @@ install:
 	cp scripts/quickroute-gps ${DESTDIR}/usr/bin
 	cp QuickRoute.UI/bin/Release/QuickRoute.exe ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.exe.config ${DESTDIR}/usr/lib/quickroute-gps
-	cp QuickRoute.UI/bin/Release/ExifWorks.dll ${DESTDIR}/usr/lib/quickroute-gps
-	cp QuickRoute.UI/bin/Release/Interop.EARTHLib.dll ${DESTDIR}/usr/lib/quickroute-gps
-	cp QuickRoute.UI/bin/Release/Ionic.Zip.dll ${DESTDIR}/usr/lib/quickroute-gps
-	cp QuickRoute.UI/bin/Release/log4net.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/ExifLibrary.dll ${DESTDIR}/usr/lib/quickroute-gps
+	cp QuickRoute.UI/bin/Release/ICSharpCode.SharpZipLib.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/PowerCollections.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.BusinessEntities.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Common.dll ${DESTDIR}/usr/lib/quickroute-gps
