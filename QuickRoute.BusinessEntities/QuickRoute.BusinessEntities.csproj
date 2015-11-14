@@ -67,9 +67,6 @@
     <Reference Include="Ionic.Zip">
       <HintPath>..\ExternalReferences\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="PowerCollections">
-      <HintPath>..\ExternalReferences\PowerCollections.dll</HintPath>
-    </Reference>
     <Reference Include="ExifLibrary">
       <HintPath>..\ExternalReferences\ExifLibrary.dll</HintPath>
     </Reference>
@@ -435,6 +432,10 @@
     <ProjectReference Include="..\QuickRoute.Resources\QuickRoute.Resources.csproj">
       <Project>{2854A1FB-52F7-4197-A24E-E9977FD21563}</Project>
       <Name>QuickRoute.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3rdparty\PowerCollections\Wintellect.PowerCollections.csproj">
+      <Project>{5821977D-AC2C-4912-BCD0-6E6B1A756167}</Project>
+      <Name>Wintellect.PowerCollections</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
