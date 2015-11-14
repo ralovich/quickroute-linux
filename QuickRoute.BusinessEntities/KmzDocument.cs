@@ -6,6 +6,11 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using QuickRoute.Common;
+#if !__MonoCS__
+using Ionic.Zip;
+#else
+using ICSharpCode.SharpZipLib.Zip;
+#endif
 
 namespace QuickRoute.BusinessEntities
 {
@@ -33,19 +38,27 @@ namespace QuickRoute.BusinessEntities
 
     private void CalculateImageAndTransformationMatrix(string fileName)
     {
-      var zipFile = new Ionic.Zip.ZipFile(fileName);
+      var zipFile = new ZipFile(fileName);
       var mapSize = new Size();
       Transformation = new Transformation();
 
       // get entry for kml file and image file
       KmlDocument kmlDocument = null;
-      foreach (var entry in zipFile)
+      foreach (ZipEntry entry in zipFile)
       {
+#if !__MonoCS__
         if (entry.FileName == entry.LocalFileName && Path.GetExtension(entry.FileName) == ".kml")
+#else
+        if (Path.GetDirectoryName(entry.Name) == "" && Path.GetExtension(entry.Name) == ".kml")
+#endif
         {
           using (var kmlStream = new MemoryStream())
           {
+#if !__MonoCS__
             entry.Extract(kmlStream);
+#else
+            zipFile.GetInputStream (entry).CopyTo (kmlStream);
+#endif
             kmlStream.Position = 0;
             kmlDocument = new KmlDocument(kmlStream);
           }
@@ -56,12 +69,20 @@ namespace QuickRoute.BusinessEntities
       if (kmlDocument != null)
       {
         // we have got a kml document, get map image file stream from it
-        foreach (var entry in zipFile)
+        foreach (ZipEntry entry in zipFile)
         {
+#if !__MonoCS__
           if (entry.FileName == kmlDocument.ImageFileName)
+#else
+          if (entry.Name == kmlDocument.ImageFileName)
+#endif
           {
             ImageStream = new MemoryStream();
+#if !__MonoCS__
             entry.Extract(ImageStream);
+#else
+            zipFile.GetInputStream (entry).CopyTo (ImageStream);
+#endif
             ImageStream.Position = 0;
             // check if image is QR jpeg
             var ed = QuickRouteJpegExtensionData.FromStream(ImageStream);

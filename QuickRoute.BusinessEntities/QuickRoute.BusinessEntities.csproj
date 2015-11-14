@@ -61,9 +61,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Ionic.Zip">
-      <HintPath>..\ExternalReferences\Ionic.Zip.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=a5715cc6d5c3540b">
       <Package>log4net</Package>
     </Reference>
@@ -434,6 +431,10 @@
     <ProjectReference Include="..\3rdparty\ExifLibrary\ExifLibrary.csproj">
       <Project>{C29BA585-E27B-4AD0-9AD1-490B5E0E2A5E}</Project>
       <Name>ExifLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\3rdparty\SharpZipLib\ICSharpCode.SharpZLib.csproj">
+      <Project>{0E7413FF-EB9E-4714-ACF2-BE3A6A7B2FFD}</Project>
+      <Name>ICSharpCode.SharpZLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

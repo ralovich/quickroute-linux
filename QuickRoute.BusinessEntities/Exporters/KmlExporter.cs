@@ -8,7 +8,11 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+#if !__MonoCS__
 using Ionic.Zip;
+#else
+using ICSharpCode.SharpZipLib.Zip;
+#endif
 using QuickRoute.BusinessEntities;
 using QuickRoute.Common;
 using QuickRoute.Resources;
@@ -124,8 +128,14 @@ namespace QuickRoute.BusinessEntities.Exporters
       Directory.CreateDirectory(temporaryBasePath);
       Directory.CreateDirectory(Path.Combine(temporaryBasePath, @"files"));
       Directory.CreateDirectory(Path.Combine(temporaryBasePath, @"fileso"));
+#if !__MonoCS__
       kmzFile = new ZipFile();
       kmzFile.AddDirectoryByName("files");
+#else
+      kmzFile = new ZipFile(OutputStream);
+      kmzFile.BeginUpdate();
+      kmzFile.AddDirectory("files");
+#endif
 
       // 2. create ground overlay image streams for each document
       LogUtil.LogDebug("Creating overlays");
@@ -169,12 +179,20 @@ namespace QuickRoute.BusinessEntities.Exporters
           {
             CreateKml(writer);
             writer.Close();
+#if !__MonoCS__
             kmzFile.AddFile(tempKmlFileName, "");
+#else
+            kmzFile.Add (tempKmlFileName, "doc.kml");
+#endif
           }
         }
       }
+#if !__MonoCS__
       kmzFile.Save(OutputStream);
       kmzFile.Dispose();
+#else
+      kmzFile.CommitUpdate();
+#endif
 
       // 4. delete temp directory and its content
       LogUtil.LogDebug("Deleting temp dir");
@@ -465,7 +483,11 @@ namespace QuickRoute.BusinessEntities.Exporters
         }
 
         bitmap.Save(fileName, ImageFormat.Png);
+#if !__MonoCS__
         kmzFile.AddFile(fileName, "files");
+#else
+        kmzFile.Add(fileName, "files/"+href);
+#endif
         writer.WriteElementString("href", href);
         writer.WriteEndElement();  // Icon
         writer.WriteElementString("scale", "0.3");
@@ -609,7 +631,11 @@ namespace QuickRoute.BusinessEntities.Exporters
             return go.Href;
           case KmlGroundOverlay.GroundOverlayType.File:
             var href = Path.GetFileName(go.Href);
+#if !__MonoCS__
             kmzFile.AddFile(go.Href, "");
+#else
+            kmzFile.Add(go.Href, href);
+#endif
             return href;
         }
       }
@@ -882,7 +908,11 @@ namespace QuickRoute.BusinessEntities.Exporters
     {
       var fileNameOnDisk = temporaryBasePath + path + @"\" + fileName;
       bitmap.Save(fileNameOnDisk, imageFormat);
+#if !__MonoCS__
       kmzFile.AddFile(fileNameOnDisk, path);
+#else
+      kmzFile.Add(fileNameOnDisk, path + @"\" + fileName);
+#endif
     }
 
     private static Bitmap CreateMapThumbnail(Bitmap original, Size thumbnailSize)
