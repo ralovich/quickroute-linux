@@ -1,0 +1,7 @@
+?package(quickroute-gps): \
+         needs="X11" \
+         section="Applications/Science/Geoscience" \
+         title="QuickRoute" \
+         command="/usr/bin/quickroute-gps" \
+         icon="/usr/share/pixmaps/QuickRoute_32x32.xpm"
+

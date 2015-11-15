@@ -671,6 +671,17 @@
 ./scripts/quickroute-gps
 ./scripts/make-tarball
 ./scripts/README
+./debian/compat
+./debian/source/format
+./debian/rules
+./debian/changelog
+./debian/copyright
+./debian/control
+./debian/gbp.conf
+./debian/menu
+./debian/quickroute-gps.desktop
+./debian/quickroute-gps.1
+./debian/quickroute-gps.manpages
 ./QuickRoute.Common/QuickRoute.Common.csproj
 ./QuickRoute.Common/CommonUtil.cs
 ./QuickRoute.Common/IMapPublisher.cs
