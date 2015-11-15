@@ -3,11 +3,11 @@
 
 all:
 #	mdtool build -c:Release --buildfile: QuickRoute.sln
-	xbuild /p:Configuration=Release QuickRoute.sln
+	xvfb-run xbuild /p:Configuration=Release QuickRoute.sln
 
 all_debug:
 #	mdtool build -c:Debug --buildfile: QuickRoute.sln
-	xbuild /p:Configuration=Debug QuickRoute.sln
+	xvfb-run xbuild /p:Configuration=Debug QuickRoute.sln
 
 clean:
 #	mdtool build -t:Clean
