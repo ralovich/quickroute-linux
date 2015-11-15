@@ -677,6 +677,7 @@
 ./debian/changelog
 ./debian/copyright
 ./debian/control
+./debian/gbp.conf
 ./debian/menu
 ./debian/quickroute-gps.desktop
 ./debian/quickroute-gps.1
