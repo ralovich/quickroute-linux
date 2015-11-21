@@ -35,7 +35,8 @@ clean:
 	find . -name "*.resources" -delete
 	rm -f QuickRoute.userprefs
 	$(MAKE) clean || true
-	dh clean || true
+	dh clean
+	dh clean --with=cli || true
 
 %:
 	dh $@ --with=cli
