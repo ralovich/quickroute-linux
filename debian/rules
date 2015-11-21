@@ -1,15 +1,41 @@
 #!/usr/bin/make -f
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
 
-#include /usr/share/cli-common/cli.make
-
-# ifeq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-#   CFLAGS += -O2
-# endif
-
-export DH_VERBOSE=1
+clean:
+	rm -rf 3rdparty/ExifLibrary/bin
+	rm -rf 3rdparty/ExifLibrary/obj
+	rm -rf 3rdparty/PowerCollections/bin
+	rm -rf 3rdparty/PowerCollections/obj
+	rm -rf 3rdparty/bin
+	rm -rf 3rdparty/SharpZipLib/obj
+	rm -rf GPSDeviceReaders/GarminUSBReader/bin
+	rm -rf GPSDeviceReaders/GarminUSBReader/obj
+	rm -rf GPSDeviceReaders/GarminUSBReader/*.resources
+	rm -rf GPSDeviceReaders/GlobalSatGH615MReader/bin
+	rm -rf GPSDeviceReaders/GlobalSatGH615MReader/obj
+	rm -rf GPSDeviceReaders/JJConnectRegistratorSEReader/bin
+	rm -rf GPSDeviceReaders/JJConnectRegistratorSEReader/obj
+	rm -rf GPSDeviceReaders/SerialPortDeviceReader/bin
+	rm -rf GPSDeviceReaders/SerialPortDeviceReader/obj
+	rm -rf Publishers/DOMAPublisher/bin
+	rm -rf Publishers/DOMAPublisher/obj
+	rm -rf QuickRoute.BusinessEntities/bin
+	rm -rf QuickRoute.BusinessEntities/obj
+	rm -rf QuickRoute.Common/bin
+	rm -rf QuickRoute.Common/obj
+	rm -rf QuickRoute.Controls/bin
+	rm -rf QuickRoute.Controls/obj
+	rm -rf QuickRoute.PropertyControls/bin
+	rm -rf QuickRoute.PropertyControls/obj
+	rm -rf QuickRoute.Resources/bin
+	rm -rf QuickRoute.Resources/obj
+	rm -rf QuickRoute.UI/bin
+	rm -rf QuickRoute.UI/obj
+	find . -name "*.resources" -delete
+	rm -f QuickRoute.userprefs
+	$(MAKE) clean || true
+	dh clean || true
 
 %:
 	dh $@ --with=cli
-
-#build:
-#	mdtool build --buildfile: QuickRoute.sln
