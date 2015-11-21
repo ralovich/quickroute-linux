@@ -1,4 +1,13 @@
-quickroute-gps (2.4-9) unstable; urgency=medium
+quickroute-gps (2.4-10) unstable; urgency=low
+
+  * Team upload.
+
+  [ RALOVICH, Kristóf ]
+  * Tune debian/rules clean to only require build deps within chroot.
+
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Sat, 21 Nov 2015 10:21:28 +0100
+
+quickroute-gps (2.4-9) unstable; urgency=low
 
   * Team upload.
 
