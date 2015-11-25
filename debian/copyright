@@ -3,11 +3,72 @@ Upstream-Name: quickroute-linux
 Upstream-Contact: Kristóf Ralovich <tade60@freemail.hu>
 Source: https://github.com/ralovich/quickroute-linux
 
-
 Files: *
 Copyright: 2008- Mats Troeng and Jörgen Ohlin
            2010 Mikhail Senin, Yandex
            2011- Kristóf Ralovich
+License: GPL-3.0+
+
+Files: 3rdparty/ExifLibrary/*
+Source: https://code.google.com/p/exiflibrary/
+Copyright: 2009, 2013 Ozgur Ozcitak
+License: MIT
+
+Files: 3rdparty/PowerCollections/*
+Copyright: 2007- Roger Dahlman, Keith J Rome, Jeff Richter
+           2004-2007, Peter Golde, Wintellect
+License: EPL-1.0
+
+Files: debian/*
+Copyright: 2011-2015 Kristóf Ralovich
+License: GPL-3.0+
+
+Files: QuickRoute.BusinessEntities/Importers/GPX/GPX1*/gpx1.*.xsd
+Copyright: GPX is an open standard, maintained by Dan Foster, TopoGrafix, TopoSoft, Inc.
+License: Public-domain
+
+Files: 3rdparty/SharpZipLib/*
+Source: https://github.com/icsharpcode/SharpZipLib
+Copyright: 2001-2010 Mike Krueger, John Reilly
+           2009 David Pierson
+           2009 Gabriel Burca
+License: GPL-2.0+-+classpath-exception
+
+License: GPL-2.0+-+classpath-exception
+ This file was translated from java, it was part of the GNU Classpath
+ Copyright (C) 2001 Free Software Foundation, Inc.
+ .
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+ .  
+ Linking this library statically or dynamically with other modules is
+ making a combined work based on this library.  Thus, the terms and
+ conditions of the GNU General Public License cover the whole
+ combination.
+ .
+ As a special exception, the copyright holders of this library give you
+ permission to link this library with independent modules to produce an
+ executable, regardless of the license terms of these independent
+ modules, and to copy and distribute the resulting executable under
+ terms of your choice, provided that you also meet, for each linked
+ independent module, the terms and conditions of the license of that
+ module.  An independent module is a module which is not derived from
+ or based on this library.  If you modify this library, you may extend
+ this exception to your version of the library, but you are not
+ obligated to do so.  If you do not wish to do so, delete this
+ exception statement from your version.
+
 License: GPL-3.0+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -25,13 +86,7 @@ License: GPL-3.0+
  On Debian systems, the complete text of the GNU General
  Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
 
-
-Files: 3rdparty/ExifLibrary/*
-Source: https://code.google.com/p/exiflibrary/
-Copyright: 2009, 2013 Ozgur Ozcitak
 License: MIT
- Copyright (c) 2009, 2013 Ozgur Ozcitak
- .
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation files
  (the "Software"), to deal in the Software without restriction,
@@ -52,13 +107,10 @@ License: MIT
  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  SOFTWARE.
 
+License: Public-domain
+ Public domain
 
-Files: 3rdparty/PowerCollections/*
-Copyright: 2007- Roger Dahlman, Keith J Rome, Jeff Richter
-           2004-2007, Peter Golde, Wintellect
 License: EPL-1.0
- Shared Source License for Wintellect Power Collections
- .
  THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.
  .
  1. DEFINITIONS
@@ -146,68 +198,3 @@ License: EPL-1.0
  This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation. 
  .
  The license is also available in 3rdparty/PowerCollections/License.txt.
-
-Files: debian/*
-Copyright: 2011-2015 Kristóf Ralovich
-License: GPL-3.0+
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- .
- This package is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- .
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <http://www.gnu.org/licenses/>.
- .
- On Debian systems, the complete text of the GNU General
- Public License version 3 can be found in "/usr/share/common-licenses/GPL-3".
-
-
-Files: QuickRoute.BusinessEntities/Importers/GPX/GPX1*/gpx1.*.xsd
-Copyright: GPX is an open standard, maintained by Dan Foster, TopoGrafix, TopoSoft, Inc.
-License: Public-domain
- Public domain
-
-Files: 3rdparty/SharpZipLib/*
-Source: https://github.com/icsharpcode/SharpZipLib
-Copyright: 2001-2010 Mike Krueger, John Reilly
-           2009 David Pierson
-           2009 Gabriel Burca
-License: GPL-2.0+-+classpath-exception
- This file was translated from java, it was part of the GNU Classpath
- Copyright (C) 2001 Free Software Foundation, Inc.
- .
- This program is free software; you can redistribute it and/or
- modify it under the terms of the GNU General Public License
- as published by the Free Software Foundation; either version 2
- of the License, or (at your option) any later version.
- .
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- .
- You should have received a copy of the GNU General Public License
- along with this program; if not, write to the Free Software Foundation,
- Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
- .  
- Linking this library statically or dynamically with other modules is
- making a combined work based on this library.  Thus, the terms and
- conditions of the GNU General Public License cover the whole
- combination.
- .
- As a special exception, the copyright holders of this library give you
- permission to link this library with independent modules to produce an
- executable, regardless of the license terms of these independent
- modules, and to copy and distribute the resulting executable under
- terms of your choice, provided that you also meet, for each linked
- independent module, the terms and conditions of the license of that
- module.  An independent module is a module which is not derived from
- or based on this library.  If you modify this library, you may extend
- this exception to your version of the library, but you are not
- obligated to do so.  If you do not wish to do so, delete this
- exception statement from your version.
