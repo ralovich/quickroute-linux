@@ -1,3 +1,13 @@
+quickroute-gps (2.4-11) unstable; urgency=low
+
+  * Team upload.
+
+  [ RALOVICH, Kristóf ]
+  * Require debhelper >= 9.
+  * Address misc lintian issues.
+
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Wed, 25 Nov 2015 21:15:30 +0100
+
 quickroute-gps (2.4-10) unstable; urgency=low
 
   * Team upload.
