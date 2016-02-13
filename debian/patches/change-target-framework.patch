@@ -1,0 +1,16 @@
+--- a/Makefile
++++ b/Makefile
+@@ -3,11 +3,11 @@
+ 
+ all:
+ #	mdtool build -c:Release --buildfile: QuickRoute.sln
+-	xvfb-run xbuild /p:Configuration=Release QuickRoute.sln
++	xvfb-run xbuild /p:Configuration=Release QuickRoute.sln /p:TargetFrameworkVersion="v4.5"
+ 
+ all_debug:
+ #	mdtool build -c:Debug --buildfile: QuickRoute.sln
+-	xvfb-run xbuild /p:Configuration=Debug QuickRoute.sln
++	xvfb-run xbuild /p:Configuration=Debug QuickRoute.sln /p:TargetFrameworkVersion="v4.5"
+ 
+ clean:
+ #	mdtool build -t:Clean
