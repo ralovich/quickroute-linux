@@ -1,3 +1,13 @@
+quickroute-gps (2.4-13) unstable; urgency=low
+
+  * Team upload.
+
+  [ RALOVICH, Kristóf ]
+  * Previous package version 2.4-12 already switched to mono-mcs.
+    Closes: #814642
+
+ -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 8 Mar 2016 19:22:14 +0100
+
 quickroute-gps (2.4-12) unstable; urgency=low
 
   * Team upload.
