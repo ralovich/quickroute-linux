@@ -1,3 +1,13 @@
+quickroute-gps (2.4-14) unstable; urgency=low
+
+  * Team upload.
+
+  [ RALOVICH, Kristof ]
+  * debian: update dependencies
+    Closes: #839512
+
+ -- RALOVICH, Kristof <ralovich@in.tum.de>  Thu, 06 Oct 2016 19:34:52 +0200
+
 quickroute-gps (2.4-13) unstable; urgency=low
 
   * Team upload.
