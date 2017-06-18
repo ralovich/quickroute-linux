@@ -1,3 +1,12 @@
+quickroute-gps (2.4-15) unstable; urgency=medium
+
+  * Team upload.
+
+  [ RALOVICH, Kristof ]
+  * debian: update to Standards-Version: 3.9.8
+
+ -- RALOVICH, Kristof <ralovich@in.tum.de>  Sun, 18 Jun 2017 14:17:27 +0200
+
 quickroute-gps (2.4-14) unstable; urgency=low
 
   * Team upload.
