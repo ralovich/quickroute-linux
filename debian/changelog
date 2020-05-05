@@ -3,6 +3,7 @@ quickroute-gps (2.4-16) UNRELEASED; urgency=medium
   * Use secure copyright file specification URI.
   * Wrap long lines in changelog entries: 2.4-5, 2.4-4.
   * Bump debhelper from deprecated 9 to 12.
+  * Set debhelper-compat version in Build-Depends.
 
  -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 05:52:02 +0000
 
