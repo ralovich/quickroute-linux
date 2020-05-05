@@ -1,3 +1,9 @@
+quickroute-gps (2.4-16) UNRELEASED; urgency=medium
+
+  * Use secure copyright file specification URI.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 05:52:02 +0000
+
 quickroute-gps (2.4-15) unstable; urgency=medium
 
   * Team upload.
