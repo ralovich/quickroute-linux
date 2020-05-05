@@ -3,7 +3,7 @@ Maintainer: Kristof Ralovich <ralovich@in.tum.de>
 Section: misc
 Priority: optional
 Standards-Version: 3.9.8
-Build-Depends: debhelper (>= 9), mono-xbuild (>= 2.6.7), devscripts (>= 2.11), cli-common-dev (>= 0.8), mono-mcs (>= 2.8), liblog4net1.2-cil (>= 1.2.10), xvfb (>= 1.12.4), xauth (>= 1.0.4), tzdata (>= 2016f)
+Build-Depends: debhelper-compat (= 12), mono-xbuild (>= 2.6.7), devscripts (>= 2.11), cli-common-dev (>= 0.8), mono-mcs (>= 2.8), liblog4net1.2-cil (>= 1.2.10), xvfb (>= 1.12.4), xauth (>= 1.0.4), tzdata (>= 2016f)
 Homepage: https://github.com/ralovich/quickroute-linux
 Vcs-Git: https://github.com/ralovich/quickroute-linux.git
 Vcs-Browser: https://github.com/ralovich/quickroute-linux.git
