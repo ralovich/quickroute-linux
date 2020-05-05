@@ -5,6 +5,7 @@ quickroute-gps (2.4-16) UNRELEASED; urgency=medium
   * Bump debhelper from deprecated 9 to 12.
   * Set debhelper-compat version in Build-Depends.
   * Set upstream metadata fields: Bug-Database, Bug-Submit.
+  * Fix day-of-week for changelog entry 2.4-2.
 
  -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 05:52:02 +0000
 
@@ -169,7 +170,7 @@ quickroute-gps (2.4-2) UNRELEASED; urgency=low
 
   * proper dependencies
 
- -- Kristóf Ralovich <ralovich@in.tum.de>  Tue, 25 Mar 2013 22:35:25 +0100
+ -- Kristóf Ralovich <ralovich@in.tum.de>  Mon, 25 Mar 2013 22:35:25 +0100
 
 quickroute-gps (2.4-1) UNRELEASED; urgency=low
 
