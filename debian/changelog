@@ -1,6 +1,7 @@
 quickroute-gps (2.4-16) UNRELEASED; urgency=medium
 
   * Use secure copyright file specification URI.
+  * Wrap long lines in changelog entries: 2.4-5, 2.4-4.
 
  -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 05:52:02 +0000
 
@@ -110,7 +111,8 @@ quickroute-gps (2.4-5) UNRELEASED; urgency=low
 
   [ RALOVICH, Kristóf ]
   * debian: install desktop entry too
-  * QuickRoute.UI/Properties/AssemblyInfo.cs: set AssemblyInformationalVersion too
+  * QuickRoute.UI/Properties/AssemblyInfo.cs: set AssemblyInformationalVersion
+    too
   * new version
 
  -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 09 Jul 2013 23:17:34 +0200
@@ -130,13 +132,16 @@ quickroute-gps (2.4-4) UNRELEASED; urgency=low
   * add comment
   * QuickRoute.UI/Main: remove indirection
   * docs: notes on packaging
-  * QuickRoute.UI/Forms/CreateNewForm: remove duplicate traversal of available importers
+  * QuickRoute.UI/Forms/CreateNewForm: remove duplicate traversal of available
+    importers
   * QuickRoute.Common/LogUtil: add LogTrace()
   * QuickRoute.BusinessEntities/Importers/FIT/FITImporter: store FIT timestamp
   * disable debug out
-  * QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/AntpmImporter: many changes
+  * QuickRoute.BusinessEntities/Importers/Garmin/ANTAgent/AntpmImporter: many
+    changes
   * FITImporter: calculate more timestamps, read waypoints
-  * AntpmImporter: improve sorting and display of available FIT files during import
+  * AntpmImporter: improve sorting and display of available FIT files during
+    import
   * docs: add a list of know bugs
   * add correct coding
   * debian: write a copyright file
