@@ -18,8 +18,8 @@ namespace QuickRoute.Common
     private static bool configured;
     private static decimal lastTime = -1;
 #if __MonoCS__
-	  private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
-	  private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimerNix();
+    private static readonly Dictionary<object, HighPerformanceTimerNix> timers = new Dictionary<object, HighPerformanceTimerNix>();
+    private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimerNix();
 #else
     private static readonly Dictionary<object, HighPerformanceTimer> timers = new Dictionary<object, HighPerformanceTimer>();
     private static readonly HighPerformanceTimerBase standardTimer = new HighPerformanceTimer();
@@ -35,7 +35,7 @@ namespace QuickRoute.Common
       LogDebug("MONO FIXME\n" + message==null?"":message);
     }
 
-	  public static bool IsRunningOnMono ()
+    public static bool IsRunningOnMono ()
     {
       return Type.GetType ("Mono.Runtime") != null;
     }
@@ -289,28 +289,28 @@ namespace QuickRoute.Common
     private decimal duration;
     
 
-		public HighPerformanceTimerNix()
-			: this(false)
-		{
-		}
+    public HighPerformanceTimerNix()
+      : this(false)
+    {
+    }
 
-		public HighPerformanceTimerNix(bool startImmediately)
-		{
-			if(startImmediately)
-				Start();
-		}
+    public HighPerformanceTimerNix(bool startImmediately)
+    {
+      if(startImmediately)
+        Start();
+    }
 
-		public override decimal Start()
-		{
-			Thread.Sleep(0);
-			timeval t;
+    public override decimal Start()
+    {
+      Thread.Sleep(0);
+      timeval t;
       IntPtr unused = IntPtr.Zero;
-			gettimeofday(out t, unused);
-			startTime = (double)t.seconds + ((double)t.useconds)/1000000.0;
-			System.Console.WriteLine("startTime={0}\n", startTime);
-			isStarted = true;
-			return duration;
-		}
+      gettimeofday(out t, unused);
+      startTime = (double)t.seconds + ((double)t.useconds)/1000000.0;
+      System.Console.WriteLine("startTime={0}\n", startTime);
+      isStarted = true;
+      return duration;
+    }
 
     public override decimal Stop()
     {
