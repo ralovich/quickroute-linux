@@ -1,5 +1,6 @@
-quickroute-gps (2.4-16) UNRELEASED; urgency=medium
+quickroute-gps (2.5-1) unstable; urgency=low
 
+  [ Debian Janitor ]
   * Use secure copyright file specification URI.
   * Wrap long lines in changelog entries: 2.4-5, 2.4-4.
   * Bump debhelper from deprecated 9 to 12.
@@ -13,7 +14,12 @@ quickroute-gps (2.4-16) UNRELEASED; urgency=medium
       liblog4net1.2-cil, mono-mcs, mono-xbuild and xvfb.
     + quickroute-gps: Drop versioned constraint on mono-mcs in Depends.
 
- -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 05:52:02 +0000
+  [ Kristof Ralovich ]
+  * debian: update standards version
+  * debian: help rebuilds after a prior build failure
+  * new upstream release 2.5
+
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 01 Aug 2023 18:06:57 +0200
 
 quickroute-gps (2.4-15) unstable; urgency=medium
 
