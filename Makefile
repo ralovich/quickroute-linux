@@ -16,9 +16,6 @@ clean:
 	rm -rf QuickRoute.UI/bin
 	rm -rf QuickRoute.UI/obj
 
-#  dh_auto_install
-#    make -j1 install DESTDIR=/home/tade/dev/clean/2.7/1/debian/quickroute-gps
-
 install:
 	@echo "install being called"
 	@echo $:
@@ -39,10 +36,8 @@ install:
 	cp QuickRoute.UI/bin/Release/QuickRoute.GPSDeviceReaders.SerialPortDeviceReader.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Publishers.DOMAPublisher.dll ${DESTDIR}/usr/lib/quickroute-gps
 	cp QuickRoute.UI/bin/Release/QuickRoute.Resources.dll ${DESTDIR}/usr/lib/quickroute-gps
-	mkdir --parents ${DESTDIR}/usr/share/doc/quickroute-gps
-	cp debian/copyright ${DESTDIR}/usr/share/doc/quickroute-gps
 	mkdir --parents ${DESTDIR}/usr/share/pixmaps
-	cp Graphics/QuickRoute_32x32.xpm ${DESTDIR}/usr/share/pixmaps
-	ln -s -r ${DESTDIR}/usr/share/pixmaps/QuickRoute_32x32.xpm ${DESTDIR}/usr/share/pixmaps/quickroute-gps.xpm
+	cp Graphics/QuickRoute_64x64.xpm ${DESTDIR}/usr/share/pixmaps
+	ln -s -r ${DESTDIR}/usr/share/pixmaps/QuickRoute_64x64.xpm ${DESTDIR}/usr/share/pixmaps/quickroute-gps.xpm
 	mkdir --parents ${DESTDIR}/usr/share/applications
-	cp debian/quickroute-gps.desktop ${DESTDIR}/usr/share/applications
+	cp scripts/quickroute-gps.desktop ${DESTDIR}/usr/share/applications
