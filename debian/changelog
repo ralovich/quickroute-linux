@@ -18,6 +18,7 @@ quickroute-gps (2.5-1) unstable; urgency=low
   * debian: update standards version
   * debian: help rebuilds after a prior build failure
   * new upstream release 2.5
+  * debian: update upstream metadata
 
  -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 01 Aug 2023 18:06:57 +0200
 
