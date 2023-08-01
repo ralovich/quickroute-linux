@@ -1,9 +1,9 @@
 Source: quickroute-gps
-Maintainer: Kristof Ralovich <ralovich@in.tum.de>
+Maintainer: Kristof Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
-Standards-Version: 3.9.8
-Build-Depends: debhelper-compat (= 12), mono-xbuild, devscripts, cli-common-dev, mono-mcs, liblog4net1.2-cil, xvfb, xauth, tzdata
+Standards-Version: 4.6.2
+Build-Depends: debhelper-compat (= 13), mono-xbuild, devscripts, cli-common-dev, mono-mcs, liblog4net1.2-cil, xvfb, xauth, tzdata
 Homepage: https://github.com/ralovich/quickroute-linux
 Vcs-Git: https://github.com/ralovich/quickroute-linux.git
 Vcs-Browser: https://github.com/ralovich/quickroute-linux.git
