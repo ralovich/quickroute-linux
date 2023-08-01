@@ -34,6 +34,7 @@
 ./Graphics/QuickRoute_16x16.ico
 ./Graphics/QuickRoute_document_16x16.ico
 ./Graphics/QuickRoute_64x64.ico
+./Graphics/QuickRoute_64x64.xpm
 ./Graphics/SecondaryColorCodingAttribute.png
 ./Graphics/Setup banner bitmap.psd
 ./Graphics/AdjustRoute.png
@@ -669,6 +670,7 @@
 ./scripts/origsrc-file-list
 ./scripts/get-from-svn
 ./scripts/quickroute-gps
+./scripts/quickroute-gps.desktop
 ./scripts/make-tarball
 ./scripts/README
 ./QuickRoute.Common/QuickRoute.Common.csproj
