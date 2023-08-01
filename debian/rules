@@ -34,6 +34,7 @@ clean:
 	rm -rf QuickRoute.UI/obj
 	find . -name "*.resources" -delete
 	rm -f QuickRoute.userprefs
+	rm -rf .pc
 	$(MAKE) clean || true
 	dh clean || true
 	dh clean --with=cli || true
