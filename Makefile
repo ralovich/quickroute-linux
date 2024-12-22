@@ -38,6 +38,6 @@ install:
 	cp QuickRoute.UI/bin/Release/QuickRoute.Resources.dll ${DESTDIR}/usr/lib/quickroute-gps
 	mkdir --parents ${DESTDIR}/usr/share/pixmaps
 	cp Graphics/QuickRoute_64x64.xpm ${DESTDIR}/usr/share/pixmaps
-	ln -s -r ${DESTDIR}/usr/share/pixmaps/QuickRoute_64x64.xpm ${DESTDIR}/usr/share/pixmaps/quickroute-gps.xpm
+	cp ${DESTDIR}/usr/share/pixmaps/QuickRoute_64x64.xpm ${DESTDIR}/usr/share/pixmaps/quickroute-gps.xpm
 	mkdir --parents ${DESTDIR}/usr/share/applications
 	cp scripts/quickroute-gps.desktop ${DESTDIR}/usr/share/applications
