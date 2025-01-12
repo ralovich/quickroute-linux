@@ -21,6 +21,7 @@ quickroute-gps (2.5-1) UNRELEASED; urgency=medium
   * debian: update upstream metadata
   * update gbp config style
   * fix spelling
+  * Migrate packaging GIT repository to salsa.debian.org.
 
  -- Kristóf Ralovich <tade60@freemail.hu>  Sun, 22 Dec 2024 21:08:19 +0100
 
