@@ -32,7 +32,7 @@ quickroute-gps (2.4-15) unstable; urgency=medium
   [ RALOVICH, Kristof ]
   * debian: update to Standards-Version: 3.9.8
 
- -- RALOVICH, Kristof <ralovich@in.tum.de>  Sun, 18 Jun 2017 14:17:27 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Sun, 18 Jun 2017 14:17:27 +0200
 
 quickroute-gps (2.4-14) unstable; urgency=low
 
@@ -42,7 +42,7 @@ quickroute-gps (2.4-14) unstable; urgency=low
   * debian: update dependencies
     Closes: #839512
 
- -- RALOVICH, Kristof <ralovich@in.tum.de>  Thu, 06 Oct 2016 19:34:52 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Thu, 06 Oct 2016 19:34:52 +0200
 
 quickroute-gps (2.4-13) unstable; urgency=low
 
@@ -52,7 +52,7 @@ quickroute-gps (2.4-13) unstable; urgency=low
   * Previous package version 2.4-12 already switched to mono-mcs.
     Closes: #814642
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 8 Mar 2016 19:22:14 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 8 Mar 2016 19:22:14 +0100
 
 quickroute-gps (2.4-12) unstable; urgency=low
 
@@ -61,7 +61,7 @@ quickroute-gps (2.4-12) unstable; urgency=low
   [ RALOVICH, Kristóf ]
   * switch to require mono-mcs
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Sat, 13 Feb 2016 10:29:10 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Sat, 13 Feb 2016 10:29:10 +0100
 
 quickroute-gps (2.4-11) unstable; urgency=low
 
@@ -71,7 +71,7 @@ quickroute-gps (2.4-11) unstable; urgency=low
   * Require debhelper >= 9.
   * Address misc lintian issues.
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Wed, 25 Nov 2015 21:15:30 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Wed, 25 Nov 2015 21:15:30 +0100
 
 quickroute-gps (2.4-10) unstable; urgency=low
 
@@ -80,7 +80,7 @@ quickroute-gps (2.4-10) unstable; urgency=low
   [ RALOVICH, Kristóf ]
   * Tune debian/rules clean to only require build deps within chroot.
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Sat, 21 Nov 2015 10:21:28 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Sat, 21 Nov 2015 10:21:28 +0100
 
 quickroute-gps (2.4-9) unstable; urgency=low
 
@@ -91,7 +91,7 @@ quickroute-gps (2.4-9) unstable; urgency=low
   * Replace binary Ionic.Zip with parts of SharpZipLib.
   * Replace binary Powercollections with used sources.
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Sat, 14 Nov 2015 21:18:01 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Sat, 14 Nov 2015 21:18:01 +0100
 
 quickroute-gps (2.4-8) UNRELEASED; urgency=low
 
@@ -99,7 +99,7 @@ quickroute-gps (2.4-8) UNRELEASED; urgency=low
   * Saving EXIF info works for jpg. This allows the exported images
     to show up in the overview map of DOMA.
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 26 Aug 2014 00:17:35 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 26 Aug 2014 00:17:35 +0200
 
 quickroute-gps (2.4-7) UNRELEASED; urgency=low
 
@@ -111,7 +111,7 @@ quickroute-gps (2.4-7) UNRELEASED; urgency=low
   * version 2.4-7
   * scripts: get version info from AssemblyInfo.cs
 
- -- RALOVICH, Kristof <ralovich@in.tum.de>  Tue, 07 Jan 2014 12:04:47 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 07 Jan 2014 12:04:47 +0100
 
 quickroute-gps (2.4-6) UNRELEASED; urgency=low
 
@@ -125,7 +125,7 @@ quickroute-gps (2.4-6) UNRELEASED; urgency=low
   * docs: bring it up to date from mono2
   * docs: more versioning info
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Wed, 10 Jul 2013 21:42:01 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Wed, 10 Jul 2013 21:42:01 +0200
 
 quickroute-gps (2.4-5) UNRELEASED; urgency=low
 
@@ -135,7 +135,7 @@ quickroute-gps (2.4-5) UNRELEASED; urgency=low
     too
   * new version
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 09 Jul 2013 23:17:34 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 09 Jul 2013 23:17:34 +0200
 
 quickroute-gps (2.4-4) UNRELEASED; urgency=low
 
@@ -170,7 +170,7 @@ quickroute-gps (2.4-4) UNRELEASED; urgency=low
   * QuickRoute.UI/app.config: indent xml, no functional changes
   * debian: more work on menu entry
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Tue, 09 Jul 2013 22:07:51 +0200
+ -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 09 Jul 2013 22:07:51 +0200
 
 quickroute-gps (2.4-3) UNRELEASED; urgency=low
 
@@ -180,7 +180,7 @@ quickroute-gps (2.4-3) UNRELEASED; urgency=low
   * silence run-time message
   * list .FIT files downloaded by ANT+minus
 
- -- RALOVICH, Kristóf <ralovich@in.tum.de>  Mon, 25 Mar 2013 18:30:00 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Mon, 25 Mar 2013 18:30:00 +0100
 
 quickroute-gps (2.4-2) UNRELEASED; urgency=low
 
