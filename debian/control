@@ -2,15 +2,28 @@ Source: quickroute-gps
 Maintainer: Kristóf Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
+Rules-Requires-Root: no
 Standards-Version: 4.7.0
-Build-Depends: debhelper-compat (= 13), mono-xbuild, devscripts, cli-common-dev, mono-mcs, liblog4net1.2-cil, xvfb, xauth, tzdata
+Build-Depends:
+ debhelper-compat (= 13),
+ mono-xbuild,
+ devscripts,
+ cli-common-dev,
+ mono-mcs,
+ liblog4net1.2-cil,
+ xvfb,
+ xauth,
+ tzdata
 Homepage: https://github.com/ralovich/quickroute-linux
 Vcs-Git: https://salsa.debian.org/debian/quickroute-gps.git
 Vcs-Browser: https://salsa.debian.org/debian/quickroute-gps
 
 Package: quickroute-gps
 Architecture: any
-Depends: ${cli:Depends}, ${misc:Depends}, mono-mcs
+Depends:
+ ${cli:Depends},
+ ${misc:Depends},
+ mono-mcs
 Description: GPS analysis software for getting your route on the map
  QuickRoute is a visual GPS analysis software for orienteering and
  other outdoor activities. You can to display your route on a map, and

@@ -10,7 +10,7 @@ Copyright: 2008- Mats Troeng and Jörgen Ohlin
 License: GPL-3.0+
 
 Files: 3rdparty/ExifLibrary/*
-Source: https://code.google.com/archive/p/exiflibrary/
+Source: https://github.com/oozcitak/exiflibrary
 Copyright: 2009, 2013 Ozgur Ozcitak
 License: MIT
 
@@ -20,7 +20,7 @@ Copyright: 2007- Roger Dahlman, Keith J Rome, Jeff Richter
 License: EPL-1.0
 
 Files: debian/*
-Copyright: 2011-2015 Kristóf Ralovich
+Copyright: 2011-2025 Kristóf Ralovich
 License: GPL-3.0+
 
 Files: QuickRoute.BusinessEntities/Importers/GPX/GPX1*/gpx1.*.xsd

@@ -1,3 +1,10 @@
+Description: change target framework
+ This allows building with Mono.
+Author: Kristof Ralovich <tade60@freemail.hu>
+
+---
+Last-Update: 2015-01-14
+
 --- a/Makefile
 +++ b/Makefile
 @@ -3,11 +3,11 @@
