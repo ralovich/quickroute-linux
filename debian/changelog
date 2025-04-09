@@ -1,4 +1,4 @@
-quickroute-gps (2.5-1) UNRELEASED; urgency=medium
+quickroute-gps (2.5-1) unstable; urgency=medium
 
   [ Debian Janitor ]
   * Use secure copyright file specification URI.
@@ -9,7 +9,6 @@ quickroute-gps (2.5-1) UNRELEASED; urgency=medium
   * Fix day-of-week for changelog entry 2.4-2.
   * Remove constraints unnecessary since buster:
     + Build-Depends: Drop versioned constraint on devscripts, tzdata and xauth.
-  * Remove constraints unnecessary since buster:
     + Build-Depends: Drop versioned constraint on cli-common-dev,
       liblog4net1.2-cil, mono-mcs, mono-xbuild and xvfb.
     + quickroute-gps: Drop versioned constraint on mono-mcs in Depends.
@@ -23,9 +22,9 @@ quickroute-gps (2.5-1) UNRELEASED; urgency=medium
   * fix spelling
   * Migrate packaging GIT repository to salsa.debian.org.
   * debian: address lintian findings
-  * debian: update changlog
+  * debian: update changelog
 
- -- Kristóf Ralovich <tade60@freemail.hu>  Tue, 14 Jan 2025 21:36:26 +0100
+ -- Kristóf Ralovich <tade60@freemail.hu>  Wed, 09 Apr 2025 15:35:30 +0200
 
 quickroute-gps (2.4-15) unstable; urgency=medium
 
