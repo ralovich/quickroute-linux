@@ -7,7 +7,6 @@ Standards-Version: 4.7.0
 Build-Depends:
  debhelper-compat (= 13),
  mono-xbuild,
- devscripts,
  cli-common-dev,
  mono-mcs,
  liblog4net1.2-cil,
