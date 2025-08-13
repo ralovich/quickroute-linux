@@ -1,3 +1,8 @@
 ---
 include:
   - https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/recipes/debian.yml
+
+variables:
+  # Mono builds are unreproducible due to embedded timestamps
+  # https://wiki.debian.org/ReproducibleBuilds/TimestampsInPEBinaries
+  SALSA_CI_DISABLE_REPROTEST: 1
