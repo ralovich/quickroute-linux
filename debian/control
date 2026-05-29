@@ -7,7 +7,6 @@ Standards-Version: 4.7.0
 Build-Depends:
  debhelper-compat (= 13),
  mono-xbuild,
- cli-common-dev,
  mono-mcs,
  liblog4net1.2-cil,
  xvfb,
@@ -20,7 +19,6 @@ Vcs-Browser: https://salsa.debian.org/debian/quickroute-gps
 Package: quickroute-gps
 Architecture: any
 Depends:
- ${cli:Depends},
  ${misc:Depends},
  mono-mcs
 Description: GPS analysis software for getting your route on the map

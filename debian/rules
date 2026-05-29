@@ -37,7 +37,10 @@ clean:
 	rm -rf .pc
 	$(MAKE) clean || true
 	dh clean || true
-	dh clean --with=cli || true
 
 %:
-	dh $@ --with=cli
+	dh $@
+
+override_dh_fixperms:
+	dh_fixperms
+	find debian/quickroute-gps/usr/lib/quickroute-gps/ -name '*.dll' -exec chmod 0644 {} +
