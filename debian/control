@@ -3,7 +3,7 @@ Maintainer: Kristóf Ralovich <tade60@freemail.hu>
 Section: misc
 Priority: optional
 Rules-Requires-Root: no
-Standards-Version: 4.7.0
+Standards-Version: 4.7.4
 Build-Depends:
  debhelper-compat (= 13),
  mono-xbuild,
