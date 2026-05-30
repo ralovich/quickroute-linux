@@ -6,3 +6,4 @@ variables:
   # Mono builds are unreproducible due to embedded timestamps
   # https://wiki.debian.org/ReproducibleBuilds/TimestampsInPEBinaries
   SALSA_CI_DISABLE_REPROTEST: 1
+  SALSA_CI_DISABLE_DEBREBUILD: 1
