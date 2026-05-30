@@ -1,1 +1,2 @@
 change-target-framework.patch
+log4net-use-hintpath.patch

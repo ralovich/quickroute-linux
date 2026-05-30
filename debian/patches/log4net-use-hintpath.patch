@@ -1,0 +1,70 @@
+From: James Montgomery <james_montgomery@disroot.org>
+Date: Mon, 25 May 2026 09:00:00 -0400
+Subject: Fix log4net assembly reference using HintPath
+Bug-Debian: https://bugs.debian.org/1112155
+
+The cli-common GAC registration is broken in the current mono stack, so
+<Package>log4net</Package> references can no longer be resolved at build
+time. Replace the <Package> element with an explicit <HintPath> pointing
+to the known install location of the liblog4net1.2-cil package.
+
+Index: quickroute-gps/QuickRoute.BusinessEntities/QuickRoute.BusinessEntities.csproj
+===================================================================
+--- quickroute-gps.orig/QuickRoute.BusinessEntities/QuickRoute.BusinessEntities.csproj
++++ quickroute-gps/QuickRoute.BusinessEntities/QuickRoute.BusinessEntities.csproj
+@@ -62,7 +62,7 @@
+     <Reference Include="System.Windows.Forms" />
+     <Reference Include="System.Xml" />
+     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=a5715cc6d5c3540b">
+-      <Package>log4net</Package>
++      <HintPath>/usr/lib/cli/log4net-1.2/log4net.dll</HintPath>
+     </Reference>
+   </ItemGroup>
+   <ItemGroup>
+@@ -534,4 +534,4 @@
+   <Target Name="AfterBuild">
+   </Target>
+   -->
+-</Project>
+\ No newline at end of file
++</Project>
+Index: quickroute-gps/QuickRoute.Common/QuickRoute.Common.csproj
+===================================================================
+--- quickroute-gps.orig/QuickRoute.Common/QuickRoute.Common.csproj
++++ quickroute-gps/QuickRoute.Common/QuickRoute.Common.csproj
+@@ -58,7 +58,7 @@
+     <Reference Include="System.Data" />
+     <Reference Include="System.Xml" />
+     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=a5715cc6d5c3540b">
+-      <Package>log4net</Package>
++      <HintPath>/usr/lib/cli/log4net-1.2/log4net.dll</HintPath>
+     </Reference>
+   </ItemGroup>
+   <ItemGroup>
+@@ -75,4 +75,4 @@
+   <Target Name="AfterBuild">
+   </Target>
+   -->
+-</Project>
+\ No newline at end of file
++</Project>
+Index: quickroute-gps/QuickRoute.UI/QuickRoute.UI.csproj
+===================================================================
+--- quickroute-gps.orig/QuickRoute.UI/QuickRoute.UI.csproj
++++ quickroute-gps/QuickRoute.UI/QuickRoute.UI.csproj
+@@ -83,7 +83,7 @@
+     <Reference Include="System.Xml" />
+     <Reference Include="System.Configuration" />
+     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=a5715cc6d5c3540b">
+-      <Package>log4net</Package>
++      <HintPath>/usr/lib/cli/log4net-1.2/log4net.dll</HintPath>
+     </Reference>
+   </ItemGroup>
+   <ItemGroup>
+@@ -1089,4 +1089,4 @@
+   <Target Name="AfterBuild">
+   </Target>
+   -->
+-</Project>
+\ No newline at end of file
++</Project>
