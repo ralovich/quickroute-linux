@@ -18,7 +18,11 @@ quickroute-gps (2.5-2) unstable; urgency=medium
     pkg-config and GAC resolution both fail.
     Closes: #1110984
 
- -- Kristóf Ralovich <tade60@freemail.hu>  Sat, 30 May 2026 13:19:44 +0200
+  [ Kristof Ralovich ]
+  * ci: disable debrebuild
+  * debian/control: Update to Standards-Version 4.7.4
+
+ -- Kristóf Ralovich <tade60@freemail.hu>  Sat, 30 May 2026 13:42:45 +0200
 
 quickroute-gps (2.5-1) unstable; urgency=medium
 
