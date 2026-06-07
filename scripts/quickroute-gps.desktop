@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Name=QuickRoute
-Comment=Orienteering GPS track analisys tool.
+Comment=Orienteering GPS track analysis tool.
 Exec=/usr/bin/quickroute-gps
 Icon=/usr/share/pixmaps/quickroute-gps.xpm
 Categories=Education;Science;Geoscience;
