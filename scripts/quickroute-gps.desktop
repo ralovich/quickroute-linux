@@ -5,6 +5,7 @@ Comment=Orienteering GPS track analysis tool.
 Exec=/usr/bin/quickroute-gps
 Icon=/usr/share/pixmaps/quickroute-gps.xpm
 Categories=Education;Science;Geoscience;
+Keywords=tool;utility;gps;gpx;orienteering;map;
 StartupNotify=false
 Terminal=false
 Type=Application
